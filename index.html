@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iHub Affiliates - Sua Plataforma de Afiliados</title>
+  <meta name="description" content="iHub Affiliates — Conecte-se com as melhores marcas e transforme sua audiência em resultados extraordinários.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { outfit: ['Outfit', 'sans-serif'] },
+          colors: {
+            dark: { 900: '#0a0a0a', 800: '#0e0e0e', 700: '#141414', 600: '#1a1a1a', 500: '#222222' },
+            brand: { DEFAULT: '#00A7FF', dark: '#005791', light: '#4dc3ff', glow: 'rgba(0, 167, 255, 0.15)' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Outfit', sans-serif; }
+
+    /* Glow effects */
+    .glow-top { background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,167,255,0.08) 0%, transparent 70%); }
+    .glow-center { background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,167,255,0.06) 0%, transparent 70%); }
+
+    /* Gradient text */
+    .text-gradient {
+      background: linear-gradient(135deg, #00A7FF 0%, #4dc3ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subtle card border glow on hover */
+    .card-glow { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-glow:hover {
+      border-color: rgba(0, 167, 255, 0.25);
+      box-shadow: 0 0 40px rgba(0, 167, 255, 0.08), 0 20px 50px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px);
+    }
+
+    /* FAQ answer transition */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .faq-item.active .faq-answer { max-height: 200px; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Slider */
+    .slider-track { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* Testimonial carousel — Safirion style (exact copy) */
+    #testimonialCarousel,
+    .testimonial-carousel {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      position: relative;
+      min-height: 320px;
+    }
+    .testimonial-slide {
+      position: absolute;
+      width: 380px;
+      max-width: 90vw;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.8) translateX(0);
+      z-index: 0;
+    }
+    .testimonial-slide.is-center {
+      position: relative;
+      z-index: 10;
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      pointer-events: auto;
+      border-color: rgba(0, 167, 255, 0.2) !important;
+      box-shadow: 0 0 40px rgba(0, 167, 255, 0.08);
+    }
+    .testimonial-slide.is-left {
+      z-index: 5;
+      opacity: 0.4;
+      transform: scale(0.88) translateX(-105%);
+      filter: blur(1px);
+    }
+    .testimonial-slide.is-right {
+      z-index: 5;
+      opacity: 0.4;
+      transform: scale(0.88) translateX(105%);
+      filter: blur(1px);
+    }
+    @media (max-width: 768px) {
+      #testimonialCarousel { min-height: 360px; }
+      .testimonial-slide { width: 85vw; }
+      .testimonial-slide.is-left { transform: scale(0.85) translateX(-90%); }
+      .testimonial-slide.is-right { transform: scale(0.85) translateX(90%); }
+    }
+
+  </style>
+</head>
+<body class="bg-dark-800 text-white antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <div class="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <img src="assets/img/logo-white.png" alt="iHub Affiliates" class="h-9">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="#inicio" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Início</a>
+        <a href="#beneficios" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Benefícios</a>
+        <a href="#como-funciona" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Como Funciona</a>
+        <a href="#depoimentos" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Depoimentos</a>
+        <a href="#faq" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">FAQ</a>
+      </nav>
+
+
+      <!-- Mobile Toggle -->
+      <button id="menuToggle" class="md:hidden flex flex-col gap-[5px] p-2 z-[60]" aria-label="Menu">
+        <span class="block w-6 h-0.5 bg-white rounded transition-all duration-300 origin-center"></span>
+        <span class="block w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-white rounded transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="md:hidden fixed inset-0 bg-dark-800/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6 z-50 translate-x-full transition-transform duration-300">
+      <a href="#inicio" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Início</a>
+      <a href="#beneficios" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Benefícios</a>
+      <a href="#como-funciona" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Como Funciona</a>
+      <a href="#depoimentos" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Depoimentos</a>
+      <a href="#faq" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">FAQ</a>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <!-- Hero background image -->
+    <div class="absolute inset-0 pointer-events-none">
+      <img src="assets/img/hero-bg.png" alt="" class="w-full h-full object-cover object-center opacity-40">
+      <div class="absolute inset-0 bg-gradient-to-b from-dark-800/60 via-transparent to-dark-800"></div>
+    </div>
+    <div class="absolute inset-0 glow-top pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
+
+      <div class="inline-flex items-center gap-2 text-brand text-xs font-semibold tracking-[0.2em] uppercase bg-brand/5 border border-brand/10 rounded-full px-5 py-2 mb-8 reveal">
+        <i class="fas fa-bolt text-[10px]"></i> Plataforma de Afiliados #1
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 reveal">
+        A Nova Era dos <span class="text-gradient">Afiliados</span>
+      </h1>
+
+      <p class="text-lg text-zinc-400 max-w-xl mx-auto mb-10 leading-relaxed reveal">
+        Conecte-se com as melhores marcas do mercado e transforme sua audiência em resultados extraordinários. Maximize seus ganhos com a <strong class="text-zinc-200">iHub</strong>.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 reveal">
+        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-gradient-to-r from-brand to-brand-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,167,255,0.35)] flex items-center justify-center gap-2">
+          Começar Agora <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+        <a href="#beneficios" class="w-full sm:w-auto border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold px-8 py-4 rounded-xl transition-all hover:bg-white/[0.03] text-center">
+          Saiba Mais
+        </a>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="flex items-center justify-center gap-8 sm:gap-12 flex-wrap reveal">
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">5k+</div>
+          <div class="text-xs text-zinc-500 mt-1">Afiliados Ativos</div>
+        </div>
+        <div class="w-px h-10 bg-zinc-800 hidden sm:block"></div>
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">R$10M+</div>
+          <div class="text-xs text-zinc-500 mt-1">Pagos em Comissões</div>
+        </div>
+        <div class="w-px h-10 bg-zinc-800 hidden sm:block"></div>
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">24/7</div>
+          <div class="text-xs text-zinc-500 mt-1">Suporte Dedicado</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== BENEFÍCIOS ========== -->
+  <section id="beneficios" class="relative py-28 bg-dark-900">
+    <div class="absolute inset-0 glow-center pointer-events-none"></div>
+    <div class="relative z-10 max-w-[1400px] mx-auto px-6">
+
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Benefícios</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Por Que Escolher o <span class="text-gradient">iHub</span>?</h2>
+        <p class="text-zinc-400 reveal">Tudo que você precisa para escalar seus resultados como afiliado profissional.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Comissões Competitivas</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">As melhores comissões do mercado com pagamentos pontuais e transparência total em todas as conversões.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Dashboard Completo</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Métricas em tempo real com relatórios detalhados e insights para otimizar seus resultados.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
+            <i class="fas fa-link"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Links Inteligentes</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Links personalizados com tracking avançado para maximizar cada conversão da sua audiência.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Suporte Dedicado</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Equipe especializada disponível 24/7 para te ajudar a crescer constantemente.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Crescimento Rápido</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Ferramentas profissionais e estratégias comprovadas para escalar seus resultados.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Segurança Total</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Proteção completa dos seus dados com criptografia avançada e conformidade regulatória.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPARATIVO ========== -->
+  <section class="py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Comparativo</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">iHub vs <span class="text-gradient">Outros</span></h2>
+        <p class="text-zinc-400 reveal">Veja o que nos diferencia da concorrência.</p>
+      </div>
+
+      <div class="bg-dark-700 border border-zinc-800/60 rounded-2xl overflow-hidden reveal">
+        <!-- Header -->
+        <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 bg-brand/5 text-xs font-bold uppercase tracking-wider">
+          <span class="text-zinc-400">Recurso</span>
+          <span class="text-center text-brand">iHub</span>
+          <span class="text-center text-zinc-500">Outros</span>
+        </div>
+        <!-- Rows -->
+        <div class="divide-y divide-zinc-800/40">
+          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
+            <span class="text-sm text-zinc-300">Comissões acima do mercado</span>
+            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
+            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
+          </div>
+          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
+            <span class="text-sm text-zinc-300">Pagamentos em até 24h</span>
+            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
+            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
+          </div>
+          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
+            <span class="text-sm text-zinc-300">Dashboard em tempo real</span>
+            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
+            <span class="text-center text-zinc-600"><i class="fas fa-minus text-zinc-700"></i></span>
+          </div>
+          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
+            <span class="text-sm text-zinc-300">Suporte 24/7 em português</span>
+            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
+            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
+          </div>
+          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
+            <span class="text-sm text-zinc-300">Links com tracking avançado</span>
+            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
+            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
+          </div>
+          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
+            <span class="text-sm text-zinc-300">Sem taxa de adesão</span>
+            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
+            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMO FUNCIONA ========== -->
+  <section id="como-funciona" class="relative py-28 bg-dark-900">
+    <div class="absolute inset-0 glow-center pointer-events-none"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-6">
+
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Comece Agora</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Simples de <span class="text-gradient">começar</span></h2>
+        <p class="text-zinc-400 reveal">Em 3 passos você já está faturando com a iHub.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 text-center reveal">
+          <div class="text-5xl font-extrabold text-gradient mb-4">01</div>
+          <h3 class="text-lg font-bold mb-2">Crie sua conta</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Cadastro rápido e gratuito. Sem burocracia, sem taxas escondidas.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 text-center reveal">
+          <div class="text-5xl font-extrabold text-gradient mb-4">02</div>
+          <h3 class="text-lg font-bold mb-2">Escolha suas ofertas</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Acesse as melhores marcas e selecione as ofertas que combinam com sua audiência.</p>
+        </div>
+
+        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 text-center reveal">
+          <div class="text-5xl font-extrabold text-gradient mb-4">03</div>
+          <h3 class="text-lg font-bold mb-2">Comece a faturar</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Divulgue seus links e acompanhe as comissões entrando em tempo real.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal">
+        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,167,255,0.35)]">
+          Criar Conta Gratuita <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DEPOIMENTOS ========== -->
+  <section id="depoimentos" class="py-28 overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6">
+
+      <div class="text-center max-w-2xl mx-auto mb-6">
+        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Depoimentos</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight reveal">Afiliados Estão<br><span class="text-gradient italic">Recomendando a iHub</span></h2>
+      </div>
+
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <p class="text-zinc-400 leading-relaxed">Quase 100% dos afiliados que operam na nossa plataforma já passaram por <strong class="text-white">alguma experiência ruim</strong> com outras plataformas.</p>
+        <p class="text-zinc-400 leading-relaxed mt-3">Muitos não conseguiam rastrear conversões, outros tinham atrasos nos pagamentos, e sabemos que <strong class="text-white">cada centavo perdido faz diferença no bolso do afiliado.</strong></p>
+      </div>
+
+    </div>
+
+    <!-- Carousel full-width -->
+    <div class="relative reveal">
+      <div class="max-w-7xl mx-auto px-6">
+        <div id="testimonialCarousel">
+
+          <!-- Card 1 -->
+          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="0">
+            <div class="flex items-center gap-2 mb-5">
+              <div class="flex gap-0.5 text-amber-400 text-xs">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
+            </div>
+            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Desde que migrei para a iHub, parei de sofrer com atrasos nos pagamentos... Minha consistência saiu de 58% para 81%, nas primeiras semanas!"</p>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">RM</div>
+              <div>
+                <div class="font-semibold text-sm">Ricardo Mendes</div>
+                <div class="text-xs text-zinc-500">Afiliado</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="1">
+            <div class="flex items-center gap-2 mb-5">
+              <div class="flex gap-0.5 text-amber-400 text-xs">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
+            </div>
+            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Depois que migrei para a iHub, nunca mais perdi uma conversão por falha de tracking... Minha taxa de acerto subiu de 62% para 83% no primeiro mês!"</p>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">AS</div>
+              <div>
+                <div class="font-semibold text-sm">Ana Silva</div>
+                <div class="text-xs text-zinc-500">Afiliada</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="2">
+            <div class="flex items-center gap-2 mb-5">
+              <div class="flex gap-0.5 text-amber-400 text-xs">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
+            </div>
+            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Estava inseguro antes da iHub, tinha slippage em outras plataformas... Agora opero com precisão e bati 79% de acerto no mês passado!"</p>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">PL</div>
+              <div>
+                <div class="font-semibold text-sm">Pedro Lima</div>
+                <div class="text-xs text-zinc-500">Afiliado</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="3">
+            <div class="flex items-center gap-2 mb-5">
+              <div class="flex gap-0.5 text-amber-400 text-xs">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
+            </div>
+            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"O PIX cai no mesmo dia. Já testei outras e sempre atrasava. Na iHub é diferente, transparência total e comissões justas. Recomendo demais!"</p>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">CB</div>
+              <div>
+                <div class="font-semibold text-sm">Camila B.</div>
+                <div class="text-xs text-zinc-500">Afiliada</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="4">
+            <div class="flex items-center gap-2 mb-5">
+              <div class="flex gap-0.5 text-amber-400 text-xs">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
+            </div>
+            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Links inteligentes são um diferencial absurdo. Minha taxa de clique subiu 60% depois que comecei a usar os deep links da iHub. Sensacional!"</p>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">DM</div>
+              <div>
+                <div class="font-semibold text-sm">Diego M.</div>
+                <div class="text-xs text-zinc-500">Afiliado</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Nav arrows -->
+      <div class="flex justify-center gap-3 mt-10">
+        <button id="prevSlide" class="w-12 h-12 rounded-full border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white flex items-center justify-center transition-all" aria-label="Anterior">
+          <i class="fas fa-arrow-left text-sm"></i>
+        </button>
+        <button id="nextSlide" class="w-12 h-12 rounded-full bg-brand border border-brand text-white hover:bg-brand-dark flex items-center justify-center transition-all" aria-label="Próximo">
+          <i class="fas fa-arrow-right text-sm"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVA SOCIAL (COMENTADO POR ENQUANTO) -->
+
+  <!-- ========== CTA FINAL ========== -->
+  <section id="contato" class="relative py-28 overflow-hidden">
+    <div class="absolute inset-0 glow-center pointer-events-none"></div>
+    <div class="relative z-10 max-w-2xl mx-auto px-6 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">
+        Pronto para <span class="text-gradient">transformar</span> seus resultados?
+      </h2>
+      <p class="text-zinc-400 text-lg mb-10 reveal">
+        Junte-se a mais de 5.000 afiliados que já escolheram a iHub como parceira.
+      </p>
+      <div class="reveal">
+        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand-dark text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,167,255,0.35)]">
+          Comece Agora — É Grátis <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+        <p class="text-xs text-zinc-600 mt-4">Sem cartão de crédito. Cancele quando quiser.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BAIXE O APP ========== -->
+  <section id="app" class="relative py-28 overflow-hidden">
+    <div class="absolute inset-0 glow-center pointer-events-none"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+
+      <!-- Phone mockup with glow -->
+      <div class="mb-10 reveal">
+        <div class="relative inline-block">
+          <div class="absolute inset-0 bg-brand/10 blur-[80px] rounded-full scale-75 pointer-events-none"></div>
+          <img src="assets/img/mockup_iphone.png" alt="iHub Affiliates App" class="relative w-[240px] mx-auto drop-shadow-[0_30px_60px_rgba(0,167,255,0.15)]">
+        </div>
+      </div>
+
+      <!-- Info -->
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Baixe o App <span class="text-gradient">iHUB Affiliates</span></h2>
+      <p class="text-zinc-400 leading-relaxed max-w-xl mx-auto mb-8 reveal">Acompanhe suas comissões, gerencie seus links e monitore seus resultados em tempo real — direto do seu celular.</p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4 justify-center reveal">
+        <!-- App Store -->
+        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white text-dark-900 font-semibold px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(255,255,255,0.1)]">
+          <i class="fab fa-apple text-2xl"></i>
+          <div class="text-left leading-tight">
+            <div class="text-[10px] uppercase tracking-wider opacity-70">Disponível na</div>
+            <div class="text-base font-bold -mt-0.5">App Store</div>
+          </div>
+        </a>
+
+        <!-- Google Play (em breve) -->
+        <div class="inline-flex items-center gap-3 bg-zinc-800/50 text-zinc-500 font-semibold px-6 py-3.5 rounded-xl cursor-default border border-zinc-800/60">
+          <i class="fab fa-google-play text-xl"></i>
+          <div class="text-left leading-tight">
+            <div class="text-[10px] uppercase tracking-wider opacity-70">Em breve no</div>
+            <div class="text-base font-bold -mt-0.5">Google Play</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="relative py-28 bg-dark-900">
+    <div class="absolute inset-0 glow-center pointer-events-none"></div>
+    <div class="relative z-10 max-w-2xl mx-auto px-6">
+
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Dúvidas</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Perguntas <span class="text-gradient">frequentes</span></h2>
+      </div>
+
+      <div class="flex flex-col gap-3 reveal">
+        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+            <span>Quanto custa para ser afiliado iHub?</span>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">É totalmente gratuito! Não cobramos nenhuma taxa de adesão ou mensalidade. Você só precisa se cadastrar e começar a divulgar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+            <span>Como recebo minhas comissões?</span>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Pagamentos são processados em até 24 horas via PIX, transferência bancária ou carteira digital. Você escolhe a forma que preferir.</p>
+          </div>
+        </div>
+
+        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+            <span>Preciso ter experiência como afiliado?</span>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Não! A plataforma é intuitiva e oferecemos materiais de apoio, tutoriais e suporte dedicado para te ajudar desde o primeiro dia.</p>
+          </div>
+        </div>
+
+        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+            <span>Quais marcas estão disponíveis para divulgar?</span>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Trabalhamos com marcas líderes de diversos segmentos. Ao se cadastrar, você terá acesso ao catálogo completo de ofertas disponíveis na plataforma.</p>
+          </div>
+        </div>
+
+        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+            <span>O suporte funciona em que horários?</span>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Nosso suporte funciona 24/7 via chat e e-mail, com equipe 100% em português. Tempo médio de resposta inferior a 5 minutos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-zinc-800/60 bg-dark-900">
+    <div class="max-w-[1400px] mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+        <!-- Brand -->
+        <div>
+          <a href="#" class="flex items-center gap-2 mb-4">
+            <img src="assets/img/logo-white.png" alt="iHub" class="h-8">
+          </a>
+          <p class="text-sm text-zinc-500 leading-relaxed max-w-xs mb-6">Plataforma de afiliados que conecta você às melhores marcas do mercado.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-brand hover:border-brand/30 transition-all" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-brand hover:border-brand/30 transition-all" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-brand hover:border-brand/30 transition-all" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Nav -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-300 mb-4">Navegação</h4>
+          <div class="flex flex-col gap-2">
+            <a href="#inicio" class="text-sm text-zinc-500 hover:text-brand transition-colors">Início</a>
+            <a href="#beneficios" class="text-sm text-zinc-500 hover:text-brand transition-colors">Benefícios</a>
+            <a href="#como-funciona" class="text-sm text-zinc-500 hover:text-brand transition-colors">Como Funciona</a>
+            <a href="#depoimentos" class="text-sm text-zinc-500 hover:text-brand transition-colors">Depoimentos</a>
+            <a href="#faq" class="text-sm text-zinc-500 hover:text-brand transition-colors">FAQ</a>
+          </div>
+        </div>
+
+        <!-- Recursos -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-300 mb-4">Recursos</h4>
+          <div class="flex flex-col gap-2">
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Central de Ajuda</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Blog</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Materiais de Apoio</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Status da Plataforma</a>
+          </div>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-300 mb-4">Legal</h4>
+          <div class="flex flex-col gap-2">
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Termos de Uso</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Política de Privacidade</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Cookies</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">LGPD</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-zinc-800/60 text-center">
+        <p class="text-xs text-zinc-600">&copy; 2026 iHub Affiliates. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script type="module" src="assets/js/app.js"></script>
+
+</body>
+</html>

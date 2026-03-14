@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iHub Affiliates - Sua Plataforma de Afiliados</title>
-  <meta name="description" content="iHub Affiliates — Conecte-se com as melhores marcas e transforme sua audiência em resultados extraordinários.">
+  <meta name="description"
+    content="iHub Affiliates — Conecte-se com as melhores marcas e transforme sua audiência em resultados extraordinários.">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script>
@@ -27,111 +31,742 @@
     }
   </script>
   <style>
-    body { font-family: 'Outfit', sans-serif; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    /* Glassmorphism - Premium Apple/iOS Style */
+    .glass {
+      background: rgba(22, 22, 23, 0.6) !important;
+      backdrop-filter: saturate(180%) blur(25px) !important;
+      -webkit-backdrop-filter: saturate(180%) blur(25px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-light {
+      background: rgba(255, 255, 255, 0.03) !important;
+      backdrop-filter: saturate(180%) blur(20px) !important;
+      -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Tech Grid Background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0, 167, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 167, 255, 0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at center, black, transparent 80%);
+    }
 
     /* Glow effects */
-    .glow-top { background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,167,255,0.08) 0%, transparent 70%); }
-    .glow-center { background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,167,255,0.06) 0%, transparent 70%); }
+    .glow-top {
+      background: radial-gradient(circle at 50% 0%, rgba(0, 167, 255, 0.2), transparent 70%);
+    }
 
-    /* Gradient text */
+    .glow-center {
+      background: radial-gradient(circle at center, rgba(0, 167, 255, 0.1), transparent 70%);
+    }
+
+    /* Gradient text - More subtle Apple style */
     .text-gradient {
+      background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-brand-gradient {
       background: linear-gradient(135deg, #00A7FF 0%, #4dc3ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    /* Subtle card border glow on hover */
-    .card-glow { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .card-glow:hover {
-      border-color: rgba(0, 167, 255, 0.25);
-      box-shadow: 0 0 40px rgba(0, 167, 255, 0.08), 0 20px 50px rgba(0, 0, 0, 0.3);
-      transform: translateY(-4px);
+    .name-badge {
+      position: relative;
+      display: inline-block;
+      padding: 0.1em 0.4em;
+    }
+
+    .name-badge::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 167, 255, 0.1);
+      border: 1px solid rgba(0, 167, 255, 0.2);
+      border-radius: 12px;
+      z-index: -1;
+      transform: skewX(-10deg);
+    }
+
+    /* Ambient Glow Follower */
+    #ambientGlow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at center, rgba(0, 167, 255, 0.08), transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      transition: top 0.2s ease-out, left 0.2s ease-out;
+      filter: blur(80px);
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Pulse Glow */
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(0, 167, 255, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(0, 167, 255, 0.4);
+      }
+    }
+
+    .glow-pulse {
+      animation: pulse-glow 3s infinite;
+    }
+
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-spin-slow {
+      animation: spin-slow 12s linear infinite;
+    }
+
+    /* Elite Section Dividers */
+    .section-divider {
+      display: flex;
+      height: 5px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .divider-blue {
+      background-color: #00A7FF;
+      height: 100%;
+    }
+
+    .divider-red {
+      background-color: #FF0000;
+      height: 100%;
+    }
+
+    /* Directional Utility */
+    .divider-left-heavy .divider-blue {
+      flex: 7;
+    }
+
+    .divider-left-heavy .divider-red {
+      flex: 3;
+    }
+
+    .divider-right-heavy .divider-blue {
+      flex: 3;
+    }
+
+    .divider-right-heavy .divider-red {
+      flex: 7;
+    }
+
+    .divider-balanced .divider-blue {
+      flex: 1;
+    }
+
+    .divider-balanced .divider-red {
+      flex: 1;
+    }
+
+    /* Header Progress Bar */
+    .header-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      display: flex;
+      overflow: hidden;
+      border-radius: 99px;
+      opacity: 0.8;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .header-progress-bar .bar-blue {
+      background-color: #00A7FF;
+      height: 100%;
+      transition: all 0.8s ease;
+    }
+
+    .header-progress-bar .bar-red {
+      background-color: #FF0000;
+      height: 100%;
+      transition: all 0.8s ease;
+    }
+
+    .header-nav-left .bar-blue {
+      flex: 7;
+    }
+
+    .header-nav-left .bar-red {
+      flex: 3;
+    }
+
+    .header-nav-right .bar-blue {
+      flex: 3;
+    }
+
+    .header-nav-right .bar-red {
+      flex: 7;
+    }
+
+    .header-nav-balanced .bar-blue {
+      flex: 5;
+    }
+
+    .header-nav-balanced .bar-red {
+      flex: 5;
+    }
+
+    /* X Divider Style */
+    .divider-x-container {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      background: transparent;
+      margin: -30px 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .x-bar {
+      position: absolute;
+      width: 120%;
+      height: 35px;
+      border-radius: 99px;
+    }
+
+    .x-bar-blue {
+      background: #00A7FF;
+      transform: rotate(-3deg);
+      box-shadow: 0 0 40px rgba(0, 167, 255, 0.6);
+      z-index: 2;
+    }
+
+    .x-bar-red {
+      background: #FF0000;
+      transform: rotate(3deg);
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    /* Exclusive Tech Corner Decoration */
+    .tech-corner {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 167, 255, 0.3);
+      pointer-events: none;
+    }
+
+    .tech-corner-tl {
+      top: 20px;
+      left: 20px;
+      border-right: 0;
+      border-bottom: 0;
+    }
+
+    .tech-corner-br {
+      bottom: 20px;
+      right: 20px;
+      border-left: 0;
+      border-top: 0;
+    }
+
+    /* Exclusive Side-Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(90deg, rgba(0, 167, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-left: 4px solid #00A7FF;
+      padding: 10px 24px 10px 12px;
+      border-top-right-radius: 32px;
+      border-bottom-right-radius: 32px;
+      transform: translateX(-100%);
+      opacity: 0;
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .status-badge.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Right Side Status Badge */
+    .status-badge-right {
+      display: inline-flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 12px;
+      background: linear-gradient(-90deg, rgba(0, 167, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-right: 4px solid #00A7FF;
+      padding: 10px 12px 10px 24px;
+      border-top-left-radius: 32px;
+      border-bottom-left-radius: 32px;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .status-badge-right.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .status-badge-right .badge-icon {
+      font-size: 14px;
+      color: #00A7FF;
+      filter: drop-shadow(0 0 5px rgba(0, 167, 255, 0.5));
+    }
+
+
+    /* Infinite Marquee Animation */
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .awards-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+
+    .awards-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    .award-card {
+      width: 280px;
+      height: 180px;
+      margin: 0 15px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .award-card:hover {
+      border-color: rgba(0, 167, 255, 0.4);
+      background: rgba(0, 167, 255, 0.05);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 167, 255, 0.1);
+    }
+
+    .award-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) opacity(0.9);
+      transition: all 0.5s ease;
+    }
+
+    .award-card:hover img {
+      filter: grayscale(0%) opacity(1);
+    }
+
+    /* Placa Card - Milestone Awards */
+    .placa-card {
+      width: 320px;
+      height: 420px;
+      margin: 0 20px;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .placa-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: brightness(0.9) contrast(1.1);
+    }
+
+    .placa-card:nth-child(even)::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, #00A7FF, transparent, #00A7FF);
+      z-index: -1;
+      border-radius: 40px;
+      opacity: 0.1;
+      transition: opacity 0.5s ease;
+    }
+
+    .placa-card:nth-child(odd)::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, #FF0000, transparent, #FF0000);
+      z-index: -1;
+      border-radius: 40px;
+      opacity: 0.1;
+      transition: opacity 0.5s ease;
+    }
+
+    .placa-card:hover::after {
+      opacity: 0.4;
+    }
+
+    .placa-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .placa-card:nth-child(even):hover {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 167, 255, 0.3);
+    }
+
+    .placa-card:nth-child(odd):hover {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .placa-card {
+        width: 260px;
+        height: 340px;
+        margin: 0 10px;
+      }
+    }
+
+    /* Card Interaction - Spotlight & 3D Tilt */
+    .card-spotlight {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease-out, border-color 0.4s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .card-spotlight::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0, 167, 255, 0.15), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card-spotlight:hover::before {
+      opacity: 1;
+    }
+
+    .card-spotlight:hover {
+      transform:
+        rotateY(var(--rotate-x, 0deg)) rotateX(var(--rotate-y, 0deg)) translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Standardized Buttons */
+    .btn-primary {
+      background-color: #ffffff;
+      color: #000000;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary:hover {
+      background-color: #e5e7eb;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.95);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      color: #ffffff;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+      font-size: 1.125rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.95);
+    }
+
+    /* Store Buttons - Premium & Brand-accurate */
+    .btn-app {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 16px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-app-apple {
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-app-google {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.4);
+      cursor: not-allowed;
+      filter: grayscale(1);
+    }
+
+    .btn-app:hover:not(.btn-app-google) {
+      transform: translateY(-2px);
+      background: #1a1a1b;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-brand {
+      background: linear-gradient(135deg, #00A7FF 0%, #005791 100%);
+      color: #ffffff;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      box-shadow: 0 10px 30px rgba(0, 167, 255, 0.2);
+    }
+
+    .btn-brand:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(0, 167, 255, 0.3);
+    }
+
+    .btn-brand:active {
+      transform: scale(0.95);
     }
 
     /* FAQ answer transition */
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .faq-item.active .faq-answer { max-height: 200px; }
-    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-item.active {
+      border-color: rgba(0, 167, 255, 0.2) !important;
+    }
 
     /* Scroll reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* Slider */
-    .slider-track { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* Testimonial carousel — Safirion style (exact copy) */
-    #testimonialCarousel,
-    .testimonial-carousel {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
+    /* Testimonial carousel — Premium 3D Stack */
+    #testimonialCarousel {
       position: relative;
-      min-height: 320px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
     }
+
     .testimonial-slide {
       position: absolute;
-      width: 380px;
-      max-width: 90vw;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      max-width: 420px;
+      padding: 2.5rem;
+      border-radius: 32px;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
       opacity: 0;
-      transform: scale(0.8) translateX(0);
-      z-index: 0;
-    }
-    .testimonial-slide.is-center {
-      position: relative;
-      z-index: 10;
-      opacity: 1;
-      transform: scale(1) translateX(0);
-      pointer-events: auto;
-      border-color: rgba(0, 167, 255, 0.2) !important;
-      box-shadow: 0 0 40px rgba(0, 167, 255, 0.08);
-    }
-    .testimonial-slide.is-left {
-      z-index: 5;
-      opacity: 0.4;
-      transform: scale(0.88) translateX(-105%);
-      filter: blur(1px);
-    }
-    .testimonial-slide.is-right {
-      z-index: 5;
-      opacity: 0.4;
-      transform: scale(0.88) translateX(105%);
-      filter: blur(1px);
-    }
-    @media (max-width: 768px) {
-      #testimonialCarousel { min-height: 360px; }
-      .testimonial-slide { width: 85vw; }
-      .testimonial-slide.is-left { transform: scale(0.85) translateX(-90%); }
-      .testimonial-slide.is-right { transform: scale(0.85) translateX(90%); }
+      transform: scale(0.8) translateZ(-100px);
     }
 
+    .testimonial-slide.is-center {
+      opacity: 1;
+      transform: scale(1) translateZ(0);
+      z-index: 30;
+      pointer-events: auto;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+    }
+
+    .testimonial-slide.is-left {
+      opacity: 0.4;
+      transform: scale(0.8) translateX(-60%) translateZ(-200px);
+      z-index: 20;
+      filter: blur(4px);
+    }
+
+    .testimonial-slide.is-right {
+      opacity: 0.4;
+      transform: scale(0.8) translateX(60%) translateZ(-200px);
+      z-index: 20;
+      filter: blur(4px);
+    }
+
+    @media (max-width: 768px) {
+      #testimonialCarousel {
+        height: 400px;
+      }
+
+      .testimonial-slide {
+        max-width: 320px;
+        padding: 1.5rem;
+      }
+
+      .testimonial-slide.is-left {
+        transform: scale(0.7) translateX(-40%) translateZ(-200px);
+        opacity: 0;
+      }
+
+      .testimonial-slide.is-right {
+        transform: scale(0.7) translateX(40%) translateZ(-200px);
+        opacity: 0;
+      }
+    }
+
+    /* Tech Decor */
+    .tech-dot {
+      width: 4px;
+      height: 4px;
+      background: #00A7FF;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00A7FF;
+    }
+
+    .scanlines {
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 167, 255, 0.05) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
   </style>
 </head>
-<body class="bg-dark-800 text-white antialiased">
+
+<body class="bg-dark-800 text-white antialiased overflow-x-hidden">
+
+  <!-- Ambient Background Glow -->
+  <div id="ambientGlow"></div>
 
   <!-- ========== HEADER ========== -->
-  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-    <div class="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
+  <header id="header" class="fixed top-0 left-0 w-full z-50 px-4 pt-4 sm:px-6 sm:pt-6">
+    <div
+      class="max-w-6xl mx-auto glass rounded-full px-6 py-4 flex items-center justify-between transition-all duration-500">
       <a href="#" class="flex items-center gap-2">
-        <img src="assets/img/logo-white.png" alt="iHub Affiliates" class="h-9">
+        <img src="assets/img/logo-white.png" alt="iHub Affiliates" class="h-8">
       </a>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-1">
-        <a href="#inicio" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Início</a>
-        <a href="#beneficios" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Benefícios</a>
-        <a href="#como-funciona" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Como Funciona</a>
-        <a href="#depoimentos" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">Depoimentos</a>
-        <a href="#faq" class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-lg transition-colors">FAQ</a>
+        <a href="#inicio"
+          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Início</a>
+        <a href="#depoimentos"
+          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Depoimentos</a>
+        <a href="#milestones"
+          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Milestones</a>
+        <a href="#app"
+          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">App</a>
+        <a href="#faq"
+          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">FAQ</a>
       </nav>
-
 
       <!-- Mobile Toggle -->
       <button id="menuToggle" class="md:hidden flex flex-col gap-[5px] p-2 z-[60]" aria-label="Menu">
@@ -139,541 +774,740 @@
         <span class="block w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
         <span class="block w-6 h-0.5 bg-white rounded transition-all duration-300 origin-center"></span>
       </button>
+
+      <!-- Dynamic Flow Bar -->
+      <div id="headerBar" class="header-progress-bar header-nav-balanced">
+        <div class="bar-blue"></div>
+        <div class="bar-red"></div>
+      </div>
     </div>
 
     <!-- Mobile Nav -->
-    <div id="mobileNav" class="md:hidden fixed inset-0 bg-dark-800/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6 z-50 translate-x-full transition-transform duration-300">
-      <a href="#inicio" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Início</a>
-      <a href="#beneficios" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Benefícios</a>
-      <a href="#como-funciona" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Como Funciona</a>
-      <a href="#depoimentos" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">Depoimentos</a>
-      <a href="#faq" class="mobile-link text-2xl font-semibold text-zinc-300 hover:text-white transition-colors">FAQ</a>
+    <div id="mobileNav"
+      class="md:hidden absolute top-full left-0 w-full px-4 pt-2 z-40 opacity-0 pointer-events-none -translate-y-4 transition-all duration-300">
+      <div class="glass rounded-3xl p-6 flex flex-col gap-4 shadow-2xl">
+        <a href="#inicio"
+          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Início</a>
+        <a href="#depoimentos"
+          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Depoimentos</a>
+        <a href="#milestones"
+          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Milestones</a>
+        <a href="#app"
+          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">App</a>
+        <a href="#faq" class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors">FAQ</a>
+      </div>
     </div>
   </header>
 
-  <!-- ========== HERO ========== -->
-  <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-    <!-- Hero background image -->
-    <div class="absolute inset-0 pointer-events-none">
-      <img src="assets/img/hero-bg.png" alt="" class="w-full h-full object-cover object-center opacity-40">
-      <div class="absolute inset-0 bg-gradient-to-b from-dark-800/60 via-transparent to-dark-800"></div>
-    </div>
+  <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-2 lg:py-0 overflow-hidden">
+    <!-- Hero Background Image -->
+    <img src="assets/img/hero-bg.png" alt="" class="absolute inset-0 w-full h-full object-cover opacity-50">
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-800/90 via-dark-800/40 to-dark-800"></div>
+
+    <!-- Tech Layers -->
+    <div class="absolute inset-0 grid-bg opacity-40"></div>
+    <div class="absolute inset-0 scanlines opacity-20"></div>
+    <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]"></div>
+
     <div class="absolute inset-0 glow-top pointer-events-none"></div>
 
-    <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-
-      <div class="inline-flex items-center gap-2 text-brand text-xs font-semibold tracking-[0.2em] uppercase bg-brand/5 border border-brand/10 rounded-full px-5 py-2 mb-8 reveal">
-        <i class="fas fa-bolt text-[10px]"></i> Plataforma de Afiliados #1
-      </div>
-
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 reveal">
-        A Nova Era dos <span class="text-gradient">Afiliados</span>
-      </h1>
-
-      <p class="text-lg text-zinc-400 max-w-xl mx-auto mb-10 leading-relaxed reveal">
-        Conecte-se com as melhores marcas do mercado e transforme sua audiência em resultados extraordinários. Maximize seus ganhos com a <strong class="text-zinc-200">iHub</strong>.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 reveal">
-        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-gradient-to-r from-brand to-brand-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,167,255,0.35)] flex items-center justify-center gap-2">
-          Começar Agora <i class="fas fa-arrow-right text-sm"></i>
-        </a>
-        <a href="#beneficios" class="w-full sm:w-auto border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold px-8 py-4 rounded-xl transition-all hover:bg-white/[0.03] text-center">
-          Saiba Mais
-        </a>
-      </div>
-
-      <!-- Stats bar -->
-      <div class="flex items-center justify-center gap-8 sm:gap-12 flex-wrap reveal">
-        <div class="text-center">
-          <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">5k+</div>
-          <div class="text-xs text-zinc-500 mt-1">Afiliados Ativos</div>
-        </div>
-        <div class="w-px h-10 bg-zinc-800 hidden sm:block"></div>
-        <div class="text-center">
-          <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">R$10M+</div>
-          <div class="text-xs text-zinc-500 mt-1">Pagos em Comissões</div>
-        </div>
-        <div class="w-px h-10 bg-zinc-800 hidden sm:block"></div>
-        <div class="text-center">
-          <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">24/7</div>
-          <div class="text-xs text-zinc-500 mt-1">Suporte Dedicado</div>
+    <div class="relative z-10 w-full">
+      <!-- Side Badge - Glued to the left -->
+      <div class="absolute left-0 top-0 md:-top-12 overflow-hidden pointer-events-none z-20">
+        <div class="status-badge no-reveal-transform" style="transform: translateX(0); opacity: 1;">
+          <i class="fas fa-shield-halved badge-icon"></i>
+          <span class="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-white/90">
+            Plataforma <span class="text-brand-gradient">#1</span> de Afiliados
+          </span>
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ========== BENEFÍCIOS ========== -->
-  <section id="beneficios" class="relative py-28 bg-dark-900">
-    <div class="absolute inset-0 glow-center pointer-events-none"></div>
-    <div class="relative z-10 max-w-[1400px] mx-auto px-6">
-
-      <div class="text-center max-w-xl mx-auto mb-16">
-        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Benefícios</span>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Por Que Escolher o <span class="text-gradient">iHub</span>?</h2>
-        <p class="text-zinc-400 reveal">Tudo que você precisa para escalar seus resultados como afiliado profissional.</p>
+      <!-- Shadow Overlay for Mobile text readability (Full Width) - Double Fade -->
+      <div
+        class="lg:hidden absolute inset-x-0 bottom-[-5vh] h-[70vh] bg-gradient-to-t from-transparent via-dark-800 via-40% to-transparent z-[5] pointer-events-none">
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Main Content Grid -->
+      <div class="max-w-[1240px] mx-auto px-6 mb-12 lg:mb-0 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-10 md:pt-16 lg:pt-0 relative">
 
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
-          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
-            <i class="fas fa-coins"></i>
+          <!-- Mockup Side (Background on mobile) -->
+          <div
+            class="order-1 lg:order-2 flex justify-center lg:justify-end relative z-0 opacity-100 lg:opacity-100 transition-opacity duration-700">
+            <div class="relative max-w-[500px] lg:max-w-none">
+              <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full"></div>
+              <img src="assets/img/mockup_hero.png" alt="iHub App Mockup"
+                class="relative z-10 w-full lg:w-[110%] object-contain scale-100 lg:scale-125 select-none drop-shadow-[0_20px_50px_rgba(0,167,255,0.25)]">
+            </div>
           </div>
-          <h3 class="text-lg font-bold mb-2">Comissões Competitivas</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">As melhores comissões do mercado com pagamentos pontuais e transparência total em todas as conversões.</p>
-        </div>
 
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
-          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
-            <i class="fas fa-chart-pie"></i>
+          <!-- Text Side (Overlapping on mobile) -->
+          <div
+            class="text-center lg:text-left order-2 lg:order-1 relative z-10 -mt-[30vh] lg:mt-0 pt-[25vh] lg:pr-12 lg:p-0">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-3 md:mb-4">
+              <span class="text-gradient">A Nova Era dos</span><br>
+              <span class="text-brand-gradient name-badge whitespace-nowrap">Afiliados de Elite</span>
+            </h1>
+
+            <p
+              class="text-base md:text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 mb-6 md:mb-8 leading-relaxed font-light px-4 lg:px-0">
+              Conecte-se com marcas globais e transforme influência em <strong class="text-white font-medium">receita
+                previsível</strong>.
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4 lg:mb-0">
+              <a href="#app" class="hidden sm:inline-flex btn-primary w-auto">
+                Entre ou Cadastre-se <i class="fas fa-arrow-right text-sm ml-2"></i>
+              </a>
+
+              <a href="#app" class="btn-app btn-app-apple">
+                <i class="fab fa-apple text-2xl"></i>
+                <div class="text-left leading-none">
+                  <div class="text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Download on the</div>
+                  <div class="text-base font-bold">App Store</div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Mobile: Stats Highlight precisely in the red circled area -->
+            <div class="lg:hidden mt-8 mb-4 relative z-20">
+              <div
+                class="inline-flex flex-row items-center justify-center p-2 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-full w-auto mx-auto overflow-hidden shadow-[0_0_50px_rgba(0,167,255,0.05)]">
+                <div class="flex flex-row items-center divide-x divide-white/[0.08] w-full">
+                  <div class="px-3 py-2 text-center">
+                    <div
+                      class="text-lg font-bold tracking-tighter text-white mb-0.5 flex items-baseline justify-center">
+                      <span class="counter" data-target="5">5</span><span
+                        class="text-brand text-[10px] ml-0.5">k+</span>
+                    </div>
+                    <div class="text-[7px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Membros
+                    </div>
+                  </div>
+                  <div class="px-3 py-2 text-center">
+                    <div
+                      class="text-lg font-bold tracking-tighter text-white mb-0.5 flex items-baseline justify-center">
+                      <span class="text-brand text-[10px] mr-1">R$</span><span class="counter"
+                        data-target="10">10</span><span class="text-brand text-[10px]">M+</span>
+                    </div>
+                    <div class="text-[7px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">
+                      Distribuídos</div>
+                  </div>
+                  <div class="px-3 py-2 text-center">
+                    <div
+                      class="text-lg font-bold tracking-tighter text-white mb-0.5 flex items-baseline justify-center">
+                      <span class="counter" data-target="24">24</span><span
+                        class="text-brand text-[10px] mx-1">/</span><span class="counter" data-target="7">7</span>
+                    </div>
+                    <div class="text-[7px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Support
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="text-lg font-bold mb-2">Dashboard Completo</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Métricas em tempo real com relatórios detalhados e insights para otimizar seus resultados.</p>
         </div>
-
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
-          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
-            <i class="fas fa-link"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">Links Inteligentes</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Links personalizados com tracking avançado para maximizar cada conversão da sua audiência.</p>
-        </div>
-
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
-          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">Suporte Dedicado</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Equipe especializada disponível 24/7 para te ajudar a crescer constantemente.</p>
-        </div>
-
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
-          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
-            <i class="fas fa-rocket"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">Crescimento Rápido</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Ferramentas profissionais e estratégias comprovadas para escalar seus resultados.</p>
-        </div>
-
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 reveal">
-          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-lg mb-5">
-            <i class="fas fa-shield-halved"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">Segurança Total</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Proteção completa dos seus dados com criptografia avançada e conformidade regulatória.</p>
-        </div>
-
       </div>
-    </div>
-  </section>
 
-  <!-- ========== COMPARATIVO ========== -->
-  <section class="py-28">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="text-center max-w-xl mx-auto mb-16">
-        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Comparativo</span>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">iHub vs <span class="text-gradient">Outros</span></h2>
-        <p class="text-zinc-400 reveal">Veja o que nos diferencia da concorrência.</p>
-      </div>
-
-      <div class="bg-dark-700 border border-zinc-800/60 rounded-2xl overflow-hidden reveal">
-        <!-- Header -->
-        <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 bg-brand/5 text-xs font-bold uppercase tracking-wider">
-          <span class="text-zinc-400">Recurso</span>
-          <span class="text-center text-brand">iHub</span>
-          <span class="text-center text-zinc-500">Outros</span>
-        </div>
-        <!-- Rows -->
-        <div class="divide-y divide-zinc-800/40">
-          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
-            <span class="text-sm text-zinc-300">Comissões acima do mercado</span>
-            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
-            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
-          </div>
-          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
-            <span class="text-sm text-zinc-300">Pagamentos em até 24h</span>
-            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
-            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
-          </div>
-          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
-            <span class="text-sm text-zinc-300">Dashboard em tempo real</span>
-            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
-            <span class="text-center text-zinc-600"><i class="fas fa-minus text-zinc-700"></i></span>
-          </div>
-          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
-            <span class="text-sm text-zinc-300">Suporte 24/7 em português</span>
-            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
-            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
-          </div>
-          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
-            <span class="text-sm text-zinc-300">Links com tracking avançado</span>
-            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
-            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
-          </div>
-          <div class="grid grid-cols-[1fr_80px_80px] sm:grid-cols-[1fr_100px_100px] items-center px-6 py-4 hover:bg-white/[0.02] transition-colors">
-            <span class="text-sm text-zinc-300">Sem taxa de adesão</span>
-            <span class="text-center text-green-400"><i class="fas fa-check"></i></span>
-            <span class="text-center text-zinc-600"><i class="fas fa-xmark"></i></span>
+      <!-- Desktop: Stats Highlight as Bridge -->
+      <div class="hidden lg:block max-w-[1240px] mx-auto px-6 text-center -mb-14 translate-y-1/2 relative z-50">
+        <div
+          class="inline-flex flex-row items-center justify-center p-2 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-full hover:border-brand/30 transition-all duration-700 hover:shadow-[0_0_50px_rgba(0,167,255,0.1)] group w-auto mx-auto overflow-hidden">
+          <div class="flex flex-row items-center divide-x divide-white/[0.08] w-full">
+            <div class="px-10 py-4 text-center group/item">
+              <div
+                class="text-4xl font-bold tracking-tighter text-white mb-1.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
+                <span class="counter" data-target="5">0</span><span class="text-brand text-xl ml-0.5">k+</span>
+              </div>
+              <div class="text-[11px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Membros</div>
+            </div>
+            <div class="px-10 py-4 text-center group/item">
+              <div
+                class="text-4xl font-bold tracking-tighter text-white mb-1.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
+                <span class="text-brand text-xl mr-1">R$</span><span class="counter" data-target="10">0</span><span
+                  class="text-brand text-xl">M+</span>
+              </div>
+              <div class="text-[11px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Distribuídos
+              </div>
+            </div>
+            <div class="px-10 py-4 text-center group/item">
+              <div
+                class="text-4xl font-bold tracking-tighter text-white mb-1.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
+                <span class="counter" data-target="24">0</span><span class="text-brand text-xl mx-1">/</span><span
+                  class="counter" data-target="7">0</span>
+              </div>
+              <div class="text-[11px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Live Support
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== COMO FUNCIONA ========== -->
-  <section id="como-funciona" class="relative py-28 bg-dark-900">
-    <div class="absolute inset-0 glow-center pointer-events-none"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-6">
+  <!-- Elite X Divider - Bridge between sections -->
+  <div class="divider-x-container relative" style="z-index: 50; margin-top: -20px; margin-bottom: -20px;">
+    <div class="x-bar x-bar-blue"></div>
+    <div class="x-bar x-bar-red"></div>
+  </div>
 
-      <div class="text-center max-w-xl mx-auto mb-16">
-        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Comece Agora</span>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Simples de <span class="text-gradient">começar</span></h2>
-        <p class="text-zinc-400 reveal">Em 3 passos você já está faturando com a iHub.</p>
-      </div>
+  <!-- ========== AWARDS MARQUEE ========== -->
+  <section class="py-20 relative overflow-hidden bg-black">
+    <div class="absolute inset-0 glow-center opacity-20 pointer-events-none"></div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 text-center reveal">
-          <div class="text-5xl font-extrabold text-gradient mb-4">01</div>
-          <h3 class="text-lg font-bold mb-2">Crie sua conta</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Cadastro rápido e gratuito. Sem burocracia, sem taxas escondidas.</p>
-        </div>
+    <div class="text-center mb-12 reveal">
+      <span class="text-brand font-black tracking-[0.4em] uppercase text-[10px] mb-4 block">Elite Recognition</span>
+      <h2 class="text-3xl font-bold tracking-tight">Reconhecimento de <span class="text-brand-gradient">Elite
+          iHub</span></h2>
+    </div>
 
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 text-center reveal">
-          <div class="text-5xl font-extrabold text-gradient mb-4">02</div>
-          <h3 class="text-lg font-bold mb-2">Escolha suas ofertas</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Acesse as melhores marcas e selecione as ofertas que combinam com sua audiência.</p>
-        </div>
+    <div class="awards-container relative">
+      <!-- Gradient Masks -->
+      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
 
-        <div class="card-glow bg-dark-700 border border-zinc-800/60 rounded-2xl p-8 text-center reveal">
-          <div class="text-5xl font-extrabold text-gradient mb-4">03</div>
-          <h3 class="text-lg font-bold mb-2">Comece a faturar</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">Divulgue seus links e acompanhe as comissões entrando em tempo real.</p>
-        </div>
-      </div>
+      <div class="awards-marquee">
+        <!-- Original Slides -->
+        <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
+        <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
+        <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
+        <div class="award-card"><img src="assets/img/slide-4.png" alt="Award 4"></div>
+        <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
+        <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
+        <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
+        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
 
-      <div class="text-center mt-12 reveal">
-        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,167,255,0.35)]">
-          Criar Conta Gratuita <i class="fas fa-arrow-right text-sm"></i>
-        </a>
+        <!-- Duplicated for Loop -->
+        <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
+        <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
+        <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
+        <div class="award-card"><img src="assets/img/slide-4.png" alt="Award 4"></div>
+        <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
+        <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
+        <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
+        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
       </div>
     </div>
   </section>
+
+  <!-- Divider 2 -->
+  <div class="section-divider divider-left-heavy">
+    <div class="divider-blue"></div>
+    <div class="divider-red"></div>
+  </div>
 
   <!-- ========== DEPOIMENTOS ========== -->
-  <section id="depoimentos" class="py-28 overflow-hidden">
-    <div class="max-w-4xl mx-auto px-6">
-
-      <div class="text-center max-w-2xl mx-auto mb-6">
-        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Depoimentos</span>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight reveal">Afiliados Estão<br><span class="text-gradient italic">Recomendando a iHub</span></h2>
+  <section id="depoimentos" class="relative py-16 md:py-32 overflow-hidden bg-black/40">
+    <!-- Side Badge - Left -->
+    <div class="absolute left-0 top-16 overflow-hidden">
+      <div class="status-badge reveal no-reveal-transform">
+        <i class="fas fa-users badge-icon"></i>
+        <span class="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-white/90">
+          COMMUNITY IMPACT
+        </span>
       </div>
+    </div>
 
-      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-        <p class="text-zinc-400 leading-relaxed">Quase 100% dos afiliados que operam na nossa plataforma já passaram por <strong class="text-white">alguma experiência ruim</strong> com outras plataformas.</p>
-        <p class="text-zinc-400 leading-relaxed mt-3">Muitos não conseguiam rastrear conversões, outros tinham atrasos nos pagamentos, e sabemos que <strong class="text-white">cada centavo perdido faz diferença no bolso do afiliado.</strong></p>
+    <!-- Background Glow -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand/5 blur-[120px] rounded-full pointer-events-none">
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6">
+
+      <div class="text-center max-w-4xl mx-auto mb-12 md:mb-20 pt-6 md:pt-10">
+        <h2 class="text-3xl sm:text-6xl font-bold tracking-tight reveal">Afiliados que vivem a<br><span
+            class="text-brand-gradient italic">Experiência iHub</span></h2>
       </div>
 
     </div>
 
-    <!-- Carousel full-width -->
+    <!-- Carousel Area -->
     <div class="relative reveal">
-      <div class="max-w-7xl mx-auto px-6">
-        <div id="testimonialCarousel">
+      <div id="testimonialCarousel">
 
-          <!-- Card 1 -->
-          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="0">
-            <div class="flex items-center gap-2 mb-5">
-              <div class="flex gap-0.5 text-amber-400 text-xs">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
+        <!-- Card 1 -->
+        <div class="testimonial-slide glass flex flex-col" data-index="0">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="flex gap-1 text-brand text-[10px]">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Desde que migrei para a iHub, parei de sofrer com atrasos nos pagamentos... Minha consistência saiu de 58% para 81%, nas primeiras semanas!"</p>
-            <div class="flex items-center gap-3 mt-6">
-              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">RM</div>
-              <div>
-                <div class="font-semibold text-sm">Ricardo Mendes</div>
-                <div class="text-xs text-zinc-500">Afiliado</div>
-              </div>
+            <span
+              class="ml-auto text-[8px] font-black uppercase tracking-widest text-brand glass-light px-3 py-1 rounded-full">Elite
+              Member</span>
+          </div>
+          <p class="text-zinc-300 leading-relaxed flex-1 italic font-light">"Desde que migrei para a iHub, a
+            previsibilidade dos meus pagamentos mudou meu negócio. O tracking é simplesmente infalível."</p>
+          <div class="flex items-center gap-4 mt-8">
+            <div
+              class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center text-xs font-bold text-white glass-light shrink-0">
+              RM</div>
+            <div>
+              <div class="font-bold text-sm">Ricardo Mendes</div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Professional Affiliate</div>
             </div>
           </div>
-
-          <!-- Card 2 -->
-          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="1">
-            <div class="flex items-center gap-2 mb-5">
-              <div class="flex gap-0.5 text-amber-400 text-xs">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
-            </div>
-            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Depois que migrei para a iHub, nunca mais perdi uma conversão por falha de tracking... Minha taxa de acerto subiu de 62% para 83% no primeiro mês!"</p>
-            <div class="flex items-center gap-3 mt-6">
-              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">AS</div>
-              <div>
-                <div class="font-semibold text-sm">Ana Silva</div>
-                <div class="text-xs text-zinc-500">Afiliada</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="2">
-            <div class="flex items-center gap-2 mb-5">
-              <div class="flex gap-0.5 text-amber-400 text-xs">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
-            </div>
-            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Estava inseguro antes da iHub, tinha slippage em outras plataformas... Agora opero com precisão e bati 79% de acerto no mês passado!"</p>
-            <div class="flex items-center gap-3 mt-6">
-              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">PL</div>
-              <div>
-                <div class="font-semibold text-sm">Pedro Lima</div>
-                <div class="text-xs text-zinc-500">Afiliado</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="3">
-            <div class="flex items-center gap-2 mb-5">
-              <div class="flex gap-0.5 text-amber-400 text-xs">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
-            </div>
-            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"O PIX cai no mesmo dia. Já testei outras e sempre atrasava. Na iHub é diferente, transparência total e comissões justas. Recomendo demais!"</p>
-            <div class="flex items-center gap-3 mt-6">
-              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">CB</div>
-              <div>
-                <div class="font-semibold text-sm">Camila B.</div>
-                <div class="text-xs text-zinc-500">Afiliada</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="testimonial-slide bg-dark-700 border border-zinc-800/40 rounded-2xl p-7 flex flex-col" data-index="4">
-            <div class="flex items-center gap-2 mb-5">
-              <div class="flex gap-0.5 text-amber-400 text-xs">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span class="ml-auto text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20 rounded-full px-3 py-1">Destaque</span>
-            </div>
-            <p class="text-sm text-zinc-300 leading-relaxed flex-1">"Links inteligentes são um diferencial absurdo. Minha taxa de clique subiu 60% depois que comecei a usar os deep links da iHub. Sensacional!"</p>
-            <div class="flex items-center gap-3 mt-6">
-              <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand-dark rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">DM</div>
-              <div>
-                <div class="font-semibold text-sm">Diego M.</div>
-                <div class="text-xs text-zinc-500">Afiliado</div>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </div>
 
-      <!-- Nav arrows -->
-      <div class="flex justify-center gap-3 mt-10">
-        <button id="prevSlide" class="w-12 h-12 rounded-full border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white flex items-center justify-center transition-all" aria-label="Anterior">
-          <i class="fas fa-arrow-left text-sm"></i>
-        </button>
-        <button id="nextSlide" class="w-12 h-12 rounded-full bg-brand border border-brand text-white hover:bg-brand-dark flex items-center justify-center transition-all" aria-label="Próximo">
-          <i class="fas fa-arrow-right text-sm"></i>
-        </button>
+        <!-- Card 2 -->
+        <div class="testimonial-slide glass flex flex-col" data-index="1">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="flex gap-1 text-brand text-[10px]">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span
+              class="ml-auto text-[8px] font-black uppercase tracking-widest text-brand glass-light px-3 py-1 rounded-full">Elite
+              Member</span>
+          </div>
+          <p class="text-zinc-300 leading-relaxed flex-1 italic font-light">"A interface é limpa e intuitiva, bem
+            diferente das outras plataformas que parecem travadas no tempo. É o Apple dos afiliados."</p>
+          <div class="flex items-center gap-4 mt-8">
+            <div
+              class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center text-xs font-bold text-white glass-light shrink-0">
+              AS</div>
+            <div>
+              <div class="font-bold text-sm">Ana Silva</div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Influencer</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="testimonial-slide glass flex flex-col" data-index="2">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="flex gap-1 text-brand text-[10px]">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span
+              class="ml-auto text-[8px] font-black uppercase tracking-widest text-brand glass-light px-3 py-1 rounded-full">Elite
+              Member</span>
+          </div>
+          <p class="text-zinc-300 leading-relaxed flex-1 italic font-light">"Escalar campanhas ficou muito mais fácil
+            com os dados do dashboard. Transparência total em cada centavo."</p>
+          <div class="flex items-center gap-4 mt-8">
+            <div
+              class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center text-xs font-bold text-white glass-light shrink-0">
+              PL</div>
+            <div>
+              <div class="font-bold text-sm">Pedro Lima</div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Media Buyer</div>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </div>
+
+    <!-- Nav arrows -->
+    <div class="flex justify-center gap-6 mt-16 scale-110">
+      <button id="prevSlide"
+        class="w-14 h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+        aria-label="Anterior">
+        <i class="fas fa-chevron-left text-lg"></i>
+      </button>
+      <button id="nextSlide"
+        class="w-14 h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+        aria-label="Próximo">
+        <i class="fas fa-chevron-right text-lg"></i>
+      </button>
+    </div>
     </div>
   </section>
 
-  <!-- PROVA SOCIAL (COMENTADO POR ENQUANTO) -->
+  <!-- Divider 3 -->
+  <div class="section-divider divider-right-heavy">
+    <div class="divider-red"></div>
+    <div class="divider-blue"></div>
+  </div>
 
-  <!-- ========== CTA FINAL ========== -->
-  <section id="contato" class="relative py-28 overflow-hidden">
-    <div class="absolute inset-0 glow-center pointer-events-none"></div>
-    <div class="relative z-10 max-w-2xl mx-auto px-6 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">
-        Pronto para <span class="text-gradient">transformar</span> seus resultados?
+  <!-- ========== MILESTONES SECTION ========== -->
+  <section id="milestones" class="relative py-20 md:py-32 overflow-hidden bg-black">
+    <div class="absolute inset-0 glow-center opacity-30 pointer-events-none"></div>
+    <div class="absolute inset-0 grid-bg opacity-5 pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center mb-16">
+      <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 reveal leading-[1.2]">
+        Reconhecimento <br class="sm:hidden"> <span class="text-brand-gradient italic inline-block py-2 px-1">sem
+          limites</span>
       </h2>
-      <p class="text-zinc-400 text-lg mb-10 reveal">
-        Junte-se a mais de 5.000 afiliados que já escolheram a iHub como parceira.
+      <p class="text-zinc-500 text-lg md:text-xl font-light max-w-2xl mx-auto reveal leading-relaxed">
+        Celebramos cada conquista da sua jornada. Plaquetas exclusivas para os afiliados que dominam o mercado.
       </p>
-      <div class="reveal">
-        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand-dark text-white font-bold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,167,255,0.35)]">
-          Comece Agora — É Grátis <i class="fas fa-arrow-right text-sm"></i>
-        </a>
-        <p class="text-xs text-zinc-600 mt-4">Sem cartão de crédito. Cancele quando quiser.</p>
+    </div>
+
+    <!-- Milestones Marquee -->
+    <div class="awards-container relative reveal">
+      <!-- Gradient Masks -->
+      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+
+      <div class="awards-marquee flex items-center">
+        <!-- Original Slides -->
+        <div class="placa-card"><img src="assets/img/quadro10milhões.png" alt="Placa 10 Milhões"></div>
+        <div class="placa-card"><img src="assets/img/quadro1milhão.png" alt="Placa 1 Milhão"></div>
+        <div class="placa-card"><img src="assets/img/quadro500mil.png" alt="Placa 500k"></div>
+        <div class="placa-card"><img src="assets/img/placa100mil.png" alt="Placa 100k"></div>
+
+        <!-- Duplicated for Loop -->
+        <div class="placa-card"><img src="assets/img/quadro10milhões.png" alt="Placa 10 Milhões"></div>
+        <div class="placa-card"><img src="assets/img/quadro1milhão.png" alt="Placa 1 Milhão"></div>
+        <div class="placa-card"><img src="assets/img/quadro500mil.png" alt="Placa 500k"></div>
+        <div class="placa-card"><img src="assets/img/placa100mil.png" alt="Placa 100k"></div>
       </div>
+    </div>
+
+    <!-- Final CTA Re-added subtly -->
+    <div class="mt-20 text-center reveal">
+      <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-10 py-5 bg-brand text-white font-bold rounded-full hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,167,255,0.4)] group">
+        Quero minha Plaquinha
+        <i class="fas fa-arrow-right ml-3 text-sm group-hover:translate-x-2 transition-transform"></i>
+      </a>
     </div>
   </section>
 
-  <!-- ========== BAIXE O APP ========== -->
-  <section id="app" class="relative py-28 overflow-hidden">
-    <div class="absolute inset-0 glow-center pointer-events-none"></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+  <!-- Divider 4 -->
+  <div class="section-divider divider-left-heavy">
+    <div class="divider-blue"></div>
+    <div class="divider-red"></div>
+  </div>
 
-      <!-- Phone mockup with glow -->
-      <div class="mb-10 reveal">
-        <div class="relative inline-block">
-          <div class="absolute inset-0 bg-brand/10 blur-[80px] rounded-full scale-75 pointer-events-none"></div>
-          <img src="assets/img/mockup_iphone.png" alt="iHub Affiliates App" class="relative w-[240px] mx-auto drop-shadow-[0_30px_60px_rgba(0,167,255,0.15)]">
-        </div>
-      </div>
+  <!-- ========== APP SECTION ========== -->
+  <section id="app" class="relative py-16 lg:py-48 overflow-hidden bg-black">
+    <div class="relative z-10 max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-0 lg:gap-24 relative">
 
-      <!-- Info -->
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Baixe o App <span class="text-gradient">iHUB Affiliates</span></h2>
-      <p class="text-zinc-400 leading-relaxed max-w-xl mx-auto mb-8 reveal">Acompanhe suas comissões, gerencie seus links e monitore seus resultados em tempo real — direto do seu celular.</p>
+        <!-- Mockup side (Behind on mobile) -->
+        <div class="reveal lg:order-2 flex justify-center relative z-0">
+          <div class="relative inline-block lg:translate-y-0 scale-110 lg:scale-100">
+            <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full scale-75 pointer-events-none"></div>
 
-      <div class="flex flex-col sm:flex-row items-center gap-4 justify-center reveal">
-        <!-- App Store -->
-        <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white text-dark-900 font-semibold px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(255,255,255,0.1)]">
-          <i class="fab fa-apple text-2xl"></i>
-          <div class="text-left leading-tight">
-            <div class="text-[10px] uppercase tracking-wider opacity-70">Disponível na</div>
-            <div class="text-base font-bold -mt-0.5">App Store</div>
-          </div>
-        </a>
+            <picture>
+              <source media="(max-width: 1023px)" srcset="assets/img/mockup_iphone_celular.png">
+              <img src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
+                class="relative w-[300px] sm:w-[360px] lg:w-[340px] drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+            </picture>
 
-        <!-- Google Play (em breve) -->
-        <div class="inline-flex items-center gap-3 bg-zinc-800/50 text-zinc-500 font-semibold px-6 py-3.5 rounded-xl cursor-default border border-zinc-800/60">
-          <i class="fab fa-google-play text-xl"></i>
-          <div class="text-left leading-tight">
-            <div class="text-[10px] uppercase tracking-wider opacity-70">Em breve no</div>
-            <div class="text-base font-bold -mt-0.5">Google Play</div>
+            <!-- Tech Corners for App Section -->
+            <div class="tech-corner tech-corner-tl -ml-4 -mt-4"></div>
+            <div class="tech-corner tech-corner-br -mr-4 -mb-4"></div>
           </div>
         </div>
-      </div>
 
+        <!-- Content side (Overlapping on mobile) -->
+        <div class="relative z-10 text-center lg:text-left reveal lg:order-1 -mt-[45vh] lg:mt-0 pt-[25vh] pb-10 lg:p-0">
+          <div
+            class="lg:hidden absolute inset-x-0 bottom-[-5vh] h-[70vh] bg-gradient-to-t from-transparent via-black via-40% to-transparent z-[-1] pointer-events-none">
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6">Sua plataforma,<br><span
+              class="text-brand-gradient">na palma da mão.</span></h2>
+          <p class="text-zinc-500 text-lg leading-relaxed mb-12 font-light max-w-lg mx-auto lg:mx-0 px-4">
+            Métricas em tempo real, gestão de links e suporte imediato. Desenvolvido para o afiliado que não para.
+          </p>
+
+          <div
+            class="flex flex-row items-center gap-2 sm:gap-4 justify-center lg:justify-start overflow-x-auto no-scrollbar pb-2">
+            <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank"
+              rel="noopener noreferrer" class="btn-app btn-app-apple px-4 py-3 sm:px-6 sm:py-4 shrink-0">
+              <i class="fab fa-apple text-xl sm:text-2xl"></i>
+              <div class="text-left leading-none">
+                <div class="text-[8px] sm:text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Download on the</div>
+                <div class="text-sm sm:text-base font-bold">App Store</div>
+              </div>
+            </a>
+
+            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+              class="btn-app btn-app-white px-4 py-3 sm:px-6 sm:py-4 shrink-0">
+              <i class="fas fa-globe text-lg sm:text-xl"></i>
+              <div class="text-left leading-none">
+                <div class="text-[8px] sm:text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Acessar via Web</div>
+                <div class="text-sm sm:text-base font-bold">Painel iHub</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
     </div>
   </section>
 
-  <!-- ========== FAQ ========== -->
-  <section id="faq" class="relative py-28 bg-dark-900">
-    <div class="absolute inset-0 glow-center pointer-events-none"></div>
+  <!-- Divider 5 -->
+  <div class="section-divider divider-right-heavy">
+    <div class="divider-red"></div>
+    <div class="divider-blue"></div>
+  </div>
+
+  <!-- ========== FAQ SECTION ========== -->
+  <section id="faq" class="relative pt-8 pb-16 md:pt-14 md:pb-32 bg-black overflow-hidden">
+    <!-- Centered Badge -->
+    <div class="flex justify-center mb-6 reveal">
+      <div
+        class="status-badge-centered inline-flex items-center gap-3 bg-brand/5 border border-brand/20 px-4 py-2 rounded-full">
+        <i class="fas fa-headset text-brand text-xs"></i>
+        <span class="text-[10px] font-black tracking-[0.3em] uppercase text-white/90">SUPORTE 24/7</span>
+      </div>
+    </div>
+
     <div class="relative z-10 max-w-2xl mx-auto px-6">
 
-      <div class="text-center max-w-xl mx-auto mb-16">
-        <span class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand bg-brand/5 border border-brand/10 rounded-full px-4 py-1.5 mb-5 reveal">Dúvidas</span>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4 reveal">Perguntas <span class="text-gradient">frequentes</span></h2>
+      <div class="text-center max-w-xl mx-auto mb-10 md:mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 md:mb-5">Perguntas <span
+            class="text-brand-gradient">Frequentes</span></h2>
       </div>
 
-      <div class="flex flex-col gap-3 reveal">
-        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
-          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+      <div
+        class="flex flex-col gap-0 border border-white/5 rounded-[32px] overflow-hidden bg-white/[0.01] mb-10 md:mb-16">
+        <div class="faq-item border-b border-white/5 transition-all duration-300">
+          <button
+            class="faq-trigger w-full flex items-center justify-center gap-4 px-6 py-4 text-center font-bold text-sm hover:text-brand transition-colors relative">
             <span>Quanto custa para ser afiliado iHub?</span>
-            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-500 absolute right-6"></i>
           </button>
-          <div class="faq-answer">
-            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">É totalmente gratuito! Não cobramos nenhuma taxa de adesão ou mensalidade. Você só precisa se cadastrar e começar a divulgar.</p>
+          <div class="faq-answer text-center">
+            <p class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed font-light mx-auto">É totalmente gratuito. Não
+              cobramos
+              taxas de adesão ou royalties. Nosso sucesso depende do seu.</p>
           </div>
         </div>
 
-        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
-          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+        <div class="faq-item border-b border-white/5 transition-all duration-300">
+          <button
+            class="faq-trigger w-full flex items-center justify-center gap-4 px-6 py-4 text-center font-bold text-sm hover:text-brand transition-colors relative">
             <span>Como recebo minhas comissões?</span>
-            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-500 absolute right-6"></i>
           </button>
-          <div class="faq-answer">
-            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Pagamentos são processados em até 24 horas via PIX, transferência bancária ou carteira digital. Você escolhe a forma que preferir.</p>
+          <div class="faq-answer text-center">
+            <p class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed font-light mx-auto">Pagamentos via PIX.
+              Transparência e agilidade no seu fluxo de caixa.</p>
           </div>
         </div>
 
-        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
-          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+        <div class="faq-item border-b border-white/5 transition-all duration-300">
+          <button
+            class="faq-trigger w-full flex items-center justify-center gap-4 px-6 py-4 text-center font-bold text-sm hover:text-brand transition-colors relative">
             <span>Preciso ter experiência como afiliado?</span>
-            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-500 absolute right-6"></i>
           </button>
-          <div class="faq-answer">
-            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Não! A plataforma é intuitiva e oferecemos materiais de apoio, tutoriais e suporte dedicado para te ajudar desde o primeiro dia.</p>
+          <div class="faq-answer text-center">
+            <p class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed font-light mx-auto">A plataforma foi desenhada
+              para ser
+              intuitiva tanto para iniciantes quanto para profissionais de alta performance.</p>
           </div>
         </div>
 
-        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
-          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
-            <span>Quais marcas estão disponíveis para divulgar?</span>
-            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
-          </button>
-          <div class="faq-answer">
-            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Trabalhamos com marcas líderes de diversos segmentos. Ao se cadastrar, você terá acesso ao catálogo completo de ofertas disponíveis na plataforma.</p>
-          </div>
-        </div>
-
-        <div class="faq-item bg-dark-700 border border-zinc-800/60 rounded-xl overflow-hidden">
-          <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-sm hover:text-brand transition-colors">
+        <div class="faq-item transition-all duration-300">
+          <button
+            class="faq-trigger w-full flex items-center justify-center gap-4 px-6 py-4 text-center font-bold text-sm hover:text-brand transition-colors relative">
             <span>O suporte funciona em que horários?</span>
-            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-300 shrink-0"></i>
+            <i class="faq-icon fas fa-plus text-brand text-xs transition-transform duration-500 absolute right-6"></i>
           </button>
-          <div class="faq-answer">
-            <p class="px-6 pb-5 text-sm text-zinc-400 leading-relaxed">Nosso suporte funciona 24/7 via chat e e-mail, com equipe 100% em português. Tempo médio de resposta inferior a 5 minutos.</p>
+          <div class="faq-answer text-center">
+            <p class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed font-light mx-auto">Suporte premium disponível 24
+              horas
+              por dia, 7 dias por semana, via chat direto na plataforma.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Divider 6 -->
+  <div class="section-divider divider-left-heavy">
+    <div class="divider-blue"></div>
+    <div class="divider-red"></div>
+  </div>
+
   <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-zinc-800/60 bg-dark-900">
-    <div class="max-w-[1400px] mx-auto px-6 py-16">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+  <footer class="border-t border-zinc-800/60 bg-dark-900/50 pt-12 md:pt-20 lg:pt-24 pb-6 md:pb-10">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="mb-12">
 
-        <!-- Brand -->
-        <div>
-          <a href="#" class="flex items-center gap-2 mb-4">
-            <img src="assets/img/logo-white.png" alt="iHub" class="h-8">
+        <!-- Brand Column -->
+        <div class="space-y-6">
+          <a href="#" class="inline-block">
+            <img src="assets/img/logo-white.png" alt="iHub" class="h-7 md:h-8">
           </a>
-          <p class="text-sm text-zinc-500 leading-relaxed max-w-xs mb-6">Plataforma de afiliados que conecta você às melhores marcas do mercado.</p>
-          <div class="flex gap-3">
-            <a href="#" class="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-brand hover:border-brand/30 transition-all" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-brand hover:border-brand/30 transition-all" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-brand hover:border-brand/30 transition-all" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-
-        <!-- Nav -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-300 mb-4">Navegação</h4>
-          <div class="flex flex-col gap-2">
-            <a href="#inicio" class="text-sm text-zinc-500 hover:text-brand transition-colors">Início</a>
-            <a href="#beneficios" class="text-sm text-zinc-500 hover:text-brand transition-colors">Benefícios</a>
-            <a href="#como-funciona" class="text-sm text-zinc-500 hover:text-brand transition-colors">Como Funciona</a>
-            <a href="#depoimentos" class="text-sm text-zinc-500 hover:text-brand transition-colors">Depoimentos</a>
-            <a href="#faq" class="text-sm text-zinc-500 hover:text-brand transition-colors">FAQ</a>
-          </div>
-        </div>
-
-        <!-- Recursos -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-300 mb-4">Recursos</h4>
-          <div class="flex flex-col gap-2">
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Central de Ajuda</a>
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Blog</a>
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Materiais de Apoio</a>
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Status da Plataforma</a>
-          </div>
-        </div>
-
-        <!-- Legal -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-300 mb-4">Legal</h4>
-          <div class="flex flex-col gap-2">
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Termos de Uso</a>
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Política de Privacidade</a>
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">Cookies</a>
-            <a href="#" class="text-sm text-zinc-500 hover:text-brand transition-colors">LGPD</a>
+          <p class="text-zinc-500 text-sm leading-relaxed max-w-xs font-light">
+            Conectando afiliados de elite às maiores oportunidades do mercado global com tecnologia e transparência.
+          </p>
+          <div class="flex gap-4">
+            <a href="https://www.instagram.com/ihub.affiliates" target="_blank" rel="noopener noreferrer"
+              class="text-zinc-500 hover:text-brand transition-colors text-lg"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
 
       </div>
 
-      <div class="pt-8 border-t border-zinc-800/60 text-center">
-        <p class="text-xs text-zinc-600">&copy; 2026 iHub Affiliates. Todos os direitos reservados.</p>
+      <div
+        class="pt-10 border-t border-white/[0.03] text-center flex flex-col md:flex-row items-center justify-between gap-6">
+        <p class="text-[11px] text-zinc-600 font-bold uppercase tracking-wider">&copy; 2026 iHub Affiliates. Elite
+          Performance.</p>
+        <div class="flex gap-8">
+          <span class="text-[10px] text-white/20 uppercase tracking-widest font-black"
+            style="font-family: 'Montserrat', sans-serif;">Developed By <a href="https://visionxma.com" target="_blank"
+              rel="noopener noreferrer" class="text-brand hover:text-brand/80 transition-colors">VisionX</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- JS -->
   <script type="module" src="assets/js/app.js"></script>
+  <script>
+    // Ambient Glow Follower
+    const glow = document.getElementById('ambientGlow');
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
+    // Spotlight & 3D Tilt Effect for Cards
+    document.addEventListener('mousemove', e => {
+      document.querySelectorAll('.card-spotlight').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Spotlight pos
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        // Tilt calculation
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((x - centerX) / centerX) * 8; // max 8deg
+        const rotateY = ((y - centerY) / centerY) * -8; // max 8deg
+
+        card.style.setProperty('--rotate-x', `${rotateX}deg`);
+        card.style.setProperty('--rotate-y', `${rotateY}deg`);
+      });
+    });
+
+    // Reset tilt on mouse out
+    document.querySelectorAll('.card-spotlight').forEach(card => {
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--rotate-x', `0deg`);
+        card.style.setProperty('--rotate-y', `0deg`);
+      });
+    });
+
+    // Initialize Counters
+    const initCounters = () => {
+      const counters = document.querySelectorAll('.counter');
+
+      const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 1500; // 1.5 seconds
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Easing function: easeOutExpo
+          const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+          const currentCount = Math.floor(easeProgress * target);
+          counter.innerText = currentCount;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        requestAnimationFrame(update);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      counters.forEach(counter => observer.observe(counter));
+    };
+
+    // Initialize Header Bar Observer
+    const initHeaderObserver = () => {
+      const headerBar = document.getElementById('headerBar');
+      const sections = ['inicio', 'beneficios', 'como-funciona', 'depoimentos', 'milestones', 'app', 'faq'];
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const index = sections.indexOf(id);
+
+            headerBar.classList.remove('header-nav-left', 'header-nav-right', 'header-nav-balanced');
+
+            if (index % 2 === 0) {
+              headerBar.classList.add('header-nav-left');
+            } else {
+              headerBar.classList.add('header-nav-right');
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
+      });
+    };
+
+    // Initialize everything
+    initCounters();
+    initHeaderObserver();
+  </script>
+
+  <!-- Fixed Ranking Button (FAB) -->
+  <a href="https://ihubaffiliates.com/ranking" target="_blank"
+    class="fixed bottom-6 right-6 z-[100] group flex items-center justify-center w-20 h-20">
+
+    <!-- Circular Rotating Text -->
+    <div class="absolute inset-0 animate-spin-slow pointer-events-none">
+      <svg viewBox="0 0 100 100" class="w-full h-full">
+        <defs>
+          <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"></path>
+        </defs>
+        <text class="text-[8px] font-bold uppercase tracking-[0.2em] fill-brand/40">
+          <textPath xlink:href="#circlePath">RANKING AFILIADOS • ELITE IHUB • RANKING AFILIADOS • ELITE IHUB •
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+    <!-- The Button -->
+    <div
+      class="w-14 h-14 rounded-full glass border border-white/10 flex items-center justify-center shadow-2xl group-hover:border-brand/50 group-hover:shadow-brand/20 transition-all duration-500 relative overflow-hidden z-10">
+      <div class="absolute inset-0 bg-brand/5 group-hover:bg-brand/10 transition-colors"></div>
+      <i class="fas fa-trophy text-brand text-xl relative z-10 group-hover:scale-110 transition-transform"></i>
+      <div class="absolute inset-0 rounded-full border border-brand/20 animate-ping opacity-20"></div>
+    </div>
+
+    <!-- Tooltip (Optional, can keep or remove since there's circular text) -->
+    <div
+      class="absolute right-full mr-6 px-4 py-2 glass rounded-full opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
+      <span class="text-xs font-bold text-white tracking-wide uppercase">Ver Ranking Global</span>
+    </div>
+  </a>
 
 </body>
+
 </html>

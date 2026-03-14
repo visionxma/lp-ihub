@@ -29,6 +29,9 @@
   <link rel="icon" type="image/png" href="assets/img/logo-white.png">
   <link rel="apple-touch-icon" href="assets/img/logo-white.png">
 
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="assets/img/mockup_hero.webp" type="image/webp">
+
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -369,6 +372,7 @@
       width: 120%;
       height: 35px;
       border-radius: 99px;
+      overflow: hidden;
     }
 
     .x-bar-blue {
@@ -383,6 +387,54 @@
       transform: rotate(3deg);
       box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
       z-index: 1;
+    }
+
+    .x-bar-marquee {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      align-items: center;
+      animation: x-bar-scroll 30s linear infinite;
+    }
+
+    .x-bar-red .x-bar-marquee {
+      animation-direction: reverse;
+    }
+
+    @keyframes x-bar-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .x-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 24px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .x-bar-item img {
+      height: 16px;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .x-bar-item span {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .x-bar-dot {
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
     /* Exclusive Tech Corner Decoration */
@@ -1370,7 +1422,7 @@
             class="order-1 lg:order-2 flex justify-center lg:justify-end relative z-0 opacity-100 lg:opacity-100 transition-opacity duration-700">
             <div class="relative max-w-[500px] lg:max-w-none">
               <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full"></div>
-              <img src="assets/img/mockup_hero.png" alt="iHub App Mockup" fetchpriority="high" decoding="async"
+              <img src="assets/img/mockup_hero.webp" alt="iHub App Mockup" fetchpriority="high" decoding="sync"
                 class="relative z-10 w-full lg:w-[110%] object-contain scale-100 lg:scale-125 select-none drop-shadow-[0_20px_50px_rgba(0,167,255,0.25)]">
 
               <!-- Notificações animadas Hero -->
@@ -1511,8 +1563,88 @@
 
   <!-- Elite X Divider - Bridge between sections -->
   <div class="divider-x-container relative" style="z-index: 50; margin-top: -20px; margin-bottom: -20px;">
-    <div class="x-bar x-bar-blue"></div>
-    <div class="x-bar x-bar-red"></div>
+    <div class="x-bar x-bar-blue">
+      <div class="x-bar-marquee">
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+      </div>
+    </div>
+    <div class="x-bar x-bar-red">
+      <div class="x-bar-marquee">
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/logo-white.png" alt="iHub"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/sportingbet-logo.png" alt="Sportingbet"></div>
+        <div class="x-bar-dot"></div>
+        <div class="x-bar-item"><img src="assets/img/Superbet_Logo.svg.png" alt="Superbet"></div>
+        <div class="x-bar-dot"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ========== AWARDS MARQUEE ========== -->
@@ -1521,7 +1653,7 @@
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand/5 blur-[150px] rounded-full pointer-events-none"></div>
 
-    <div class="text-center mb-8 md:mb-12 reveal px-6">
+    <div class="text-center mb-8 md:mb-12 px-6">
       <div class="inline-flex items-center gap-3 mb-6">
         <div class="h-px w-8 bg-gradient-to-r from-transparent to-brand/60"></div>
         <span class="text-brand font-black tracking-[0.4em] uppercase text-[10px]">Elite Recognition</span>
@@ -1537,22 +1669,22 @@
       <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10"></div>
 
       <div class="awards-track">
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-1.png" alt="Award 1"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-2.png" alt="Award 2"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-3.png" alt="Award 3"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-4.png" alt="Award 4"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-5.png" alt="Award 5"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-6.png" alt="Award 6"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-7.png" alt="Award 7"></div>
+        <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
+        <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
+        <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
+        <div class="award-card"><img src="assets/img/slide-4.png" alt="Award 4"></div>
+        <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
+        <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
+        <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
 
         <!-- Duplicated for Loop -->
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-1.png" alt="Award 1"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-2.png" alt="Award 2"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-3.png" alt="Award 3"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-4.png" alt="Award 4"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-5.png" alt="Award 5"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-6.png" alt="Award 6"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-7.png" alt="Award 7"></div>
+        <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
+        <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
+        <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
+        <div class="award-card"><img src="assets/img/slide-4.png" alt="Award 4"></div>
+        <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
+        <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
+        <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
       </div>
     </div>
 
@@ -1562,21 +1694,30 @@
       <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10"></div>
 
       <div class="awards-track awards-track--reverse">
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-8.png" alt="Award 8"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-9.png" alt="Award 9"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-10.png" alt="Award 10"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-11.png" alt="Award 11"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-12.png" alt="Award 12"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-13.png" alt="Award 13"></div>
+        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
 
         <!-- Duplicated for Loop -->
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-8.png" alt="Award 8"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-9.png" alt="Award 9"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-10.png" alt="Award 10"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-11.png" alt="Award 11"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-12.png" alt="Award 12"></div>
-        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-13.png" alt="Award 13"></div>
+        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
       </div>
+    </div>
+
+    <!-- Botão Ver Ranking -->
+    <div class="flex justify-center mt-10">
+      <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-8 py-3 bg-brand text-white font-bold rounded-full text-sm hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
+        <i class="fas fa-trophy text-sm"></i>
+        Ver Ranking
+      </a>
     </div>
   </section>
 
@@ -1591,7 +1732,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6 lg:gap-10">
 
         <!-- Text Side -->
-        <div class="reveal py-10 md:py-16 lg:py-20 flex flex-col justify-center">
+        <div class="py-10 md:py-16 lg:py-20 flex flex-col justify-center">
           <div class="inline-flex items-center mb-6">
             <div class="w-1 h-6 bg-brand rounded-full mr-3"></div>
             <span class="text-zinc-300 text-sm tracking-wide">O melhor pra você</span>
@@ -1605,9 +1746,9 @@
         </div>
 
         <!-- Plaques Side -->
-        <div class="reveal relative flex items-end">
+        <div class="relative flex items-end">
           <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-[50%] bg-brand/30 blur-[80px] rounded-full pointer-events-none"></div>
-          <img loading="lazy" src="assets/img/placas.png" alt="Placas de reconhecimento iHub" class="relative w-full mx-auto lg:max-w-none lg:scale-110 lg:origin-bottom">
+          <img src="assets/img/placas.webp" alt="Placas de reconhecimento iHub" class="relative w-full mx-auto lg:max-w-none lg:scale-110 lg:origin-bottom">
         </div>
 
       </div>
@@ -1634,7 +1775,7 @@
 
     <div class="relative z-10 max-w-6xl mx-auto px-6">
       <!-- Glass container card -->
-      <div class="app-glass-card reveal">
+      <div class="app-glass-card">
         <!-- Animated wave inside card -->
         <svg class="app-wave-inner" viewBox="0 0 1200 500" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
@@ -1697,8 +1838,8 @@
             <div class="relative">
               <div class="absolute inset-0 bg-brand/20 blur-[100px] rounded-full scale-75 pointer-events-none"></div>
               <picture>
-                <source media="(max-width: 1023px)" srcset="assets/img/mockup_iphone_celular.png">
-                <img loading="lazy" src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
+                <source media="(max-width: 1023px)" srcset="assets/img/mockup_iphone_celular.webp">
+                <img src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
                   class="relative w-[260px] sm:w-[300px] lg:w-[340px] drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
               </picture>
 
@@ -1789,7 +1930,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-14">
 
         <!-- Text Side -->
-        <div class="reveal">
+        <div class="">
           <div class="inline-flex items-center mb-6">
             <div class="w-1 h-6 bg-brand rounded-full mr-3"></div>
             <span class="text-zinc-300 text-sm tracking-wide">O melhor suporte pra você</span>
@@ -1817,22 +1958,15 @@
             </div>
           </div>
 
-          <div class="flex flex-wrap items-center gap-4">
-            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
-              Criar conta agora
-              <i class="fas fa-arrow-right text-sm"></i>
-            </a>
-            <a href="https://wa.me/5511977856969" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-6 py-4 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-all duration-300 hover:scale-105 hover:border-green-500/50">
-              <i class="fab fa-whatsapp text-green-500 text-lg"></i>
-              <span class="text-sm">(11) 97785-6969</span>
-            </a>
-          </div>
+          <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
+            Criar conta agora
+            <i class="fas fa-arrow-right text-sm"></i>
+          </a>
         </div>
 
         <!-- 24/7 Visual Side -->
-        <div class="reveal flex justify-center">
+        <div class="flex justify-center">
           <div class="support-visual">
             <!-- Pulsing rings -->
             <div class="support-pulse-ring"></div>
@@ -1857,19 +1991,19 @@
 
             <!-- Avatar 1 - top left -->
             <div class="support-avatar" style="top: 8%; left: 12%;">
-              <img loading="lazy" src="assets/img/sUPORTE1.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <img src="assets/img/sUPORTE1.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
               <div class="support-avatar-dot"></div>
             </div>
 
             <!-- Avatar 2 - middle left -->
             <div class="support-avatar" style="top: 42%; left: -2%;">
-              <img loading="lazy" src="assets/img/SUPORTE2.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <img src="assets/img/SUPORTE2.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
               <div class="support-avatar-dot"></div>
             </div>
 
             <!-- Avatar 3 - bottom left -->
             <div class="support-avatar" style="top: 72%; left: 12%;">
-              <img loading="lazy" src="assets/img/SUPORTE3.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <img src="assets/img/SUPORTE3.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
               <div class="support-avatar-dot"></div>
             </div>
           </div>
@@ -1889,7 +2023,7 @@
   <section id="faq" class="relative pt-6 pb-8 md:pt-8 md:pb-12 bg-black overflow-hidden">
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <!-- Centered Badge -->
-    <div class="flex justify-center mb-6 reveal">
+    <div class="flex justify-center mb-6">
       <div
         class="status-badge-centered inline-flex items-center gap-3 bg-brand/5 border border-brand/20 px-4 py-2 rounded-full">
         <i class="fas fa-headset text-brand text-xs"></i>
@@ -1990,9 +2124,9 @@
       <!-- Parcerias de Sucesso -->
       <div class="mb-10 pt-8 border-t border-white/[0.03]">
         <p class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 mb-6 text-center">Parcerias de Sucesso</p>
-        <div class="flex items-center justify-center gap-10">
-          <img loading="lazy" src="assets/img/sportingbet-logo.png" alt="Sportingbet" class="h-6 md:h-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
-          <img loading="lazy" src="assets/img/Superbet_Logo.svg.png" alt="Superbet" class="h-6 md:h-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
+        <div class="flex items-center justify-center gap-10 bg-white/5 rounded-2xl px-10 py-6 mx-auto w-fit shadow-[0_0_40px_rgba(255,255,255,0.05)]">
+          <img src="assets/img/sportingbet-logo.png" alt="Sportingbet" class="h-6 md:h-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
+          <img src="assets/img/Superbet_Logo.svg.png" alt="Superbet" class="h-6 md:h-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
         </div>
       </div>
 

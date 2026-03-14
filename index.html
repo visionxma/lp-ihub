@@ -114,6 +114,16 @@
         radial-gradient(ellipse 60% 50% at 50% 40%, black 10%, transparent 60%);
     }
 
+    /* Section Grid - shared across all sections */
+    .section-grid {
+      background-image:
+        linear-gradient(rgba(0, 167, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 167, 255, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 60%, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 60%, black 20%, transparent 70%);
+    }
+
     /* Glow effects */
     .glow-top {
       background: radial-gradient(circle at 50% 0%, rgba(0, 167, 255, 0.2), transparent 70%);
@@ -474,78 +484,63 @@
       filter: grayscale(0%) opacity(1);
     }
 
-    /* Placa Card - Milestone Awards */
-    .placa-card {
-      width: 320px;
-      height: 420px;
-      margin: 0 20px;
-      border-radius: 40px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-      backdrop-filter: blur(20px);
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Placas Grid - Milestone Awards */
+    .placas-grid {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      position: relative;
+      gap: 12px;
+      perspective: 1000px;
     }
 
-    .placa-card img {
+    .placas-grid-item {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.6);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .placas-grid-item--sm {
+      width: 120px;
+      height: 160px;
+      opacity: 0.6;
+    }
+
+    .placas-grid-item--lg {
+      width: 200px;
+      height: 260px;
+    }
+
+    .placas-grid-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      filter: brightness(0.9) contrast(1.1);
+      transition: all 0.5s ease;
     }
 
-    .placa-card:nth-child(even)::after {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #00A7FF, transparent, #00A7FF);
-      z-index: -1;
-      border-radius: 40px;
-      opacity: 0.1;
-      transition: opacity 0.5s ease;
-    }
-
-    .placa-card:nth-child(odd)::after {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #FF0000, transparent, #FF0000);
-      z-index: -1;
-      border-radius: 40px;
-      opacity: 0.1;
-      transition: opacity 0.5s ease;
-    }
-
-    .placa-card:hover::after {
-      opacity: 0.4;
-    }
-
-    .placa-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-15px) scale(1.05);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-    }
-
-    .placa-card:nth-child(even):hover {
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 167, 255, 0.3);
-    }
-
-    .placa-card:nth-child(odd):hover {
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.3);
+    .placas-grid-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      opacity: 1;
     }
 
     @media (max-width: 768px) {
-      .placa-card {
-        width: 260px;
-        height: 340px;
-        margin: 0 10px;
+      .placas-grid {
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .placas-grid-item--sm {
+        width: 80px;
+        height: 110px;
+      }
+
+      .placas-grid-item--lg {
+        width: 140px;
+        height: 185px;
       }
     }
 
@@ -658,6 +653,55 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
+    /* App Section Glass Card */
+    .app-glass-card {
+      border: 1px solid rgba(0, 167, 255, 0.15);
+      border-radius: 32px;
+      padding: 3rem 2.5rem;
+      background: linear-gradient(145deg, rgba(0, 167, 255, 0.04) 0%, rgba(0, 0, 0, 0.4) 100%);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-wave-inner {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      overflow: hidden;
+    }
+
+    .app-glass-card > .grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-section-waves {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @media (min-width: 1024px) {
+      .app-glass-card {
+        padding: 4rem 3.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app-glass-card {
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
+      }
+    }
+
     .btn-brand {
       background: linear-gradient(135deg, #00A7FF 0%, #005791 100%);
       color: #ffffff;
@@ -754,6 +798,21 @@
       filter: blur(4px);
     }
 
+    .testimonial-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+    }
+
+    .testimonial-nav--left {
+      left: max(1rem, calc(50% - 300px));
+    }
+
+    .testimonial-nav--right {
+      right: max(1rem, calc(50% - 300px));
+    }
+
     @media (max-width: 768px) {
       #testimonialCarousel {
         height: 400px;
@@ -766,12 +825,22 @@
 
       .testimonial-slide.is-left {
         transform: scale(0.7) translateX(-40%) translateZ(-200px);
-        opacity: 0;
+        opacity: 0.25;
+        filter: blur(4px);
       }
 
       .testimonial-slide.is-right {
         transform: scale(0.7) translateX(40%) translateZ(-200px);
-        opacity: 0;
+        opacity: 0.25;
+        filter: blur(4px);
+      }
+
+      .testimonial-nav--left {
+        left: 1rem;
+      }
+
+      .testimonial-nav--right {
+        right: 1rem;
       }
     }
 
@@ -862,6 +931,38 @@
     <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand/[0.03] rounded-full blur-[150px] pointer-events-none"></div>
     <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-red-500/[0.02] rounded-full blur-[120px] pointer-events-none"></div>
 
+    <!-- Decorative chart/wave in background -->
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.25] md:opacity-[0.12]" viewBox="0 0 1400 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="heroChartGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00A7FF" stop-opacity="0"/>
+          <stop offset="20%" stop-color="#00A7FF" stop-opacity="1"/>
+          <stop offset="80%" stop-color="#00A7FF" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="heroChartFill" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#00A7FF" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Main chart line -->
+      <path d="M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250" stroke="url(#heroChartGrad)" stroke-width="3" fill="none">
+        <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
+          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250;
+          M0 640 Q150 610, 250 560 T450 500 T600 420 T750 430 T900 280 T1050 330 T1200 220 T1400 230;
+          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250
+        "/>
+      </path>
+      <!-- Fill under chart -->
+      <path d="M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250 L1400 800 L0 800 Z" fill="url(#heroChartFill)">
+        <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
+          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250 L1400 800 L0 800 Z;
+          M0 640 Q150 610, 250 560 T450 500 T600 420 T750 430 T900 280 T1050 330 T1200 220 T1400 230 L1400 800 L0 800 Z;
+          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250 L1400 800 L0 800 Z
+        "/>
+      </path>
+    </svg>
+
     <!-- Edge fade -->
     <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_200px_rgba(0,0,0,0.9)]"></div>
 
@@ -926,33 +1027,33 @@
             <!-- Mobile: Stats Highlight precisely in the red circled area -->
             <div class="lg:hidden mt-8 mb-4 relative z-20">
               <div
-                class="inline-flex flex-row items-center justify-center p-2 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-full w-auto mx-auto overflow-hidden shadow-[0_0_50px_rgba(0,167,255,0.05)]">
+                class="inline-flex flex-row items-center justify-center px-1 py-0.5 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-xl w-auto mx-auto overflow-hidden shadow-[0_0_50px_rgba(0,167,255,0.05)]">
                 <div class="flex flex-row items-center divide-x divide-white/[0.08] w-full">
-                  <div class="px-3 py-2 text-center">
+                  <div class="px-3 py-1 text-center">
                     <div
-                      class="text-lg font-bold tracking-tighter text-white mb-0.5 flex items-baseline justify-center">
+                      class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
                       <span class="counter" data-target="5">5</span><span
-                        class="text-brand text-[10px] ml-0.5">k+</span>
+                        class="text-brand text-[9px] ml-0.5">k+</span>
                     </div>
-                    <div class="text-[7px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Membros
+                    <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Membros
                     </div>
                   </div>
-                  <div class="px-3 py-2 text-center">
+                  <div class="px-3 py-1 text-center">
                     <div
-                      class="text-lg font-bold tracking-tighter text-white mb-0.5 flex items-baseline justify-center">
-                      <span class="text-brand text-[10px] mr-1">R$</span><span class="counter"
-                        data-target="10">10</span><span class="text-brand text-[10px]">M+</span>
+                      class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
+                      <span class="text-brand text-[9px] mr-1">R$</span><span class="counter"
+                        data-target="10">10</span><span class="text-brand text-[9px]">M+</span>
                     </div>
-                    <div class="text-[7px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">
+                    <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">
                       Distribuídos</div>
                   </div>
-                  <div class="px-3 py-2 text-center">
+                  <div class="px-3 py-1 text-center">
                     <div
-                      class="text-lg font-bold tracking-tighter text-white mb-0.5 flex items-baseline justify-center">
+                      class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
                       <span class="counter" data-target="24">24</span><span
-                        class="text-brand text-[10px] mx-1">/</span><span class="counter" data-target="7">7</span>
+                        class="text-brand text-[9px] mx-1">/</span><span class="counter" data-target="7">7</span>
                     </div>
-                    <div class="text-[7px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Support
+                    <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Support
                     </div>
                   </div>
                 </div>
@@ -965,31 +1066,31 @@
       <!-- Desktop: Stats Highlight as Bridge -->
       <div class="hidden lg:block max-w-[1240px] mx-auto px-6 text-center -mb-14 translate-y-1/2 relative z-50">
         <div
-          class="inline-flex flex-row items-center justify-center p-2 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-full hover:border-brand/30 transition-all duration-700 hover:shadow-[0_0_50px_rgba(0,167,255,0.1)] group w-auto mx-auto overflow-hidden">
+          class="inline-flex flex-row items-center justify-center px-2 py-1 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-2xl hover:border-brand/30 transition-all duration-700 hover:shadow-[0_0_50px_rgba(0,167,255,0.1)] group w-auto mx-auto overflow-hidden">
           <div class="flex flex-row items-center divide-x divide-white/[0.08] w-full">
-            <div class="px-10 py-4 text-center group/item">
+            <div class="px-8 py-2 text-center group/item">
               <div
-                class="text-4xl font-bold tracking-tighter text-white mb-1.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="counter" data-target="5">0</span><span class="text-brand text-xl ml-0.5">k+</span>
+                class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
+                <span class="counter" data-target="5">0</span><span class="text-brand text-sm ml-0.5">k+</span>
               </div>
-              <div class="text-[11px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Membros</div>
+              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Membros</div>
             </div>
-            <div class="px-10 py-4 text-center group/item">
+            <div class="px-8 py-2 text-center group/item">
               <div
-                class="text-4xl font-bold tracking-tighter text-white mb-1.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="text-brand text-xl mr-1">R$</span><span class="counter" data-target="10">0</span><span
-                  class="text-brand text-xl">M+</span>
+                class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
+                <span class="text-brand text-sm mr-1">R$</span><span class="counter" data-target="10">0</span><span
+                  class="text-brand text-sm">M+</span>
               </div>
-              <div class="text-[11px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Distribuídos
+              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Distribuídos
               </div>
             </div>
-            <div class="px-10 py-4 text-center group/item">
+            <div class="px-8 py-2 text-center group/item">
               <div
-                class="text-4xl font-bold tracking-tighter text-white mb-1.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="counter" data-target="24">0</span><span class="text-brand text-xl mx-1">/</span><span
+                class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
+                <span class="counter" data-target="24">0</span><span class="text-brand text-sm mx-1">/</span><span
                   class="counter" data-target="7">0</span>
               </div>
-              <div class="text-[11px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Live Support
+              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Live Support
               </div>
             </div>
           </div>
@@ -1007,6 +1108,7 @@
   <!-- ========== AWARDS MARQUEE ========== -->
   <section class="py-20 relative overflow-hidden bg-black">
     <div class="absolute inset-0 glow-center opacity-20 pointer-events-none"></div>
+    <div class="absolute inset-0 section-grid pointer-events-none"></div>
 
     <div class="text-center mb-12 reveal">
       <span class="text-brand font-black tracking-[0.4em] uppercase text-[10px] mb-4 block">Elite Recognition</span>
@@ -1061,6 +1163,7 @@
 
   <!-- ========== DEPOIMENTOS ========== -->
   <section id="depoimentos" class="relative py-16 md:py-32 overflow-hidden bg-black/40">
+    <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <!-- Side Badge - Left -->
     <div class="absolute left-0 top-16 overflow-hidden">
       <div class="status-badge reveal no-reveal-transform">
@@ -1087,6 +1190,13 @@
 
     <!-- Carousel Area -->
     <div class="relative reveal">
+      <!-- Nav arrow LEFT -->
+      <button id="prevSlide"
+        class="testimonial-nav testimonial-nav--left w-12 h-12 md:w-14 md:h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+        aria-label="Anterior">
+        <i class="fas fa-chevron-left text-lg"></i>
+      </button>
+
       <div id="testimonialCarousel">
 
         <!-- Card 1 -->
@@ -1162,17 +1272,10 @@
         </div>
 
       </div>
-    </div>
 
-    <!-- Nav arrows -->
-    <div class="flex justify-center gap-6 mt-16 scale-110">
-      <button id="prevSlide"
-        class="w-14 h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
-        aria-label="Anterior">
-        <i class="fas fa-chevron-left text-lg"></i>
-      </button>
+      <!-- Nav arrow RIGHT -->
       <button id="nextSlide"
-        class="w-14 h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+        class="testimonial-nav testimonial-nav--right w-12 h-12 md:w-14 md:h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
         aria-label="Próximo">
         <i class="fas fa-chevron-right text-lg"></i>
       </button>
@@ -1188,47 +1291,35 @@
 
   <!-- ========== MILESTONES SECTION ========== -->
   <section id="milestones" class="relative py-20 md:py-32 overflow-hidden bg-black">
-    <div class="absolute inset-0 glow-center opacity-30 pointer-events-none"></div>
-    <div class="absolute inset-0 grid-bg opacity-5 pointer-events-none"></div>
+    <!-- Blue glow at bottom center -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(0,167,255,0.25)_0%,transparent_70%)] pointer-events-none"></div>
+    <!-- Grid texture -->
+    <div class="absolute inset-0 section-grid pointer-events-none"></div>
 
-    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center mb-16">
-      <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 reveal leading-[1.2]">
-        Reconhecimento <br class="sm:hidden"> <span class="text-brand-gradient italic inline-block py-2 px-1">sem
-          limites</span>
-      </h2>
-      <p class="text-zinc-500 text-lg md:text-xl font-light max-w-2xl mx-auto reveal leading-relaxed">
-        Celebramos cada conquista da sua jornada. Plaquetas exclusivas para os afiliados que dominam o mercado.
-      </p>
-    </div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
 
-    <!-- Milestones Marquee -->
-    <div class="awards-container relative reveal">
-      <!-- Gradient Masks -->
-      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
-      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+        <!-- Text Side -->
+        <div class="reveal">
+          <div class="inline-flex items-center mb-6">
+            <div class="w-1 h-6 bg-brand rounded-full mr-3"></div>
+            <span class="text-zinc-300 text-sm tracking-wide">O melhor pra você</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.15] text-white">
+            Reconhecimento<br>que você merece.
+          </h2>
+          <p class="text-zinc-400 text-base md:text-lg font-light max-w-md leading-relaxed">
+            Aqui você será reconhecido com prêmios exclusivos e uma placa decorativa para impulsionar ainda mais os seus resultados.
+          </p>
+        </div>
 
-      <div class="awards-marquee flex items-center">
-        <!-- Original Slides -->
-        <div class="placa-card"><img src="assets/img/quadro10milhões.png" alt="Placa 10 Milhões"></div>
-        <div class="placa-card"><img src="assets/img/quadro1milhão.png" alt="Placa 1 Milhão"></div>
-        <div class="placa-card"><img src="assets/img/quadro500mil.png" alt="Placa 500k"></div>
-        <div class="placa-card"><img src="assets/img/placa100mil.png" alt="Placa 100k"></div>
+        <!-- Plaques Side -->
+        <div class="reveal relative">
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-brand/30 blur-[80px] rounded-full pointer-events-none"></div>
+          <img src="assets/img/placas.png" alt="Placas de reconhecimento iHub" class="relative w-full max-w-lg mx-auto lg:max-w-none">
+        </div>
 
-        <!-- Duplicated for Loop -->
-        <div class="placa-card"><img src="assets/img/quadro10milhões.png" alt="Placa 10 Milhões"></div>
-        <div class="placa-card"><img src="assets/img/quadro1milhão.png" alt="Placa 1 Milhão"></div>
-        <div class="placa-card"><img src="assets/img/quadro500mil.png" alt="Placa 500k"></div>
-        <div class="placa-card"><img src="assets/img/placa100mil.png" alt="Placa 100k"></div>
       </div>
-    </div>
-
-    <!-- Final CTA Re-added subtly -->
-    <div class="mt-20 text-center reveal">
-      <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center justify-center px-10 py-5 bg-brand text-white font-bold rounded-full hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,167,255,0.4)] group">
-        Quero minha Plaquinha
-        <i class="fas fa-arrow-right ml-3 text-sm group-hover:translate-x-2 transition-transform"></i>
-      </a>
     </div>
   </section>
 
@@ -1239,62 +1330,120 @@
   </div>
 
   <!-- ========== APP SECTION ========== -->
-  <section id="app" class="relative py-16 lg:py-48 overflow-hidden bg-black">
+  <section id="app" class="relative py-16 lg:py-32 overflow-hidden bg-black">
+    <div class="absolute inset-0 section-grid pointer-events-none"></div>
+    <!-- Decorative wave lines -->
+    <svg class="app-section-waves" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M-100 300 Q200 100 400 250 T800 200 T1300 300" stroke="rgba(0,167,255,0.15)" stroke-width="2" fill="none"/>
+      <path d="M-100 350 Q250 150 450 280 T850 230 T1300 350" stroke="rgba(0,167,255,0.1)" stroke-width="1.5" fill="none"/>
+      <path d="M-100 400 Q300 200 500 320 T900 270 T1300 400" stroke="rgba(0,167,255,0.06)" stroke-width="1" fill="none"/>
+    </svg>
+
     <div class="relative z-10 max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-0 lg:gap-24 relative">
+      <!-- Glass container card -->
+      <div class="app-glass-card reveal">
+        <!-- Animated wave inside card -->
+        <svg class="app-wave-inner" viewBox="0 0 1200 500" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00A7FF" stop-opacity="0"/>
+              <stop offset="30%" stop-color="#00A7FF" stop-opacity="0.4"/>
+              <stop offset="60%" stop-color="#00A7FF" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00A7FF" stop-opacity="0"/>
+              <stop offset="40%" stop-color="#00A7FF" stop-opacity="0.2"/>
+              <stop offset="70%" stop-color="#00A7FF" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="waveGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00A7FF" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#00A7FF" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Main bold wave -->
+          <path d="M-50 350 C150 150, 350 100, 500 200 S750 400, 900 250 S1100 50, 1250 180" stroke="url(#waveGrad1)" stroke-width="3" fill="none">
+            <animate attributeName="d" dur="8s" repeatCount="indefinite" values="
+              M-50 350 C150 150, 350 100, 500 200 S750 400, 900 250 S1100 50, 1250 180;
+              M-50 300 C150 200, 350 50, 500 180 S750 350, 900 200 S1100 100, 1250 220;
+              M-50 350 C150 150, 350 100, 500 200 S750 400, 900 250 S1100 50, 1250 180
+            "/>
+          </path>
+          <!-- Secondary wave -->
+          <path d="M-50 380 C200 200, 400 150, 550 240 S800 420, 950 280 S1150 80, 1250 210" stroke="url(#waveGrad2)" stroke-width="2" fill="none">
+            <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
+              M-50 380 C200 200, 400 150, 550 240 S800 420, 950 280 S1150 80, 1250 210;
+              M-50 330 C200 250, 400 100, 550 220 S800 380, 950 230 S1150 130, 1250 250;
+              M-50 380 C200 200, 400 150, 550 240 S800 420, 950 280 S1150 80, 1250 210
+            "/>
+          </path>
+          <!-- Tertiary subtle wave -->
+          <path d="M-50 420 C250 250, 450 200, 600 280 S850 440, 1000 310 S1200 120, 1250 240" stroke="url(#waveGrad3)" stroke-width="1.5" fill="none">
+            <animate attributeName="d" dur="12s" repeatCount="indefinite" values="
+              M-50 420 C250 250, 450 200, 600 280 S850 440, 1000 310 S1200 120, 1250 240;
+              M-50 370 C250 300, 450 150, 600 260 S850 400, 1000 260 S1200 170, 1250 280;
+              M-50 420 C250 250, 450 200, 600 280 S850 440, 1000 310 S1200 120, 1250 240
+            "/>
+          </path>
+          <!-- Glow fill under main wave -->
+          <path d="M-50 350 C150 150, 350 100, 500 200 S750 400, 900 250 S1100 50, 1250 180 L1250 500 L-50 500 Z" fill="url(#waveGrad3)">
+            <animate attributeName="d" dur="8s" repeatCount="indefinite" values="
+              M-50 350 C150 150, 350 100, 500 200 S750 400, 900 250 S1100 50, 1250 180 L1250 500 L-50 500 Z;
+              M-50 300 C150 200, 350 50, 500 180 S750 350, 900 200 S1100 100, 1250 220 L1250 500 L-50 500 Z;
+              M-50 350 C150 150, 350 100, 500 200 S750 400, 900 250 S1100 50, 1250 180 L1250 500 L-50 500 Z
+            "/>
+          </path>
+        </svg>
 
-        <!-- Mockup side (Behind on mobile) -->
-        <div class="reveal lg:order-2 flex justify-center relative z-0">
-          <div class="relative inline-block lg:translate-y-0 scale-110 lg:scale-100">
-            <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full scale-75 pointer-events-none"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-16">
 
-            <picture>
-              <source media="(max-width: 1023px)" srcset="assets/img/mockup_iphone_celular.png">
-              <img src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
-                class="relative w-[300px] sm:w-[360px] lg:w-[340px] drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
-            </picture>
-
-            <!-- Tech Corners for App Section -->
-            <div class="tech-corner tech-corner-tl -ml-4 -mt-4"></div>
-            <div class="tech-corner tech-corner-br -mr-4 -mb-4"></div>
+          <!-- Mockup side (top on mobile) -->
+          <div class="flex justify-center lg:justify-end order-1 lg:order-2 relative overflow-visible">
+            <div class="relative">
+              <div class="absolute inset-0 bg-brand/20 blur-[100px] rounded-full scale-75 pointer-events-none"></div>
+              <picture>
+                <source media="(max-width: 1023px)" srcset="assets/img/mockup_iphone_celular.png">
+                <img src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
+                  class="relative w-[260px] sm:w-[300px] lg:w-[340px] drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+              </picture>
+            </div>
+            <!-- Gradient fade on mobile - bottom, full width of card -->
+            <div class="lg:hidden absolute -left-[50vw] -right-[50vw] -bottom-16 h-[60%] bg-gradient-to-t from-transparent via-black/90 via-40% to-transparent pointer-events-none"></div>
           </div>
+
+          <!-- Content side (overlaps phone on mobile) -->
+          <div class="text-center lg:text-left order-2 lg:order-1 -mt-24 lg:mt-0 relative z-10">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 italic leading-[1.15]">
+              Sua plataforma,<br><span class="text-brand-gradient">na palma da mão.</span>
+            </h2>
+            <p class="text-zinc-400 text-base md:text-lg leading-relaxed mb-10 font-light max-w-md mx-auto lg:mx-0">
+              Métricas em tempo real, gestão de links e suporte imediato. Desenvolvido para o afiliado que não para.
+            </p>
+
+            <div class="flex flex-row items-center gap-3 justify-center lg:justify-start">
+              <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank"
+                rel="noopener noreferrer" class="btn-app btn-app-apple px-4 py-2.5 shrink-0">
+                <i class="fab fa-apple text-lg"></i>
+                <div class="text-left leading-none">
+                  <div class="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">Disponível na</div>
+                  <div class="text-sm font-bold">App Store</div>
+                </div>
+              </a>
+
+              <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-app btn-app-apple px-4 py-2.5 shrink-0">
+                <i class="fas fa-globe text-base"></i>
+                <div class="text-left leading-none">
+                  <div class="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">Acessar via Web</div>
+                  <div class="text-sm font-bold">Painel iHub</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
         </div>
-
-        <!-- Content side (Overlapping on mobile) -->
-        <div class="relative z-10 text-center lg:text-left reveal lg:order-1 -mt-[45vh] lg:mt-0 pt-[25vh] pb-10 lg:p-0">
-          <div
-            class="lg:hidden absolute inset-x-0 bottom-[-5vh] h-[70vh] bg-gradient-to-t from-transparent via-black via-40% to-transparent z-[-1] pointer-events-none">
-          </div>
-          <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6">Sua plataforma,<br><span
-              class="text-brand-gradient">na palma da mão.</span></h2>
-          <p class="text-zinc-500 text-lg leading-relaxed mb-12 font-light max-w-lg mx-auto lg:mx-0 px-4">
-            Métricas em tempo real, gestão de links e suporte imediato. Desenvolvido para o afiliado que não para.
-          </p>
-
-          <div
-            class="flex flex-row items-center gap-2 sm:gap-4 justify-center lg:justify-start overflow-x-auto no-scrollbar pb-2">
-            <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank"
-              rel="noopener noreferrer" class="btn-app btn-app-apple px-4 py-3 sm:px-6 sm:py-4 shrink-0">
-              <i class="fab fa-apple text-xl sm:text-2xl"></i>
-              <div class="text-left leading-none">
-                <div class="text-[8px] sm:text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Download on the</div>
-                <div class="text-sm sm:text-base font-bold">App Store</div>
-              </div>
-            </a>
-
-            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-              class="btn-app btn-app-white px-4 py-3 sm:px-6 sm:py-4 shrink-0">
-              <i class="fas fa-globe text-lg sm:text-xl"></i>
-              <div class="text-left leading-none">
-                <div class="text-[8px] sm:text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Acessar via Web</div>
-                <div class="text-sm sm:text-base font-bold">Painel iHub</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
       </div>
-    </div>
     </div>
   </section>
 
@@ -1306,6 +1455,7 @@
 
   <!-- ========== FAQ SECTION ========== -->
   <section id="faq" class="relative pt-8 pb-16 md:pt-14 md:pb-32 bg-black overflow-hidden">
+    <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <!-- Centered Badge -->
     <div class="flex justify-center mb-6 reveal">
       <div

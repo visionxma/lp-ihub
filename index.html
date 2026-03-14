@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>iHub Affiliates - Plataforma de Afiliados de Elite</title>
   <meta name="description"
-    content="iHub Affiliates — Conecte-se com marcas globais e transforme influência em receita previsível. Plataforma gratuita com suporte 24/7, pagamentos via PIX e mais de R$20M distribuídos.">
+    content="iHub Affiliates — Conecte-se com casas de apostas globais e tenha as deals mais agressivas do mercado. Plataforma gratuita com suporte 24/7, pagamentos via PIX e mais de R$20M distribuídos.">
   <meta name="keywords" content="iHub Affiliates, afiliados, plataforma de afiliados, marketing de afiliados, ganhar dinheiro online, comissões, afiliados de elite, iHub">
   <meta name="author" content="iHub Affiliates">
   <meta name="robots" content="index, follow">
@@ -15,14 +15,14 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="iHub Affiliates - Plataforma de Afiliados de Elite">
-  <meta property="og:description" content="Conecte-se com marcas globais e transforme influência em receita previsível. +10k membros, +R$20M distribuídos, suporte 24/7.">
+  <meta property="og:description" content="Conecte-se com casas de apostas globais e tenha as deals mais agressivas do mercado. +10k membros, +R$20M distribuídos, suporte 24/7.">
   <meta property="og:image" content="assets/img/logo-white.png">
   <meta property="og:locale" content="pt_BR">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="iHub Affiliates - Plataforma de Afiliados de Elite">
-  <meta name="twitter:description" content="Conecte-se com marcas globais e transforme influência em receita previsível. +10k membros, +R$20M distribuídos, suporte 24/7.">
+  <meta name="twitter:description" content="Conecte-se com casas de apostas globais e tenha as deals mais agressivas do mercado. +10k membros, +R$20M distribuídos, suporte 24/7.">
   <meta name="twitter:image" content="assets/img/logo-white.png">
 
   <!-- Favicon -->
@@ -949,6 +949,12 @@
       z-index: 20;
     }
 
+    .notification-stack--hero {
+      top: 10%;
+      right: -10px;
+      z-index: 30;
+    }
+
     .notif {
       display: flex;
       align-items: center;
@@ -1086,6 +1092,44 @@
       .notif-time {
         font-size: 8px;
       }
+
+      .notification-stack--hero {
+        top: 3%;
+        right: 0;
+        left: auto;
+        transform: none;
+        width: 140px;
+      }
+
+      .notification-stack--hero .notif {
+        padding: 4px 6px;
+        gap: 4px;
+        border-radius: 8px;
+        margin-bottom: 4px;
+      }
+
+      .notification-stack--hero .notif-icon {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        border-radius: 5px;
+      }
+
+      .notification-stack--hero .notif-icon-text {
+        font-size: 4px;
+      }
+
+      .notification-stack--hero .notif-title {
+        font-size: 7px;
+      }
+
+      .notification-stack--hero .notif-msg {
+        font-size: 6px;
+      }
+
+      .notification-stack--hero .notif-time {
+        font-size: 6px;
+      }
     }
 
     .btn-brand {
@@ -1140,96 +1184,6 @@
       transform: translateY(0);
     }
 
-    /* Testimonial carousel — Premium 3D Stack */
-    #testimonialCarousel {
-      position: relative;
-      height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1000px;
-    }
-
-    .testimonial-slide {
-      position: absolute;
-      width: 100%;
-      max-width: 420px;
-      padding: 2.5rem;
-      border-radius: 32px;
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-      opacity: 0;
-      transform: scale(0.8) translateZ(-100px);
-    }
-
-    .testimonial-slide.is-center {
-      opacity: 1;
-      transform: scale(1) translateZ(0);
-      z-index: 30;
-      pointer-events: auto;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
-    }
-
-    .testimonial-slide.is-left {
-      opacity: 0.4;
-      transform: scale(0.8) translateX(-60%) translateZ(-200px);
-      z-index: 20;
-      filter: blur(4px);
-    }
-
-    .testimonial-slide.is-right {
-      opacity: 0.4;
-      transform: scale(0.8) translateX(60%) translateZ(-200px);
-      z-index: 20;
-      filter: blur(4px);
-    }
-
-    .testimonial-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 40;
-    }
-
-    .testimonial-nav--left {
-      left: max(1rem, calc(50% - 300px));
-    }
-
-    .testimonial-nav--right {
-      right: max(1rem, calc(50% - 300px));
-    }
-
-    @media (max-width: 768px) {
-      #testimonialCarousel {
-        height: 400px;
-      }
-
-      .testimonial-slide {
-        max-width: 320px;
-        padding: 1.5rem;
-      }
-
-      .testimonial-slide.is-left {
-        transform: scale(0.7) translateX(-40%) translateZ(-200px);
-        opacity: 0.25;
-        filter: blur(4px);
-      }
-
-      .testimonial-slide.is-right {
-        transform: scale(0.7) translateX(40%) translateZ(-200px);
-        opacity: 0.25;
-        filter: blur(4px);
-      }
-
-      .testimonial-nav--left {
-        left: 1rem;
-      }
-
-      .testimonial-nav--right {
-        right: 1rem;
-      }
-    }
-
     /* Tech Decor */
     .tech-dot {
       width: 4px;
@@ -1255,7 +1209,7 @@
   <!-- ========== TOP BAR ========== -->
   <div id="topBar" class="fixed top-0 left-0 w-full z-[60] bg-red-600 text-white text-center py-1.5 px-4 flex items-center justify-center gap-2 text-[10px] md:text-xs font-medium border-b border-red-700">
     <span class="text-white/90">Fatura +R$100k/mês? <span class="hidden md:inline">Obtenha condições exclusivas!</span></span>
-    <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+    <a href="https://wa.me/5511977856969" target="_blank" rel="noopener noreferrer"
       class="inline-flex items-center gap-1 px-3 py-1 bg-white/20 text-white font-bold rounded-full text-[10px] md:text-xs hover:bg-white/30 transition-colors shrink-0 border border-white/30">
       Falar com gerente
     </a>
@@ -1273,8 +1227,6 @@
       <nav class="hidden md:flex items-center gap-1">
         <a href="#inicio"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Início</a>
-        <a href="#depoimentos"
-          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Depoimentos</a>
         <a href="#Premiações"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Premiações</a>
         <a href="#app"
@@ -1305,8 +1257,6 @@
       <div class="glass rounded-3xl p-6 flex flex-col gap-4 shadow-2xl">
         <a href="#inicio"
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Início</a>
-        <a href="#depoimentos"
-          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Depoimentos</a>
         <a href="#Premiações"
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Premiações</a>
         <a href="#app"
@@ -1394,6 +1344,40 @@
               <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full"></div>
               <img src="assets/img/mockup_hero.png" alt="iHub App Mockup"
                 class="relative z-10 w-full lg:w-[110%] object-contain scale-100 lg:scale-125 select-none drop-shadow-[0_20px_50px_rgba(0,167,255,0.25)]">
+
+              <!-- Notificações animadas Hero -->
+              <div class="notification-stack notification-stack--hero">
+                <div class="notif notif-1">
+                  <div class="notif-icon">
+                    <span class="notif-icon-text">iHUB</span>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-title">Novo CPA</div>
+                    <div class="notif-msg">+1 CPA - Sporting 💰</div>
+                  </div>
+                  <div class="notif-time">agora</div>
+                </div>
+                <div class="notif notif-2">
+                  <div class="notif-icon">
+                    <span class="notif-icon-text">iHUB</span>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-title">Novo CPA</div>
+                    <div class="notif-msg">+1 CPA - Betano 💰</div>
+                  </div>
+                  <div class="notif-time">há 2m</div>
+                </div>
+                <div class="notif notif-3">
+                  <div class="notif-icon">
+                    <span class="notif-icon-text">iHUB</span>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-title">Novo CPA</div>
+                    <div class="notif-msg">+1 CPA - Superbet 💰</div>
+                  </div>
+                  <div class="notif-time">há 5m</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1407,8 +1391,7 @@
 
             <p
               class="text-base md:text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 mb-6 md:mb-8 leading-relaxed font-light px-4 lg:px-0">
-              Conecte-se com marcas globais e transforme influência em <strong class="text-white font-medium">receita
-                previsível</strong>.
+              Conecte-se com casas de apostas globais e tenha as <strong class="text-white font-medium">deals mais agressivas do mercado</strong>.
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4 lg:mb-0">
               <a href="#app" class="hidden sm:inline-flex btn-primary w-auto">
                 Entre ou Cadastre-se <i class="fas fa-arrow-right text-sm ml-2"></i>
@@ -1489,7 +1472,7 @@
                 <span class="counter" data-target="24">0</span><span class="text-brand text-sm mx-1">/</span><span
                   class="counter" data-target="7">0</span>
               </div>
-              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Live Support
+              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Suporte
               </div>
             </div>
           </div>
@@ -1568,140 +1551,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Divider 2 -->
-  <div class="section-divider divider-left-heavy">
-    <div class="divider-blue"></div>
-    <div class="divider-red"></div>
-  </div>
-
-  <!-- ========== DEPOIMENTOS ========== -->
-  <section id="depoimentos" class="relative py-16 md:py-32 overflow-hidden bg-black/40">
-    <div class="absolute inset-0 section-grid pointer-events-none"></div>
-    <!-- Side Badge - Left -->
-    <div class="absolute left-0 top-16 overflow-hidden">
-      <div class="status-badge reveal no-reveal-transform">
-        <i class="fas fa-users badge-icon"></i>
-        <span class="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-white/90">
-          COMMUNITY IMPACT
-        </span>
-      </div>
-    </div>
-
-    <!-- Background Glow -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand/5 blur-[120px] rounded-full pointer-events-none">
-    </div>
-
-    <div class="relative z-10 max-w-6xl mx-auto px-6">
-
-      <div class="text-center max-w-4xl mx-auto mb-12 md:mb-20 pt-6 md:pt-10">
-        <h2 class="text-3xl sm:text-6xl font-bold tracking-tight reveal">Afiliados que vivem a<br><span
-            class="text-brand-gradient italic">Experiência iHub</span></h2>
-      </div>
-
-    </div>
-
-    <!-- Carousel Area -->
-    <div class="relative reveal">
-      <!-- Nav arrow LEFT -->
-      <button id="prevSlide"
-        class="testimonial-nav testimonial-nav--left w-12 h-12 md:w-14 md:h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
-        aria-label="Anterior">
-        <i class="fas fa-chevron-left text-lg"></i>
-      </button>
-
-      <div id="testimonialCarousel">
-
-        <!-- Card 1 -->
-        <div class="testimonial-slide glass flex flex-col" data-index="0">
-          <div class="flex items-center gap-2 mb-6">
-            <div class="flex gap-1 text-brand text-[10px]">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <span
-              class="ml-auto text-[8px] font-black uppercase tracking-widest text-brand glass-light px-3 py-1 rounded-full">Elite
-              Member</span>
-          </div>
-          <p class="text-zinc-300 leading-relaxed flex-1 italic font-light">"Desde que migrei para a iHub, a
-            previsibilidade dos meus pagamentos mudou meu negócio. O tracking é simplesmente infalível."</p>
-          <div class="flex items-center gap-4 mt-8">
-            <div
-              class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center text-xs font-bold text-white glass-light shrink-0">
-              RM</div>
-            <div>
-              <div class="font-bold text-sm">Ricardo Mendes</div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Professional Affiliate</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="testimonial-slide glass flex flex-col" data-index="1">
-          <div class="flex items-center gap-2 mb-6">
-            <div class="flex gap-1 text-brand text-[10px]">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <span
-              class="ml-auto text-[8px] font-black uppercase tracking-widest text-brand glass-light px-3 py-1 rounded-full">Elite
-              Member</span>
-          </div>
-          <p class="text-zinc-300 leading-relaxed flex-1 italic font-light">"A interface é limpa e intuitiva, bem
-            diferente das outras plataformas que parecem travadas no tempo. É o Apple dos afiliados."</p>
-          <div class="flex items-center gap-4 mt-8">
-            <div
-              class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center text-xs font-bold text-white glass-light shrink-0">
-              AS</div>
-            <div>
-              <div class="font-bold text-sm">Ana Silva</div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Influencer</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="testimonial-slide glass flex flex-col" data-index="2">
-          <div class="flex items-center gap-2 mb-6">
-            <div class="flex gap-1 text-brand text-[10px]">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <span
-              class="ml-auto text-[8px] font-black uppercase tracking-widest text-brand glass-light px-3 py-1 rounded-full">Elite
-              Member</span>
-          </div>
-          <p class="text-zinc-300 leading-relaxed flex-1 italic font-light">"Escalar campanhas ficou muito mais fácil
-            com os dados do dashboard. Transparência total em cada centavo."</p>
-          <div class="flex items-center gap-4 mt-8">
-            <div
-              class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center text-xs font-bold text-white glass-light shrink-0">
-              PL</div>
-            <div>
-              <div class="font-bold text-sm">Pedro Lima</div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Media Buyer</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Nav arrow RIGHT -->
-      <button id="nextSlide"
-        class="testimonial-nav testimonial-nav--right w-12 h-12 md:w-14 md:h-14 rounded-full glass-light text-white hover:bg-brand hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
-        aria-label="Próximo">
-        <i class="fas fa-chevron-right text-lg"></i>
-      </button>
-    </div>
-    </div>
-  </section>
-
-  <!-- Divider 3 -->
-  <div class="section-divider divider-right-heavy">
-    <div class="divider-red"></div>
-    <div class="divider-blue"></div>
-  </div>
 
   <!-- ========== Premiações SECTION ========== -->
   <section id="Premiações" class="relative pb-0 overflow-hidden bg-black">
@@ -1940,11 +1789,18 @@
             </div>
           </div>
 
-          <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
-            Criar conta agora
-            <i class="fas fa-arrow-right text-sm"></i>
-          </a>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
+              Criar conta agora
+              <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+            <a href="https://wa.me/5511977856969" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-4 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-all duration-300 hover:scale-105 hover:border-green-500/50">
+              <i class="fab fa-whatsapp text-green-500 text-lg"></i>
+              <span class="text-sm">(11) 97785-6969</span>
+            </a>
+          </div>
         </div>
 
         <!-- 24/7 Visual Side -->
@@ -2103,6 +1959,15 @@
 
       </div>
 
+      <!-- Parcerias de Sucesso -->
+      <div class="mb-10 pt-8 border-t border-white/[0.03]">
+        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 mb-6 text-center">Parcerias de Sucesso</p>
+        <div class="flex items-center justify-center gap-10">
+          <img src="assets/img/sportingbet-logo.png" alt="Sportingbet" class="h-6 md:h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+          <img src="assets/img/Superbet_Logo.svg.png" alt="Superbet" class="h-6 md:h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+        </div>
+      </div>
+
       <div
         class="pt-10 border-t border-white/[0.03] text-center flex flex-col md:flex-row items-center justify-between gap-6">
         <p class="text-[11px] text-zinc-600 font-bold uppercase tracking-wider">&copy; 2026 iHub Affiliates. Elite
@@ -2200,7 +2065,7 @@
     // Initialize Header Bar Observer
     const initHeaderObserver = () => {
       const headerBar = document.getElementById('headerBar');
-      const sections = ['inicio', 'beneficios', 'como-funciona', 'depoimentos', 'Premiações', 'app', 'faq'];
+      const sections = ['inicio', 'beneficios', 'como-funciona', 'Premiações', 'app', 'faq'];
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

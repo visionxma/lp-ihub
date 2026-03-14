@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>iHub Affiliates - Plataforma de Afiliados de Elite</title>
   <meta name="description"
-    content="iHub Affiliates — Conecte-se com marcas globais e transforme influência em receita previsível. Plataforma gratuita com suporte 24/7, pagamentos via PIX e mais de R$10M distribuídos.">
+    content="iHub Affiliates — Conecte-se com marcas globais e transforme influência em receita previsível. Plataforma gratuita com suporte 24/7, pagamentos via PIX e mais de R$20M distribuídos.">
   <meta name="keywords" content="iHub Affiliates, afiliados, plataforma de afiliados, marketing de afiliados, ganhar dinheiro online, comissões, afiliados de elite, iHub">
   <meta name="author" content="iHub Affiliates">
   <meta name="robots" content="index, follow">
@@ -15,14 +15,14 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="iHub Affiliates - Plataforma de Afiliados de Elite">
-  <meta property="og:description" content="Conecte-se com marcas globais e transforme influência em receita previsível. +5k membros, +R$10M distribuídos, suporte 24/7.">
+  <meta property="og:description" content="Conecte-se com marcas globais e transforme influência em receita previsível. +10k membros, +R$20M distribuídos, suporte 24/7.">
   <meta property="og:image" content="assets/img/logo-white.png">
   <meta property="og:locale" content="pt_BR">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="iHub Affiliates - Plataforma de Afiliados de Elite">
-  <meta name="twitter:description" content="Conecte-se com marcas globais e transforme influência em receita previsível. +5k membros, +R$10M distribuídos, suporte 24/7.">
+  <meta name="twitter:description" content="Conecte-se com marcas globais e transforme influência em receita previsível. +10k membros, +R$20M distribuídos, suporte 24/7.">
   <meta name="twitter:image" content="assets/img/logo-white.png">
 
   <!-- Favicon -->
@@ -439,49 +439,110 @@
       }
     }
 
-    .awards-marquee {
+    .awards-track {
       display: flex;
       width: max-content;
-      animation: marquee 40s linear infinite;
+      animation: marquee 50s linear infinite;
     }
 
-    .awards-marquee:hover {
+    .awards-track--reverse {
+      animation-name: marquee-reverse;
+      animation-duration: 55s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes marquee-reverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .awards-track:hover {
       animation-play-state: paused;
     }
 
     .award-card {
-      width: 280px;
-      height: 180px;
-      margin: 0 15px;
-      border-radius: 24px;
+      width: 340px;
+      height: 220px;
+      margin: 0 12px;
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(10px);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      position: relative;
+    }
+
+    .award-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(135deg, transparent 0%, transparent 40%, rgba(0, 167, 255, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .award-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.04) 50%, transparent 60%);
+      transform: rotate(0deg);
+      transition: transform 0.8s ease;
+      z-index: 3;
+      pointer-events: none;
     }
 
     .award-card:hover {
-      border-color: rgba(0, 167, 255, 0.4);
-      background: rgba(0, 167, 255, 0.05);
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 167, 255, 0.1);
+      border-color: rgba(0, 167, 255, 0.5);
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 167, 255, 0.15), inset 0 0 30px rgba(0, 167, 255, 0.03);
+    }
+
+    .award-card:hover::before {
+      opacity: 1;
+    }
+
+    .award-card:hover::after {
+      transform: rotate(180deg);
     }
 
     .award-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(20%) opacity(0.9);
+      filter: grayscale(15%) brightness(0.95);
       transition: all 0.5s ease;
     }
 
     .award-card:hover img {
-      filter: grayscale(0%) opacity(1);
+      filter: grayscale(0%) brightness(1.05);
+    }
+
+    .awards-row + .awards-row {
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .award-card {
+        width: 260px;
+        height: 170px;
+        margin: 0 8px;
+      }
+      .awards-row + .awards-row {
+        margin-top: 12px;
+      }
     }
 
     /* Placas Grid - Milestone Awards */
@@ -653,6 +714,183 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
+    /* Support Section */
+    .support-visual {
+      width: 320px;
+      height: 320px;
+      position: relative;
+    }
+
+    .support-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(0, 167, 255, 0.1) 0%, rgba(0, 0, 0, 0.95) 70%);
+      border: 2px solid rgba(0, 167, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      box-shadow: 0 0 80px rgba(0, 167, 255, 0.15), inset 0 0 40px rgba(0, 167, 255, 0.05);
+    }
+
+    /* Rotating orbit rings */
+    .support-orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 167, 255, 0.1);
+    }
+
+    .support-orbit--1 {
+      width: 260px;
+      height: 260px;
+      transform: translate(-50%, -50%);
+      animation: orbit-spin 20s linear infinite;
+    }
+
+    .support-orbit--2 {
+      width: 320px;
+      height: 320px;
+      transform: translate(-50%, -50%);
+      animation: orbit-spin 30s linear infinite reverse;
+      border-style: dashed;
+      border-color: rgba(0, 167, 255, 0.06);
+    }
+
+    /* Pulsing rings */
+    .support-pulse-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 167, 255, 0.3);
+      transform: translate(-50%, -50%);
+      animation: support-pulse 3s ease-out infinite;
+    }
+
+    .support-pulse-ring:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .support-pulse-ring:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    @keyframes support-pulse {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+      100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
+    }
+
+    @keyframes orbit-spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Avatars on orbit */
+    .support-avatar {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 167, 255, 0.4);
+      overflow: visible;
+      z-index: 20;
+      background: #0a0a0a;
+      box-shadow: 0 0 20px rgba(0, 167, 255, 0.15);
+      animation: avatar-float 4s ease-in-out infinite;
+    }
+
+    .support-avatar:nth-child(2) { animation-delay: 1.3s; }
+    .support-avatar:nth-child(3) { animation-delay: 2.6s; }
+
+    @keyframes avatar-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .support-avatar img {
+      border-radius: 50%;
+    }
+
+    .support-avatar-dot {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      background: #22c55e;
+      border-radius: 50%;
+      border: 2.5px solid #0a0a0a;
+      animation: dot-pulse 2s ease-in-out infinite;
+    }
+
+    .support-avatar:nth-child(2) .support-avatar-dot { animation-delay: 0.7s; }
+    .support-avatar:nth-child(3) .support-avatar-dot { animation-delay: 1.4s; }
+
+    @keyframes dot-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    }
+
+    /* Connection lines animated */
+    .support-line {
+      stroke-dasharray: 6 4;
+      animation: dash-flow 2s linear infinite;
+    }
+
+    @keyframes dash-flow {
+      to { stroke-dashoffset: -20; }
+    }
+
+    @media (max-width: 768px) {
+      .support-visual {
+        width: 250px;
+        height: 250px;
+      }
+
+      .support-circle {
+        width: 140px;
+        height: 140px;
+      }
+
+      .support-circle span {
+        font-size: 2rem !important;
+      }
+
+      .support-orbit--1 {
+        width: 200px;
+        height: 200px;
+      }
+
+      .support-orbit--2 {
+        width: 250px;
+        height: 250px;
+      }
+
+      .support-pulse-ring {
+        width: 140px;
+        height: 140px;
+      }
+
+      .support-avatar {
+        width: 40px;
+        height: 40px;
+      }
+
+      .support-avatar-dot {
+        width: 11px;
+        height: 11px;
+      }
+    }
+
     /* App Section Glass Card */
     .app-glass-card {
       border: 1px solid rgba(0, 167, 255, 0.15);
@@ -699,6 +937,154 @@
       .app-glass-card {
         padding: 2rem 1.5rem;
         border-radius: 24px;
+      }
+    }
+
+    /* Notification stack animation */
+    .notification-stack {
+      position: absolute;
+      top: -20px;
+      right: -30px;
+      width: 260px;
+      z-index: 20;
+    }
+
+    .notif {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border-radius: 18px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+
+    .notif-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      background: linear-gradient(145deg, #1a1a1a 0%, #000 100%);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .notif-icon-text {
+      color: #fff;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .notif-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notif-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.2;
+    }
+
+    .notif-msg {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .notif-time {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4);
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+
+    .notif-1 {
+      animation: notif-cycle-1 6s ease-in-out infinite;
+    }
+    .notif-2 {
+      animation: notif-cycle-2 6s ease-in-out infinite;
+    }
+    .notif-3 {
+      animation: notif-cycle-3 6s ease-in-out infinite;
+    }
+
+    @keyframes notif-cycle-1 {
+      0% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      8% { opacity: 1; transform: translateY(0) scale(1); }
+      75% { opacity: 1; transform: translateY(0) scale(1); }
+      85% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    }
+
+    @keyframes notif-cycle-2 {
+      0%, 15% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      25% { opacity: 1; transform: translateY(0) scale(1); }
+      75% { opacity: 1; transform: translateY(0) scale(1); }
+      85% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    }
+
+    @keyframes notif-cycle-3 {
+      0%, 35% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      45% { opacity: 1; transform: translateY(0) scale(1); }
+      75% { opacity: 1; transform: translateY(0) scale(1); }
+      85% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    }
+
+    @media (max-width: 1023px) {
+      .notification-stack {
+        top: 30px;
+        right: 50%;
+        transform: translateX(50%);
+        width: 220px;
+      }
+
+      .notif {
+        padding: 8px 12px;
+        gap: 8px;
+        border-radius: 14px;
+      }
+
+      .notif-icon {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        border-radius: 8px;
+      }
+
+      .notif-icon-text {
+        font-size: 7px;
+      }
+
+      .notif-title {
+        font-size: 10px;
+      }
+
+      .notif-msg {
+        font-size: 9px;
+      }
+
+      .notif-time {
+        font-size: 8px;
       }
     }
 
@@ -866,8 +1252,17 @@
   <!-- Ambient Background Glow -->
   <div id="ambientGlow"></div>
 
+  <!-- ========== TOP BAR ========== -->
+  <div id="topBar" class="fixed top-0 left-0 w-full z-[60] bg-red-600 text-white text-center py-1.5 px-4 flex items-center justify-center gap-2 text-[10px] md:text-xs font-medium border-b border-red-700">
+    <span class="text-white/90">Fatura +R$100k/mês? <span class="hidden md:inline">Obtenha condições exclusivas!</span></span>
+    <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 px-3 py-1 bg-white/20 text-white font-bold rounded-full text-[10px] md:text-xs hover:bg-white/30 transition-colors shrink-0 border border-white/30">
+      Falar com gerente
+    </a>
+  </div>
+
   <!-- ========== HEADER ========== -->
-  <header id="header" class="fixed top-0 left-0 w-full z-50 px-4 pt-4 sm:px-6 sm:pt-6">
+  <header id="header" class="fixed top-0 left-0 w-full z-50 px-4 pt-4 sm:px-6 sm:pt-6" style="top: 28px;">
     <div
       class="max-w-6xl mx-auto glass rounded-full px-6 py-4 flex items-center justify-between transition-all duration-500">
       <a href="#" class="flex items-center gap-2">
@@ -880,12 +1275,14 @@
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Início</a>
         <a href="#depoimentos"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Depoimentos</a>
-        <a href="#milestones"
-          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Milestones</a>
+        <a href="#Premiações"
+          class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">Premiações</a>
         <a href="#app"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">App</a>
         <a href="#faq"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">FAQ</a>
+        <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+          class="ml-3 px-5 py-2 text-sm font-bold text-white bg-brand rounded-full hover:bg-brand-light transition-all duration-300 hover:scale-105">Login / Criar conta</a>
       </nav>
 
       <!-- Mobile Toggle -->
@@ -910,16 +1307,18 @@
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Início</a>
         <a href="#depoimentos"
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Depoimentos</a>
-        <a href="#milestones"
-          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Milestones</a>
+        <a href="#Premiações"
+          class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">Premiações</a>
         <a href="#app"
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">App</a>
-        <a href="#faq" class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors">FAQ</a>
+        <a href="#faq" class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">FAQ</a>
+        <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+          class="mt-2 text-center px-5 py-3 text-base font-bold text-white bg-brand rounded-xl hover:bg-brand-light transition-all duration-300">Login / Criar conta</a>
       </div>
     </div>
   </header>
 
-  <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-2 lg:py-0 overflow-hidden">
+  <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-2 lg:pt-16 lg:pb-0 overflow-hidden">
     <!-- Dark base gradient -->
     <div class="absolute inset-0 bg-gradient-to-b from-dark-800 via-dark-800/95 to-dark-800"></div>
 
@@ -1032,7 +1431,7 @@
                   <div class="px-3 py-1 text-center">
                     <div
                       class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
-                      <span class="counter" data-target="5">5</span><span
+                      <span class="counter" data-target="10">10</span><span
                         class="text-brand text-[9px] ml-0.5">k+</span>
                     </div>
                     <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Membros
@@ -1042,7 +1441,7 @@
                     <div
                       class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
                       <span class="text-brand text-[9px] mr-1">R$</span><span class="counter"
-                        data-target="10">10</span><span class="text-brand text-[9px]">M+</span>
+                        data-target="20">20</span><span class="text-brand text-[9px]">M+</span>
                     </div>
                     <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">
                       Distribuídos</div>
@@ -1071,14 +1470,14 @@
             <div class="px-8 py-2 text-center group/item">
               <div
                 class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="counter" data-target="5">0</span><span class="text-brand text-sm ml-0.5">k+</span>
+                <span class="counter" data-target="10">0</span><span class="text-brand text-sm ml-0.5">k+</span>
               </div>
               <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Membros</div>
             </div>
             <div class="px-8 py-2 text-center group/item">
               <div
                 class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="text-brand text-sm mr-1">R$</span><span class="counter" data-target="10">0</span><span
+                <span class="text-brand text-sm mr-1">R$</span><span class="counter" data-target="20">0</span><span
                   class="text-brand text-sm">M+</span>
               </div>
               <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Distribuídos
@@ -1106,23 +1505,27 @@
   </div>
 
   <!-- ========== AWARDS MARQUEE ========== -->
-  <section class="py-20 relative overflow-hidden bg-black">
+  <section class="py-20 md:py-28 relative overflow-hidden bg-black">
     <div class="absolute inset-0 glow-center opacity-20 pointer-events-none"></div>
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand/5 blur-[150px] rounded-full pointer-events-none"></div>
 
-    <div class="text-center mb-12 reveal">
-      <span class="text-brand font-black tracking-[0.4em] uppercase text-[10px] mb-4 block">Elite Recognition</span>
-      <h2 class="text-3xl font-bold tracking-tight">Reconhecimento de <span class="text-brand-gradient">Elite
-          iHub</span></h2>
+    <div class="text-center mb-14 md:mb-20 reveal px-6">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <div class="h-px w-8 bg-gradient-to-r from-transparent to-brand/60"></div>
+        <span class="text-brand font-black tracking-[0.4em] uppercase text-[10px]">Elite Recognition</span>
+        <div class="h-px w-8 bg-gradient-to-l from-transparent to-brand/60"></div>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">Reconhecimento de <span class="text-brand-gradient">Elite iHub</span></h2>
+      <p class="text-zinc-500 text-sm md:text-base font-light max-w-lg mx-auto">Premiações exclusivas para os afiliados que se destacam na plataforma.</p>
     </div>
 
-    <div class="awards-container relative">
-      <!-- Gradient Masks -->
-      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
-      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+    <!-- Row 1 - Left to Right -->
+    <div class="awards-row awards-container relative mb-0">
+      <div class="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10"></div>
 
-      <div class="awards-marquee">
-        <!-- Original Slides -->
+      <div class="awards-track">
         <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
         <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
         <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
@@ -1130,12 +1533,6 @@
         <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
         <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
         <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
-        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
-        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
-        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
-        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
-        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
-        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
 
         <!-- Duplicated for Loop -->
         <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
@@ -1145,6 +1542,23 @@
         <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
         <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
         <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
+      </div>
+    </div>
+
+    <!-- Row 2 - Right to Left -->
+    <div class="awards-row awards-container relative">
+      <div class="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10"></div>
+
+      <div class="awards-track awards-track--reverse">
+        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
+
+        <!-- Duplicated for Loop -->
         <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
         <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
         <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
@@ -1289,18 +1703,18 @@
     <div class="divider-blue"></div>
   </div>
 
-  <!-- ========== MILESTONES SECTION ========== -->
-  <section id="milestones" class="relative py-20 md:py-32 overflow-hidden bg-black">
+  <!-- ========== Premiações SECTION ========== -->
+  <section id="Premiações" class="relative pb-0 overflow-hidden bg-black">
     <!-- Blue glow at bottom center -->
     <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(0,167,255,0.25)_0%,transparent_70%)] pointer-events-none"></div>
     <!-- Grid texture -->
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
 
     <div class="relative z-10 max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6 lg:gap-10">
 
         <!-- Text Side -->
-        <div class="reveal">
+        <div class="reveal py-10 md:py-28 lg:py-32 flex flex-col justify-center">
           <div class="inline-flex items-center mb-6">
             <div class="w-1 h-6 bg-brand rounded-full mr-3"></div>
             <span class="text-zinc-300 text-sm tracking-wide">O melhor pra você</span>
@@ -1314,20 +1728,22 @@
         </div>
 
         <!-- Plaques Side -->
-        <div class="reveal relative">
-          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-brand/30 blur-[80px] rounded-full pointer-events-none"></div>
-          <img src="assets/img/placas.png" alt="Placas de reconhecimento iHub" class="relative w-full max-w-lg mx-auto lg:max-w-none">
+        <div class="reveal relative flex items-end">
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-[50%] bg-brand/30 blur-[80px] rounded-full pointer-events-none"></div>
+          <img src="assets/img/placas.png" alt="Placas de reconhecimento iHub" class="relative w-full mx-auto lg:max-w-none lg:scale-110 lg:origin-bottom">
         </div>
 
       </div>
     </div>
-  </section>
 
-  <!-- Divider 4 -->
-  <div class="section-divider divider-left-heavy">
-    <div class="divider-blue"></div>
-    <div class="divider-red"></div>
-  </div>
+    <!-- Imagem colada na barra divisória -->
+    <div class="relative z-10 -mb-[2px]">
+      <div class="section-divider divider-left-heavy" style="margin:0;">
+        <div class="divider-blue"></div>
+        <div class="divider-red"></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ========== APP SECTION ========== -->
   <section id="app" class="relative py-16 lg:py-32 overflow-hidden bg-black">
@@ -1408,6 +1824,41 @@
                 <img src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
                   class="relative w-[260px] sm:w-[300px] lg:w-[340px] drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
               </picture>
+
+              <!-- Notificações animadas -->
+              <div class="notification-stack">
+                <div class="notif notif-1">
+                  <div class="notif-icon">
+                    <span class="notif-icon-text">iHUB</span>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-title">Novo CPA</div>
+                    <div class="notif-msg">+1 CPA - Sporting 💰</div>
+                  </div>
+                  <div class="notif-time">agora</div>
+                </div>
+                <div class="notif notif-2">
+                  <div class="notif-icon">
+                    <span class="notif-icon-text">iHUB</span>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-title">Novo CPA</div>
+                    <div class="notif-msg">+1 CPA - Betano 💰</div>
+                  </div>
+                  <div class="notif-time">há 2m</div>
+                </div>
+                <div class="notif notif-3">
+                  <div class="notif-icon">
+                    <span class="notif-icon-text">iHUB</span>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-title">Novo CPA</div>
+                    <div class="notif-msg">+1 CPA - Superbet 💰</div>
+                  </div>
+                  <div class="notif-time">há 5m</div>
+                </div>
+              </div>
+
             </div>
             <!-- Gradient fade on mobile - bottom, full width of card -->
             <div class="lg:hidden absolute -left-[50vw] -right-[50vw] -bottom-16 h-[60%] bg-gradient-to-t from-transparent via-black/90 via-40% to-transparent pointer-events-none"></div>
@@ -1451,6 +1902,103 @@
   <div class="section-divider divider-right-heavy">
     <div class="divider-red"></div>
     <div class="divider-blue"></div>
+  </div>
+
+  <!-- ========== SUPPORT SECTION ========== -->
+  <section class="relative py-20 md:py-32 overflow-hidden bg-black">
+    <div class="absolute inset-0 section-grid pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20">
+
+        <!-- Text Side -->
+        <div class="reveal">
+          <div class="inline-flex items-center mb-6">
+            <div class="w-1 h-6 bg-brand rounded-full mr-3"></div>
+            <span class="text-zinc-300 text-sm tracking-wide">O melhor suporte pra você</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-[1.15] text-white">
+            Suporte Humanizado 24/7 para você ter todo auxílio que precisa.
+          </h2>
+
+          <div class="space-y-4 mb-10">
+            <div class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-brand mt-0.5"></i>
+              <span class="text-zinc-300 text-sm md:text-base font-medium">Documentação técnica simplificada.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-brand mt-0.5"></i>
+              <span class="text-zinc-300 text-sm md:text-base font-medium">Suporte humano durante todo o processo.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-brand mt-0.5"></i>
+              <span class="text-zinc-300 text-sm md:text-base font-medium">Testes assistidos em ambiente seguro.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-brand mt-0.5"></i>
+              <span class="text-zinc-300 text-sm md:text-base font-medium">Correções, ajustes e performance monitorada.</span>
+            </div>
+          </div>
+
+          <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
+            Criar conta agora
+            <i class="fas fa-arrow-right text-sm"></i>
+          </a>
+        </div>
+
+        <!-- 24/7 Visual Side -->
+        <div class="reveal flex justify-center">
+          <div class="support-visual">
+            <!-- Pulsing rings -->
+            <div class="support-pulse-ring"></div>
+            <div class="support-pulse-ring"></div>
+            <div class="support-pulse-ring"></div>
+
+            <!-- Orbit rings -->
+            <div class="support-orbit support-orbit--1"></div>
+            <div class="support-orbit support-orbit--2"></div>
+
+            <!-- Main 24/7 circle -->
+            <div class="support-circle">
+              <span class="text-4xl md:text-6xl font-black text-brand tracking-tight">24/7</span>
+            </div>
+
+            <!-- Connection lines (animated dashes) -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none z-[15]" viewBox="0 0 320 320">
+              <line class="support-line" x1="85" y1="55" x2="135" y2="120" stroke="rgba(0,167,255,0.35)" stroke-width="1.5"/>
+              <line class="support-line" x1="45" y1="160" x2="110" y2="160" stroke="rgba(0,167,255,0.35)" stroke-width="1.5"/>
+              <line class="support-line" x1="85" y1="265" x2="135" y2="200" stroke="rgba(0,167,255,0.35)" stroke-width="1.5"/>
+            </svg>
+
+            <!-- Avatar 1 - top left -->
+            <div class="support-avatar" style="top: 8%; left: 12%;">
+              <img src="assets/img/sUPORTE1.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <div class="support-avatar-dot"></div>
+            </div>
+
+            <!-- Avatar 2 - middle left -->
+            <div class="support-avatar" style="top: 42%; left: -2%;">
+              <img src="assets/img/SUPORTE2.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <div class="support-avatar-dot"></div>
+            </div>
+
+            <!-- Avatar 3 - bottom left -->
+            <div class="support-avatar" style="top: 72%; left: 12%;">
+              <img src="assets/img/SUPORTE3.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <div class="support-avatar-dot"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider Support-FAQ -->
+  <div class="section-divider divider-left-heavy">
+    <div class="divider-blue"></div>
+    <div class="divider-red"></div>
   </div>
 
   <!-- ========== FAQ SECTION ========== -->
@@ -1652,7 +2200,7 @@
     // Initialize Header Bar Observer
     const initHeaderObserver = () => {
       const headerBar = document.getElementById('headerBar');
-      const sections = ['inicio', 'beneficios', 'como-funciona', 'depoimentos', 'milestones', 'app', 'faq'];
+      const sections = ['inicio', 'beneficios', 'como-funciona', 'depoimentos', 'Premiações', 'app', 'faq'];
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1676,6 +2224,24 @@
         if (section) observer.observe(section);
       });
     };
+
+    // Top bar hide on scroll
+    const topBar = document.getElementById('topBar');
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 80) {
+        topBar.style.transform = 'translateY(-100%)';
+        header.style.top = '0';
+      } else {
+        topBar.style.transform = 'translateY(0)';
+        header.style.top = topBar.offsetHeight + 'px';
+      }
+      lastScroll = y;
+    });
+    topBar.style.transition = 'transform 0.3s ease';
+    header.style.transition += ', top 0.3s ease';
 
     // Initialize everything
     initCounters();

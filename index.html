@@ -34,11 +34,15 @@
   <meta http-equiv="Expires" content="0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
   <script>
     tailwind.config = {
       theme: {
@@ -61,6 +65,30 @@
       font-family: 'Outfit', sans-serif;
       letter-spacing: -0.01em;
       touch-action: manipulation;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #00A7FF 0%, #005791 100%);
+      border-radius: 10px;
+      border: 2px solid #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #4dc3ff 0%, #00A7FF 100%);
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #00A7FF #0a0a0a;
     }
 
     /* Glassmorphism - Premium Apple/iOS Style */
@@ -1342,7 +1370,7 @@
             class="order-1 lg:order-2 flex justify-center lg:justify-end relative z-0 opacity-100 lg:opacity-100 transition-opacity duration-700">
             <div class="relative max-w-[500px] lg:max-w-none">
               <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full"></div>
-              <img src="assets/img/mockup_hero.png" alt="iHub App Mockup"
+              <img src="assets/img/mockup_hero.png" alt="iHub App Mockup" fetchpriority="high" decoding="async"
                 class="relative z-10 w-full lg:w-[110%] object-contain scale-100 lg:scale-125 select-none drop-shadow-[0_20px_50px_rgba(0,167,255,0.25)]">
 
               <!-- Notificações animadas Hero -->
@@ -1488,12 +1516,12 @@
   </div>
 
   <!-- ========== AWARDS MARQUEE ========== -->
-  <section class="py-20 md:py-28 relative overflow-hidden bg-black">
+  <section class="py-12 md:py-16 relative overflow-hidden bg-black">
     <div class="absolute inset-0 glow-center opacity-20 pointer-events-none"></div>
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand/5 blur-[150px] rounded-full pointer-events-none"></div>
 
-    <div class="text-center mb-14 md:mb-20 reveal px-6">
+    <div class="text-center mb-8 md:mb-12 reveal px-6">
       <div class="inline-flex items-center gap-3 mb-6">
         <div class="h-px w-8 bg-gradient-to-r from-transparent to-brand/60"></div>
         <span class="text-brand font-black tracking-[0.4em] uppercase text-[10px]">Elite Recognition</span>
@@ -1509,22 +1537,22 @@
       <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10"></div>
 
       <div class="awards-track">
-        <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
-        <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
-        <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
-        <div class="award-card"><img src="assets/img/slide-4.png" alt="Award 4"></div>
-        <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
-        <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
-        <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-1.png" alt="Award 1"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-2.png" alt="Award 2"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-3.png" alt="Award 3"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-4.png" alt="Award 4"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-5.png" alt="Award 5"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-6.png" alt="Award 6"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-7.png" alt="Award 7"></div>
 
         <!-- Duplicated for Loop -->
-        <div class="award-card"><img src="assets/img/slide-1.png" alt="Award 1"></div>
-        <div class="award-card"><img src="assets/img/slide-2.png" alt="Award 2"></div>
-        <div class="award-card"><img src="assets/img/slide-3.png" alt="Award 3"></div>
-        <div class="award-card"><img src="assets/img/slide-4.png" alt="Award 4"></div>
-        <div class="award-card"><img src="assets/img/slide-5.png" alt="Award 5"></div>
-        <div class="award-card"><img src="assets/img/slide-6.png" alt="Award 6"></div>
-        <div class="award-card"><img src="assets/img/slide-7.png" alt="Award 7"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-1.png" alt="Award 1"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-2.png" alt="Award 2"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-3.png" alt="Award 3"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-4.png" alt="Award 4"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-5.png" alt="Award 5"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-6.png" alt="Award 6"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-7.png" alt="Award 7"></div>
       </div>
     </div>
 
@@ -1534,20 +1562,20 @@
       <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10"></div>
 
       <div class="awards-track awards-track--reverse">
-        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
-        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
-        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
-        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
-        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
-        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-13.png" alt="Award 13"></div>
 
         <!-- Duplicated for Loop -->
-        <div class="award-card"><img src="assets/img/slide-8.png" alt="Award 8"></div>
-        <div class="award-card"><img src="assets/img/slide-9.png" alt="Award 9"></div>
-        <div class="award-card"><img src="assets/img/slide-10.png" alt="Award 10"></div>
-        <div class="award-card"><img src="assets/img/slide-11.png" alt="Award 11"></div>
-        <div class="award-card"><img src="assets/img/slide-12.png" alt="Award 12"></div>
-        <div class="award-card"><img src="assets/img/slide-13.png" alt="Award 13"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-8.png" alt="Award 8"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-9.png" alt="Award 9"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-10.png" alt="Award 10"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-11.png" alt="Award 11"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-12.png" alt="Award 12"></div>
+        <div class="award-card"><img loading="lazy" decoding="async" src="assets/img/slide-13.png" alt="Award 13"></div>
       </div>
     </div>
   </section>
@@ -1563,7 +1591,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6 lg:gap-10">
 
         <!-- Text Side -->
-        <div class="reveal py-10 md:py-28 lg:py-32 flex flex-col justify-center">
+        <div class="reveal py-10 md:py-16 lg:py-20 flex flex-col justify-center">
           <div class="inline-flex items-center mb-6">
             <div class="w-1 h-6 bg-brand rounded-full mr-3"></div>
             <span class="text-zinc-300 text-sm tracking-wide">O melhor pra você</span>
@@ -1579,7 +1607,7 @@
         <!-- Plaques Side -->
         <div class="reveal relative flex items-end">
           <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-[50%] bg-brand/30 blur-[80px] rounded-full pointer-events-none"></div>
-          <img src="assets/img/placas.png" alt="Placas de reconhecimento iHub" class="relative w-full mx-auto lg:max-w-none lg:scale-110 lg:origin-bottom">
+          <img loading="lazy" src="assets/img/placas.png" alt="Placas de reconhecimento iHub" class="relative w-full mx-auto lg:max-w-none lg:scale-110 lg:origin-bottom">
         </div>
 
       </div>
@@ -1595,7 +1623,7 @@
   </section>
 
   <!-- ========== APP SECTION ========== -->
-  <section id="app" class="relative py-16 lg:py-32 overflow-hidden bg-black">
+  <section id="app" class="relative py-12 lg:py-20 overflow-hidden bg-black">
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <!-- Decorative wave lines -->
     <svg class="app-section-waves" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -1662,7 +1690,7 @@
           </path>
         </svg>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
 
           <!-- Mockup side (top on mobile) -->
           <div class="flex justify-center lg:justify-end order-1 lg:order-2 relative overflow-visible">
@@ -1670,7 +1698,7 @@
               <div class="absolute inset-0 bg-brand/20 blur-[100px] rounded-full scale-75 pointer-events-none"></div>
               <picture>
                 <source media="(max-width: 1023px)" srcset="assets/img/mockup_iphone_celular.png">
-                <img src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
+                <img loading="lazy" src="assets/img/mockup_iphone.desktoptablet.png" alt="iHub Affiliates App"
                   class="relative w-[260px] sm:w-[300px] lg:w-[340px] drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
               </picture>
 
@@ -1754,11 +1782,11 @@
   </div>
 
   <!-- ========== SUPPORT SECTION ========== -->
-  <section class="relative py-20 md:py-32 overflow-hidden bg-black">
+  <section class="relative py-12 md:py-20 overflow-hidden bg-black">
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
 
     <div class="relative z-10 max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-14">
 
         <!-- Text Side -->
         <div class="reveal">
@@ -1829,19 +1857,19 @@
 
             <!-- Avatar 1 - top left -->
             <div class="support-avatar" style="top: 8%; left: 12%;">
-              <img src="assets/img/sUPORTE1.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <img loading="lazy" src="assets/img/sUPORTE1.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
               <div class="support-avatar-dot"></div>
             </div>
 
             <!-- Avatar 2 - middle left -->
             <div class="support-avatar" style="top: 42%; left: -2%;">
-              <img src="assets/img/SUPORTE2.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <img loading="lazy" src="assets/img/SUPORTE2.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
               <div class="support-avatar-dot"></div>
             </div>
 
             <!-- Avatar 3 - bottom left -->
             <div class="support-avatar" style="top: 72%; left: 12%;">
-              <img src="assets/img/SUPORTE3.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
+              <img loading="lazy" src="assets/img/SUPORTE3.jpeg" alt="Suporte" class="w-full h-full object-cover rounded-full">
               <div class="support-avatar-dot"></div>
             </div>
           </div>
@@ -1858,7 +1886,7 @@
   </div>
 
   <!-- ========== FAQ SECTION ========== -->
-  <section id="faq" class="relative pt-8 pb-16 md:pt-14 md:pb-32 bg-black overflow-hidden">
+  <section id="faq" class="relative pt-6 pb-8 md:pt-8 md:pb-12 bg-black overflow-hidden">
     <div class="absolute inset-0 section-grid pointer-events-none"></div>
     <!-- Centered Badge -->
     <div class="flex justify-center mb-6 reveal">
@@ -1871,13 +1899,13 @@
 
     <div class="relative z-10 max-w-2xl mx-auto px-6">
 
-      <div class="text-center max-w-xl mx-auto mb-10 md:mb-14">
+      <div class="text-center max-w-xl mx-auto mb-6 md:mb-8">
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 md:mb-5">Perguntas <span
             class="text-brand-gradient">Frequentes</span></h2>
       </div>
 
       <div
-        class="flex flex-col gap-0 border border-white/5 rounded-[32px] overflow-hidden bg-white/[0.01] mb-10 md:mb-16">
+        class="flex flex-col gap-0 border border-white/5 rounded-[32px] overflow-hidden bg-white/[0.01] mb-6 md:mb-8">
         <div class="faq-item border-b border-white/5 transition-all duration-300">
           <button
             class="faq-trigger w-full flex items-center justify-center gap-4 px-6 py-4 text-center font-bold text-sm hover:text-brand transition-colors relative">
@@ -1939,7 +1967,7 @@
   </div>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-zinc-800/60 bg-dark-900/50 pt-12 md:pt-20 lg:pt-24 pb-6 md:pb-10">
+  <footer class="border-t border-zinc-800/60 bg-dark-900/50 pt-10 md:pt-14 lg:pt-16 pb-6 md:pb-8">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="mb-12">
 
@@ -1963,8 +1991,8 @@
       <div class="mb-10 pt-8 border-t border-white/[0.03]">
         <p class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 mb-6 text-center">Parcerias de Sucesso</p>
         <div class="flex items-center justify-center gap-10">
-          <img src="assets/img/sportingbet-logo.png" alt="Sportingbet" class="h-6 md:h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
-          <img src="assets/img/Superbet_Logo.svg.png" alt="Superbet" class="h-6 md:h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+          <img loading="lazy" src="assets/img/sportingbet-logo.png" alt="Sportingbet" class="h-6 md:h-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
+          <img loading="lazy" src="assets/img/Superbet_Logo.svg.png" alt="Superbet" class="h-6 md:h-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
         </div>
       </div>
 

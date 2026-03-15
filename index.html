@@ -2,6 +2,24 @@
 <html lang="pt-BR" class="scroll-smooth overflow-x-hidden">
 
 <head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '27167251579531972');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=27167251579531972&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>iHub Affiliates - Plataforma de Afiliados de Elite</title>
@@ -764,6 +782,65 @@
       transform: scale(0.95);
     }
 
+    /* Glass CTA Button - Animated */
+    .btn-glass-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(0, 167, 255, 0.12);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border: 1px solid rgba(0, 167, 255, 0.3);
+      border-radius: 9999px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow:
+        0 0 20px rgba(0, 167, 255, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-glass-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+      );
+      animation: btn-shimmer 3s ease-in-out infinite;
+    }
+
+    .btn-glass-cta:hover {
+      background: rgba(0, 167, 255, 0.25);
+      border-color: rgba(0, 167, 255, 0.5);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow:
+        0 0 35px rgba(0, 167, 255, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-glass-cta:active {
+      transform: scale(0.97);
+    }
+
+    @keyframes btn-shimmer {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
     /* Store Buttons - Premium & Brand-accurate */
     .btn-app {
       display: inline-flex;
@@ -1314,7 +1391,7 @@
         <a href="#faq"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">FAQ</a>
         <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-          class="ml-3 px-5 py-2 text-sm font-bold text-white bg-brand rounded-full hover:bg-brand-light transition-all duration-300 hover:scale-105">Login / Criar conta</a>
+          class="ml-3 btn-glass-cta">Login / Criar conta</a>
       </nav>
 
       <!-- Mobile Toggle -->
@@ -1343,7 +1420,7 @@
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">App</a>
         <a href="#faq" class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">FAQ</a>
         <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-          class="mt-2 text-center px-5 py-3 text-base font-bold text-white bg-brand rounded-xl hover:bg-brand-light transition-all duration-300">Login / Criar conta</a>
+          class="mt-2 btn-glass-cta text-base py-3 rounded-xl">Login / Criar conta</a>
       </div>
     </div>
   </header>
@@ -1473,11 +1550,11 @@
               class="text-base md:text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 mb-6 md:mb-8 leading-relaxed font-light px-4 lg:px-0">
               Conecte-se com casas de apostas globais e tenha as <strong class="text-white font-medium">deals mais agressivas do mercado</strong>.
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4 lg:mb-0">
-              <a href="#app" class="hidden sm:inline-flex btn-primary w-auto">
+              <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex btn-glass-cta px-8 py-4 text-lg">
                 Entre ou Cadastre-se <i class="fas fa-arrow-right text-sm ml-2"></i>
               </a>
 
-              <a href="#app" class="btn-app btn-app-apple">
+              <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="btn-glass-cta rounded-2xl px-5 py-3">
                 <i class="fab fa-apple text-2xl"></i>
                 <div class="text-left leading-none">
                   <div class="text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Download on the</div>
@@ -1713,8 +1790,8 @@
 
     <!-- Botão Ver Ranking -->
     <div class="flex justify-center mt-10">
-      <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-8 py-3 bg-brand text-white font-bold rounded-full text-sm hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
+      <a href="https://ihubaffiliates.com/ranking" target="_blank" rel="noopener noreferrer"
+        class="btn-glass-cta px-8 py-3 text-sm">
         <i class="fas fa-trophy text-sm"></i>
         Ver Ranking
       </a>
@@ -1893,7 +1970,7 @@
 
             <div class="flex flex-row items-center gap-3 justify-center lg:justify-start">
               <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank"
-                rel="noopener noreferrer" class="btn-app btn-app-apple px-4 py-2.5 shrink-0">
+                rel="noopener noreferrer" class="btn-glass-cta rounded-2xl px-4 py-2.5 shrink-0">
                 <i class="fab fa-apple text-lg"></i>
                 <div class="text-left leading-none">
                   <div class="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">Disponível na</div>
@@ -1901,7 +1978,7 @@
                 </div>
               </a>
 
-              <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-app btn-app-apple px-4 py-2.5 shrink-0">
+              <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-glass-cta rounded-2xl px-4 py-2.5 shrink-0">
                 <i class="fas fa-globe text-base"></i>
                 <div class="text-left leading-none">
                   <div class="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">Acessar via Web</div>
@@ -1959,7 +2036,7 @@
           </div>
 
           <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand-light transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,167,255,0.3)]">
+            class="btn-glass-cta px-8 py-4 text-base rounded-xl">
             Criar conta agora
             <i class="fas fa-arrow-right text-sm"></i>
           </a>
@@ -2306,6 +2383,55 @@
       <span class="text-xs font-bold text-white tracking-wide uppercase">Ver Ranking Global</span>
     </div>
   </a>
+
+<!-- Meta Pixel - Rastreamento de botões -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a, button');
+    if (!link || typeof fbq !== 'function') return;
+
+    var href = link.getAttribute('href') || '';
+    var text = link.textContent.trim().replace(/\s+/g, ' ');
+
+    // WhatsApp
+    if (href.includes('wa.me')) {
+      fbq('track', 'Contact', { content_name: 'WhatsApp', content_category: 'WhatsApp' });
+      return;
+    }
+
+    // App Store
+    if (href.includes('apps.apple.com')) {
+      fbq('track', 'Lead', { content_name: 'Download App Store', content_category: 'App Download' });
+      return;
+    }
+
+    // Ranking
+    if (href.includes('/ranking')) {
+      fbq('trackCustom', 'ViewRanking', { content_name: text, content_category: 'Ranking' });
+      return;
+    }
+
+    // Login / Cadastro / Painel iHub
+    if (href.includes('ihubaffiliates.com') && !href.includes('/ranking')) {
+      fbq('track', 'Lead', { content_name: text, content_category: 'Cadastro/Login' });
+      return;
+    }
+
+    // Instagram
+    if (href.includes('instagram.com')) {
+      fbq('trackCustom', 'SocialClick', { content_name: 'Instagram', content_category: 'Social Media' });
+      return;
+    }
+
+    // FAQ accordions
+    if (link.tagName === 'BUTTON') {
+      fbq('trackCustom', 'FAQClick', { content_name: text, content_category: 'FAQ' });
+      return;
+    }
+  });
+});
+</script>
 
 </body>
 

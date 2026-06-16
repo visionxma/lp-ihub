@@ -49,21 +49,42 @@
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="assets/img/mockup_hero.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/img/taca.webp" type="image/webp">
 
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Self-hosted fonts: preload + @font-face = no flash, no external round-trip -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/montserrat.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/outfit.woff2">
+  <style>
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/montserrat.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/outfit.woff2') format('woff2');
+    }
+  </style>
+
+  <!-- Font Awesome: load immediately + preload icon webfonts so they don't pop in -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
   <script>
     tailwind.config = {
       theme: {
@@ -161,6 +182,209 @@
         radial-gradient(ellipse 60% 50% at 50% 40%, black 10%, transparent 60%);
       -webkit-mask-image:
         radial-gradient(ellipse 60% 50% at 50% 40%, black 10%, transparent 60%);
+    }
+
+    /* ===================== COPA DO MILHÃO / BOT TELEGRAM HERO ===================== */
+    :root {
+      --gold: #FFC400;
+      --gold-light: #FFE27A;
+      --gold-deep: #C98A00;
+      --field-green: #1f7a35;
+    }
+
+    /* Stadium background: real crowd photo + dark/gold overlay for readability */
+    .copa-hero-bg {
+      background:
+        linear-gradient(180deg, rgba(5,6,8,0.92) 0%, rgba(5,8,6,0.82) 45%, rgba(5,12,7,0.9) 100%),
+        radial-gradient(circle at 12% 8%, rgba(255, 196, 0, 0.16) 0%, transparent 40%),
+        radial-gradient(circle at 88% 8%, rgba(255, 196, 0, 0.16) 0%, transparent 40%),
+        url('assets/img/torcida-copa.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+    }
+
+    /* Stadium light flares at the top */
+    .stadium-lights {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle 3px at 18% 6%, rgba(255, 244, 200, 0.9), transparent 60%),
+        radial-gradient(circle 3px at 38% 4%, rgba(255, 244, 200, 0.8), transparent 60%),
+        radial-gradient(circle 3px at 62% 4%, rgba(255, 244, 200, 0.8), transparent 60%),
+        radial-gradient(circle 3px at 82% 6%, rgba(255, 244, 200, 0.9), transparent 60%);
+      filter: drop-shadow(0 0 8px rgba(255, 230, 150, 0.6));
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    /* Field lines (center circle + halfway) */
+    .field-lines {
+      position: absolute;
+      left: 50%;
+      bottom: -4%;
+      width: 120%;
+      height: 60%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      background:
+        radial-gradient(circle 1px at 50% 100%, transparent 38%, rgba(255,255,255,0.10) 38.6%, rgba(255,255,255,0.10) 39.4%, transparent 40%),
+        linear-gradient(90deg, transparent 49.8%, rgba(255,255,255,0.08) 50%, transparent 50.2%);
+      mask-image: linear-gradient(180deg, transparent 0%, black 70%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 70%);
+      opacity: 0.7;
+    }
+
+    /* Trophy medallion */
+    .copa-medallion {
+      width: 104px;
+      height: 104px;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 50% 35%, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+      box-shadow:
+        0 0 0 4px rgba(0, 0, 0, 0.85),
+        0 0 0 6px rgba(255, 196, 0, 0.7),
+        0 0 45px rgba(255, 196, 0, 0.5),
+        inset 0 3px 10px rgba(255, 255, 255, 0.5),
+        inset 0 -6px 14px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #1a1200;
+      position: relative;
+    }
+
+    .copa-medallion .fa-trophy {
+      font-size: 1.9rem;
+      filter: drop-shadow(0 2px 2px rgba(255,255,255,0.4));
+    }
+
+    .copa-medallion small {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    /* Taça (trophy) - floating + gentle sway */
+    .taca-wrap {
+      animation: taca-float 4s ease-in-out infinite;
+      transform-origin: center bottom;
+      will-change: transform;
+    }
+
+    @keyframes taca-float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    /* Pulsing golden glow behind the trophy */
+    #heroTaca {
+      will-change: filter;
+      animation: taca-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes taca-glow {
+      0%, 100% { filter: drop-shadow(0 4px 14px rgba(255, 196, 0, 0.4)); }
+      50%      { filter: drop-shadow(0 4px 26px rgba(255, 196, 0, 0.85)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .taca-wrap, #heroTaca { animation: none; }
+    }
+
+    /* Gold gradient title */
+    .text-gold-gradient {
+      background: linear-gradient(180deg, #FFE27A 0%, #FFC400 45%, #C98A00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .copa-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    /* Step cards */
+    .step-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 1.1rem 1.2rem;
+      background: linear-gradient(160deg, rgba(255, 196, 0, 0.06) 0%, rgba(0, 0, 0, 0.55) 100%);
+      border: 1px solid rgba(255, 196, 0, 0.25);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 196, 0, 0.6);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255, 196, 0, 0.12);
+      z-index: 5;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .steps-3d .step-card {
+        animation: none;
+        transform: none;
+      }
+    }
+
+    .step-number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 2.1rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #1a1200;
+      background: linear-gradient(135deg, #FFE27A 0%, #FFC400 50%, #E0A400 100%);
+      box-shadow: 0 12px 30px rgba(255, 196, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.5);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(255, 196, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    .btn-gold:active {
+      transform: scale(0.97);
+    }
+
+    @media (max-width: 768px) {
+      .copa-medallion {
+        width: 84px;
+        height: 84px;
+      }
+      .copa-medallion .fa-trophy {
+        font-size: 1.4rem;
+      }
+      .step-card {
+        padding: 1rem;
+      }
+      .step-number {
+        font-size: 1.8rem;
+      }
     }
 
     /* Section Grid - shared across all sections */
@@ -1425,215 +1649,93 @@
     </div>
   </header>
 
-  <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-2 lg:pt-16 lg:pb-0 overflow-hidden">
-    <!-- Dark base gradient -->
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-800 via-dark-800/95 to-dark-800"></div>
+  <section id="inicio" class="copa-hero-bg relative min-h-screen flex items-center pt-32 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
+    <!-- Stadium lights -->
+    <div class="stadium-lights"></div>
 
-    <!-- Premium Grid Layers -->
-    <div class="absolute inset-0 hero-grid-bg opacity-60"></div>
-    <div class="absolute inset-0 hero-grid-dots opacity-40"></div>
+    <!-- Golden ambient glows -->
+    <div class="absolute top-10 left-1/4 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none" style="background: rgba(255, 196, 0, 0.10);"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full blur-[140px] pointer-events-none" style="background: rgba(48, 180, 70, 0.14);"></div>
 
-    <!-- Ambient glows -->
-    <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand/[0.03] rounded-full blur-[150px] pointer-events-none"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-red-500/[0.02] rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Top fade for header -->
+    <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[2]"></div>
 
-    <!-- Decorative chart/wave in background -->
-    <svg class="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-[0.25] md:opacity-[0.12]" viewBox="0 0 1400 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="heroChartGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#00A7FF" stop-opacity="0"/>
-          <stop offset="20%" stop-color="#00A7FF" stop-opacity="1"/>
-          <stop offset="80%" stop-color="#00A7FF" stop-opacity="1"/>
-          <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
-        </linearGradient>
-        <linearGradient id="heroChartFill" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#00A7FF" stop-opacity="0.3"/>
-          <stop offset="100%" stop-color="#00A7FF" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <!-- Main chart line -->
-      <path d="M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250" stroke="url(#heroChartGrad)" stroke-width="3" fill="none">
-        <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
-          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250;
-          M0 640 Q150 610, 250 560 T450 500 T600 420 T750 430 T900 280 T1050 330 T1200 220 T1400 230;
-          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250
-        "/>
-      </path>
-      <!-- Fill under chart -->
-      <path d="M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250 L1400 800 L0 800 Z" fill="url(#heroChartFill)">
-        <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
-          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250 L1400 800 L0 800 Z;
-          M0 640 Q150 610, 250 560 T450 500 T600 420 T750 430 T900 280 T1050 330 T1200 220 T1400 230 L1400 800 L0 800 Z;
-          M0 650 Q150 600, 250 580 T450 520 T600 400 T750 450 T900 300 T1050 350 T1200 200 T1400 250 L1400 800 L0 800 Z
-        "/>
-      </path>
-    </svg>
+    <div class="relative z-10 w-full max-w-[1080px] mx-auto px-6">
 
-    <!-- Edge fade -->
-    <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_200px_rgba(0,0,0,0.9)]"></div>
+      <!-- Header row: Trophy + Title -->
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-7 text-center lg:text-left">
 
-    <div class="absolute inset-0 glow-top pointer-events-none"></div>
+        <!-- Copa do Milhão Trophy Medallion -->
+        <div class="copa-medallion shrink-0">
+          <i class="fas fa-trophy"></i>
+          <small class="text-[9px] md:text-[10px] mt-1">Copa do</small>
+          <small class="text-[12px] md:text-[14px]">Milhão</small>
+        </div>
 
-    <div class="relative z-10 w-full">
-      <!-- Side Badge - Glued to the left -->
-      <div class="absolute left-0 top-0 md:-top-12 overflow-hidden pointer-events-none z-20">
-        <div class="status-badge no-reveal-transform" style="transform: translateX(0); opacity: 1;">
-          <i class="fas fa-shield-halved badge-icon"></i>
-          <span class="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-white/90">
-            Plataforma <span class="text-brand-gradient">#1</span> de Afiliados
-          </span>
+        <!-- Title block -->
+        <div>
+          <h1 class="copa-title text-3xl sm:text-4xl lg:text-6xl mb-2 whitespace-nowrap inline-flex items-center justify-center lg:justify-start">
+            <span class="text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">Bot do</span>
+            <span class="taca-wrap inline-block -my-2 -mx-1">
+              <img id="heroTaca" src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="block h-[1.3em] w-auto drop-shadow-[0_4px_14px_rgba(255,196,0,0.45)] select-none" fetchpriority="high" loading="eager" decoding="sync">
+            </span>
+            <span class="text-gold-gradient drop-shadow-[0_0_24px_rgba(255,196,0,0.35)]">Telegram</span>
+          </h1>
+          <p class="text-sm md:text-lg font-bold text-white max-w-xl mx-auto lg:mx-0">
+            A equipe <span class="text-gold-gradient">iHub</span> converte CPA para você, <span class="text-gold-gradient">afiliado!</span>
+          </p>
         </div>
       </div>
 
-      <!-- Shadow Overlay for Mobile text readability (Full Width) - Double Fade -->
-      <div
-        class="lg:hidden absolute inset-x-0 bottom-[-5vh] h-[70vh] bg-gradient-to-t from-transparent via-dark-800 via-40% to-transparent z-[5] pointer-events-none">
-      </div>
+      <!-- 3 Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 lg:mt-10">
 
-      <!-- Main Content Grid -->
-      <div class="max-w-[1240px] mx-auto px-6 mb-12 lg:mb-0 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-10 md:pt-16 lg:pt-0 relative">
-
-          <!-- Mockup Side (Background on mobile) -->
-          <div
-            class="order-1 lg:order-2 flex justify-center lg:justify-end relative z-0 opacity-100 lg:opacity-100 transition-opacity duration-700">
-            <div class="relative max-w-[500px] lg:max-w-none">
-              <div class="absolute inset-0 bg-brand/30 blur-[120px] rounded-full"></div>
-              <img src="assets/img/mockup_hero.webp" alt="iHub App Mockup" fetchpriority="high" decoding="sync"
-                class="relative z-10 w-full lg:w-[110%] object-contain scale-100 lg:scale-125 select-none drop-shadow-[0_20px_50px_rgba(0,167,255,0.25)]">
-
-              <!-- Notificações animadas Hero -->
-              <div class="notification-stack notification-stack--hero">
-                <div class="notif notif-1">
-                  <div class="notif-icon">
-                    <span class="notif-icon-text">iHUB</span>
-                  </div>
-                  <div class="notif-content">
-                    <div class="notif-title">Novo CPA</div>
-                    <div class="notif-msg">+1 CPA - Sporting 💰</div>
-                  </div>
-                  <div class="notif-time">agora</div>
-                </div>
-                <div class="notif notif-2">
-                  <div class="notif-icon">
-                    <span class="notif-icon-text">iHUB</span>
-                  </div>
-                  <div class="notif-content">
-                    <div class="notif-title">Novo CPA</div>
-                    <div class="notif-msg">+1 CPA - Superbet 💰</div>
-                  </div>
-                  <div class="notif-time">há 2m</div>
-                </div>
-                <div class="notif notif-3">
-                  <div class="notif-icon">
-                    <span class="notif-icon-text">iHUB</span>
-                  </div>
-                  <div class="notif-content">
-                    <div class="notif-title">Novo CPA</div>
-                    <div class="notif-msg">+1 CPA - Superbet 💰</div>
-                  </div>
-                  <div class="notif-time">há 5m</div>
-                </div>
-              </div>
-            </div>
+        <!-- Step 01 -->
+        <div class="step-card">
+          <div class="flex items-center gap-3 mb-2.5">
+            <span class="step-number text-gold-gradient">01</span>
+            <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
+            <i class="fab fa-telegram text-xl text-[#29A9EA]"></i>
+            <h3 class="copa-title text-base md:text-lg text-white leading-tight">Copia o<br>link do bot</h3>
           </div>
+          <p class="text-[13px] text-zinc-300 leading-relaxed">
+            Acesse o nosso bot no Telegram e copie o seu link de afiliado exclusivo em poucos segundos.
+          </p>
+        </div>
 
-          <!-- Text Side (Overlapping on mobile) -->
-          <div
-            class="text-center lg:text-left order-2 lg:order-1 relative z-10 -mt-[30vh] lg:mt-0 pt-[25vh] lg:pr-12 lg:p-0">
-            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-3 md:mb-4">
-              <span class="text-gradient">A Nova Era dos</span><br>
-              <span class="text-brand-gradient name-badge whitespace-nowrap">Afiliados de Elite</span>
-            </h1>
-
-            <p
-              class="text-base md:text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 mb-6 md:mb-8 leading-relaxed font-light px-4 lg:px-0">
-              Conecte-se com casas de apostas globais e tenha as <strong class="text-white font-medium">deals mais agressivas do mercado</strong>.
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4 lg:mb-0">
-              <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex btn-glass-cta px-8 py-4 text-lg">
-                Entre ou Cadastre-se <i class="fas fa-arrow-right text-sm ml-2"></i>
-              </a>
-
-              <a href="https://apps.apple.com/br/app/ihub-affiliates/id6757364816" target="_blank" rel="noopener noreferrer" class="btn-glass-cta rounded-2xl px-5 py-3">
-                <i class="fab fa-apple text-2xl"></i>
-                <div class="text-left leading-none">
-                  <div class="text-[9px] uppercase tracking-wider opacity-60 mb-0.5">Download on the</div>
-                  <div class="text-base font-bold">App Store</div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Mobile: Stats Highlight precisely in the red circled area -->
-            <div class="lg:hidden mt-8 mb-4 relative z-20">
-              <div
-                class="inline-flex flex-row items-center justify-center px-1 py-0.5 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-xl w-auto mx-auto overflow-hidden shadow-[0_0_50px_rgba(0,167,255,0.05)]">
-                <div class="flex flex-row items-center divide-x divide-white/[0.08] w-full">
-                  <div class="px-3 py-1 text-center">
-                    <div
-                      class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
-                      <span class="counter" data-target="10">10</span><span
-                        class="text-brand text-[9px] ml-0.5">k+</span>
-                    </div>
-                    <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Membros
-                    </div>
-                  </div>
-                  <div class="px-3 py-1 text-center">
-                    <div
-                      class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
-                      <span class="text-brand text-[9px] mr-1">R$</span><span class="counter"
-                        data-target="20">20</span><span class="text-brand text-[9px]">M+</span>
-                    </div>
-                    <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">
-                      Distribuídos</div>
-                  </div>
-                  <div class="px-3 py-1 text-center">
-                    <div
-                      class="text-base font-bold tracking-tighter text-white flex items-baseline justify-center">
-                      <span class="counter" data-target="24">24</span><span
-                        class="text-brand text-[9px] mx-1">/</span><span class="counter" data-target="7">7</span>
-                    </div>
-                    <div class="text-[6px] font-black uppercase tracking-[0.2em] text-brand/60 leading-none">Support
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- Step 02 -->
+        <div class="step-card">
+          <div class="flex items-center gap-3 mb-2.5">
+            <span class="step-number text-gold-gradient">02</span>
+            <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
+            <i class="fas fa-bullhorn text-xl text-[#FFC400]"></i>
+            <h3 class="copa-title text-base md:text-lg text-white leading-tight">Divulga<br>o bot</h3>
           </div>
+          <p class="text-[13px] text-zinc-300 leading-relaxed">
+            Compartilhe o link do bot com sua audiência nos seus canais e comece a gerar leads qualificados.
+          </p>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="step-card">
+          <div class="flex items-center gap-3 mb-2.5">
+            <span class="step-number text-gold-gradient">03</span>
+            <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
+            <i class="fas fa-handshake text-xl text-[#FFC400]"></i>
+            <h3 class="copa-title text-sm md:text-base text-white leading-tight">Convertemos<br>o CPA p/ você</h3>
+          </div>
+          <p class="text-[13px] text-zinc-300 leading-relaxed">
+            Temos um bot que ativa o CPA com seu link de afiliado. Time comercial focado em converter seus leads no 1 a 1.
+          </p>
         </div>
       </div>
 
-      <!-- Desktop: Stats Highlight as Bridge -->
-      <div class="hidden lg:block max-w-[1240px] mx-auto px-6 text-center -mb-14 translate-y-1/2 relative z-50">
-        <div
-          class="inline-flex flex-row items-center justify-center px-2 py-1 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-2xl hover:border-brand/30 transition-all duration-700 hover:shadow-[0_0_50px_rgba(0,167,255,0.1)] group w-auto mx-auto overflow-hidden">
-          <div class="flex flex-row items-center divide-x divide-white/[0.08] w-full">
-            <div class="px-8 py-2 text-center group/item">
-              <div
-                class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="counter" data-target="10">0</span><span class="text-brand text-sm ml-0.5">k+</span>
-              </div>
-              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Membros</div>
-            </div>
-            <div class="px-8 py-2 text-center group/item">
-              <div
-                class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="text-brand text-sm mr-1">R$</span><span class="counter" data-target="20">0</span><span
-                  class="text-brand text-sm">M+</span>
-              </div>
-              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Distribuídos
-              </div>
-            </div>
-            <div class="px-8 py-2 text-center group/item">
-              <div
-                class="text-2xl font-bold tracking-tighter text-white mb-0.5 transition-transform group-hover/item:scale-110 duration-500 flex items-baseline justify-center">
-                <span class="counter" data-target="24">0</span><span class="text-brand text-sm mx-1">/</span><span
-                  class="counter" data-target="7">0</span>
-              </div>
-              <div class="text-[9px] font-black uppercase tracking-[0.3em] text-brand/60 leading-none">Suporte
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- CTA + iHub brand -->
+      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-between gap-5 mt-9">
+        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn-gold">
+          <i class="fab fa-telegram text-lg"></i> Acessar o Bot do Telegram
+        </a>
+        <img src="assets/img/logo-white.png" alt="iHub" class="h-7 md:h-9 opacity-90 select-none">
       </div>
     </div>
   </section>

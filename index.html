@@ -295,6 +295,31 @@
       .taca-wrap, #heroTaca { animation: none; }
     }
 
+    /* Center trophy in "Como funciona" */
+    .taca-center-img {
+      animation: taca-float 5s ease-in-out infinite;
+      transform-origin: center bottom;
+      filter: drop-shadow(0 24px 55px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 45px rgba(255, 196, 0, 0.25));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .taca-center-img { animation: none; }
+    }
+
+    /* Scroll-down hint */
+    .scroll-hint-bounce {
+      animation: hint-bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .taca-big-img, .scroll-hint-bounce { animation: none; }
+    }
+
     /* Gold gradient title */
     .text-gold-gradient {
       background: linear-gradient(180deg, #FFE27A 0%, #FFC400 45%, #C98A00 100%);
@@ -368,6 +393,31 @@
     }
 
     .btn-gold:active {
+      transform: scale(0.97);
+    }
+
+    .btn-gold-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      background: rgba(255, 196, 0, 0.06);
+      border: 1px solid rgba(255, 196, 0, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-gold-outline:hover {
+      background: rgba(255, 196, 0, 0.14);
+      border-color: rgba(255, 196, 0, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .btn-gold-outline:active {
       transform: scale(0.97);
     }
 
@@ -1649,7 +1699,7 @@
     </div>
   </header>
 
-  <section id="inicio" class="copa-hero-bg relative min-h-screen flex items-center pt-32 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
+  <section id="inicio" class="copa-hero-bg relative min-h-screen flex items-center justify-center pt-28 pb-24 overflow-hidden">
     <!-- Stadium lights -->
     <div class="stadium-lights"></div>
 
@@ -1661,9 +1711,7 @@
     <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[2]"></div>
 
     <div class="relative z-10 w-full max-w-[1080px] mx-auto px-6">
-
-      <!-- Header row: Trophy + Title -->
-      <div class="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-7 text-center lg:text-left">
+      <div class="flex flex-col items-center text-center gap-6">
 
         <!-- Copa do Milhão Trophy Medallion -->
         <div class="copa-medallion shrink-0">
@@ -1672,70 +1720,107 @@
           <small class="text-[12px] md:text-[14px]">Milhão</small>
         </div>
 
-        <!-- Title block -->
-        <div>
-          <h1 class="copa-title text-3xl sm:text-4xl lg:text-6xl mb-2 whitespace-nowrap inline-flex items-center justify-center lg:justify-start">
-            <span class="text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">Bot do</span>
-            <span class="taca-wrap inline-block -my-2 -mx-1">
-              <img id="heroTaca" src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="block h-[1.3em] w-auto drop-shadow-[0_4px_14px_rgba(255,196,0,0.45)] select-none" fetchpriority="high" loading="eager" decoding="sync">
-            </span>
-            <span class="text-gold-gradient drop-shadow-[0_0_24px_rgba(255,196,0,0.35)]">Telegram</span>
-          </h1>
-          <p class="text-sm md:text-lg font-bold text-white max-w-xl mx-auto lg:mx-0">
-            A equipe <span class="text-gold-gradient">iHub</span> converte CPA para você, <span class="text-gold-gradient">afiliado!</span>
-          </p>
-        </div>
+        <!-- Title -->
+        <h1 class="copa-title text-3xl sm:text-5xl lg:text-7xl whitespace-nowrap inline-flex items-center justify-center">
+          <span class="text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">Bot do</span>
+          <span class="taca-wrap inline-block -my-2 -mx-1">
+            <img id="heroTaca" src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="block h-[1.3em] w-auto drop-shadow-[0_4px_14px_rgba(255,196,0,0.45)] select-none" fetchpriority="high" loading="eager" decoding="sync">
+          </span>
+          <span class="text-gold-gradient drop-shadow-[0_0_24px_rgba(255,196,0,0.35)]">Telegram</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base md:text-xl font-bold text-white max-w-xl">
+          A equipe <span class="text-gold-gradient">iHub</span> converte CPA para você, <span class="text-gold-gradient">afiliado!</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <a href="#como-funciona" class="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[11px] font-bold tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors">
+      Role para baixo
+      <i class="fas fa-chevron-down scroll-hint-bounce"></i>
+    </a>
+  </section>
+
+  <!-- ========== COMO FUNCIONA: cards surgem dinâmicos ========== -->
+  <section id="como-funciona" class="relative py-16 lg:py-24 overflow-hidden bg-black">
+    <!-- Background glows -->
+    <div class="absolute bottom-0 left-1/4 w-[600px] h-[400px] rounded-full blur-[150px] pointer-events-none" style="background: rgba(255,196,0,0.06);"></div>
+    <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full blur-[140px] pointer-events-none" style="background: rgba(48,180,70,0.08);"></div>
+
+    <div class="relative z-10 max-w-[1240px] mx-auto px-6">
+      <!-- Heading -->
+      <div class="text-center mb-10 lg:mb-14">
+        <span class="reveal inline-block text-xs font-extrabold tracking-[0.3em] uppercase mb-3" style="color: var(--gold);">Como funciona</span>
+        <h2 class="reveal copa-title text-3xl md:text-5xl text-white leading-tight">Ative seu CPA em <span class="text-gold-gradient">3 passos</span></h2>
       </div>
 
-      <!-- 3 Steps -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 lg:mt-10">
+      <!-- Trophy in the center, cards on the sides -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6 items-center">
 
-        <!-- Step 01 -->
-        <div class="step-card">
-          <div class="flex items-center gap-3 mb-2.5">
-            <span class="step-number text-gold-gradient">01</span>
-            <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
-            <i class="fab fa-telegram text-xl text-[#29A9EA]"></i>
-            <h3 class="copa-title text-base md:text-lg text-white leading-tight">Copia o<br>link do bot</h3>
+        <!-- LEFT cards -->
+        <div class="flex flex-col gap-5 order-2 lg:order-1">
+          <!-- Step 01 -->
+          <div class="step-card reveal lg:text-right">
+            <div class="flex items-center gap-3 mb-2.5 lg:flex-row-reverse">
+              <span class="step-number text-gold-gradient">01</span>
+              <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
+              <i class="fab fa-telegram text-xl text-[#29A9EA]"></i>
+              <h3 class="copa-title text-base md:text-lg text-white leading-tight">Copia o link do bot</h3>
+            </div>
+            <p class="text-[13px] md:text-sm text-zinc-300 leading-relaxed">
+              Acesse o nosso bot no Telegram e copie o seu link de afiliado exclusivo em poucos segundos.
+            </p>
           </div>
-          <p class="text-[13px] text-zinc-300 leading-relaxed">
-            Acesse o nosso bot no Telegram e copie o seu link de afiliado exclusivo em poucos segundos.
-          </p>
+
+          <!-- Step 02 -->
+          <div class="step-card reveal lg:text-right">
+            <div class="flex items-center gap-3 mb-2.5 lg:flex-row-reverse">
+              <span class="step-number text-gold-gradient">02</span>
+              <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
+              <i class="fas fa-bullhorn text-xl text-[#FFC400]"></i>
+              <h3 class="copa-title text-base md:text-lg text-white leading-tight">Divulga o bot</h3>
+            </div>
+            <p class="text-[13px] md:text-sm text-zinc-300 leading-relaxed">
+              Compartilhe o link do bot com sua audiência nos seus canais e comece a gerar leads qualificados.
+            </p>
+          </div>
         </div>
 
-        <!-- Step 02 -->
-        <div class="step-card">
-          <div class="flex items-center gap-3 mb-2.5">
-            <span class="step-number text-gold-gradient">02</span>
-            <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
-            <i class="fas fa-bullhorn text-xl text-[#FFC400]"></i>
-            <h3 class="copa-title text-base md:text-lg text-white leading-tight">Divulga<br>o bot</h3>
+        <!-- CENTER trophy -->
+        <div class="order-1 lg:order-2 flex justify-center">
+          <div class="relative">
+            <div class="absolute inset-0 m-auto w-[75%] h-[75%] rounded-full blur-[80px] pointer-events-none" style="background: radial-gradient(circle, rgba(255,196,0,0.4), transparent 70%);"></div>
+            <img src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="taca-center-img relative z-10 h-[40vh] max-h-[460px] w-auto select-none" loading="lazy" decoding="async">
           </div>
-          <p class="text-[13px] text-zinc-300 leading-relaxed">
-            Compartilhe o link do bot com sua audiência nos seus canais e comece a gerar leads qualificados.
-          </p>
         </div>
 
-        <!-- Step 03 -->
-        <div class="step-card">
-          <div class="flex items-center gap-3 mb-2.5">
-            <span class="step-number text-gold-gradient">03</span>
-            <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
-            <i class="fas fa-handshake text-xl text-[#FFC400]"></i>
-            <h3 class="copa-title text-sm md:text-base text-white leading-tight">Convertemos<br>o CPA p/ você</h3>
+        <!-- RIGHT card + CTA -->
+        <div class="flex flex-col gap-5 order-3">
+          <!-- Step 03 -->
+          <div class="step-card reveal">
+            <div class="flex items-center gap-3 mb-2.5">
+              <span class="step-number text-gold-gradient">03</span>
+              <div class="h-9 w-px bg-gradient-to-b from-transparent via-[#FFC400]/60 to-transparent"></div>
+              <i class="fas fa-handshake text-xl text-[#FFC400]"></i>
+              <h3 class="copa-title text-sm md:text-base text-white leading-tight">Convertemos o CPA p/ você</h3>
+            </div>
+            <p class="text-[13px] md:text-sm text-zinc-300 leading-relaxed">
+              Temos um bot que ativa o CPA com seu link de afiliado. Time comercial focado em converter seus leads no 1 a 1.
+            </p>
           </div>
-          <p class="text-[13px] text-zinc-300 leading-relaxed">
-            Temos um bot que ativa o CPA com seu link de afiliado. Time comercial focado em converter seus leads no 1 a 1.
-          </p>
-        </div>
-      </div>
 
-      <!-- CTA + iHub brand -->
-      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-between gap-5 mt-9">
-        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          <i class="fab fa-telegram text-lg"></i> Acessar o Bot do Telegram
-        </a>
-        <img src="assets/img/logo-white.png" alt="iHub" class="h-7 md:h-9 opacity-90 select-none">
+          <!-- CTA -->
+          <div class="reveal flex flex-col gap-3">
+            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-gold">
+              <i class="fas fa-user-plus text-base"></i> Criar conta e usar o Bot
+            </a>
+            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-gold-outline">
+              Já sou afiliado <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

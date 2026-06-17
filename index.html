@@ -268,31 +268,34 @@
       letter-spacing: 0.02em;
     }
 
-    /* Taça (trophy) - floating + gentle sway */
-    .taca-wrap {
-      animation: taca-float 4s ease-in-out infinite;
-      transform-origin: center bottom;
-      will-change: transform;
-    }
-
-    @keyframes taca-float {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50%      { transform: translateY(-10px) rotate(2deg); }
-    }
-
-    /* Pulsing golden glow behind the trophy */
-    #heroTaca {
-      will-change: filter;
-      animation: taca-glow 3s ease-in-out infinite;
-    }
-
+    /* Pulsing golden glow for the trophy */
     @keyframes taca-glow {
       0%, 100% { filter: drop-shadow(0 4px 14px rgba(255, 196, 0, 0.4)); }
       50%      { filter: drop-shadow(0 4px 26px rgba(255, 196, 0, 0.85)); }
     }
 
+    /* Title trophy (small, in the hero headline) */
+    #heroTaca {
+      transform-origin: center bottom;
+      animation: hero-taca-float 4.5s ease-in-out infinite, taca-glow 3s ease-in-out infinite;
+      will-change: transform, filter;
+    }
+
+    @keyframes hero-taca-float {
+      0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+      50%      { transform: translateY(-5px) rotate(1.5deg); }
+    }
+
+    /* Center trophy in "Como funciona" — grows (zoom) on scroll */
+    .taca-center-img {
+      transform-origin: center center;
+      animation: taca-glow 3s ease-in-out infinite;
+      will-change: transform, filter;
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .taca-wrap, #heroTaca { animation: none; }
+      #heroTaca, .taca-center-img { animation: none; filter: drop-shadow(0 4px 18px rgba(255, 196, 0, 0.5)); }
+      .taca-center-img { transform: none !important; }
     }
 
     /* Goal net real photo (subtle background) */
@@ -319,17 +322,6 @@
       -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 25%, transparent 82%);
       mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 25%, transparent 82%);
       opacity: 0.5;
-    }
-
-    /* Center trophy in "Como funciona" */
-    .taca-center-img {
-      animation: taca-float 5s ease-in-out infinite;
-      transform-origin: center bottom;
-      filter: drop-shadow(0 24px 55px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 45px rgba(255, 196, 0, 0.25));
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .taca-center-img { animation: none; }
     }
 
     /* Scroll-down hint */
@@ -1690,7 +1682,7 @@
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">App</a>
         <a href="#faq"
           class="nav-link px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full transition-colors">FAQ</a>
-        <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+        <a href="https://ihubaffiliates.com.br/" target="_blank" rel="noopener noreferrer"
           class="ml-3 btn-glass-cta">Login / Criar conta</a>
       </nav>
 
@@ -1719,7 +1711,7 @@
         <a href="#app"
           class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">App</a>
         <a href="#faq" class="mobile-link text-lg font-medium text-zinc-300 hover:text-white transition-colors border-b border-white/5 pb-2">FAQ</a>
-        <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+        <a href="https://ihubaffiliates.com.br/" target="_blank" rel="noopener noreferrer"
           class="mt-2 btn-glass-cta text-base py-3 rounded-xl">Login / Criar conta</a>
       </div>
     </div>
@@ -1749,8 +1741,8 @@
         <!-- Title -->
         <h1 class="copa-title text-3xl sm:text-5xl lg:text-7xl whitespace-nowrap inline-flex items-center justify-center">
           <span class="text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">Bot do</span>
-          <span class="taca-wrap inline-block -my-2 -mx-1">
-            <img id="heroTaca" src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="block h-[1.3em] w-auto drop-shadow-[0_4px_14px_rgba(255,196,0,0.45)] select-none" fetchpriority="high" loading="eager" decoding="sync">
+          <span class="inline-block -my-2 -mx-1">
+            <img id="heroTaca" src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="block h-[1.3em] w-auto select-none" fetchpriority="high" loading="eager" decoding="sync">
           </span>
           <span class="text-gold-gradient drop-shadow-[0_0_24px_rgba(255,196,0,0.35)]">Telegram</span>
         </h1>
@@ -1818,11 +1810,11 @@
           </div>
         </div>
 
-        <!-- CENTER trophy -->
+        <!-- CENTER trophy (grows on scroll) -->
         <div class="order-1 lg:order-2 flex justify-center">
           <div class="relative">
             <div class="absolute inset-0 m-auto w-[75%] h-[75%] rounded-full blur-[80px] pointer-events-none" style="background: radial-gradient(circle, rgba(255,196,0,0.4), transparent 70%);"></div>
-            <img src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="taca-center-img relative z-10 h-[40vh] max-h-[460px] w-auto select-none" loading="lazy" decoding="async">
+            <img id="tacaCenter" src="assets/img/taca.webp" alt="Taça Copa do Mundo" class="taca-center-img relative z-10 h-[40vh] max-h-[460px] w-auto select-none" loading="lazy" decoding="async">
           </div>
         </div>
 
@@ -1843,10 +1835,10 @@
 
           <!-- CTA -->
           <div class="reveal flex flex-col gap-3">
-            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-gold">
+            <a href="https://ihubaffiliates.com.br/" target="_blank" rel="noopener noreferrer" class="btn-gold">
               <i class="fas fa-user-plus text-base"></i> Criar conta e usar o Bot
             </a>
-            <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-gold-outline">
+            <a href="https://ihubaffiliates.com.br/" target="_blank" rel="noopener noreferrer" class="btn-gold-outline">
               Já sou afiliado <i class="fas fa-arrow-right text-xs"></i>
             </a>
           </div>
@@ -2007,7 +1999,7 @@
 
     <!-- Botão Ver Ranking -->
     <div class="flex justify-center mt-10">
-      <a href="https://ihubaffiliates.com/ranking" target="_blank" rel="noopener noreferrer"
+      <a href="https://ihubaffiliates.com.br/ranking" target="_blank" rel="noopener noreferrer"
         class="btn-glass-cta px-8 py-3 text-sm">
         <i class="fas fa-trophy text-sm"></i>
         Ver Ranking
@@ -2195,7 +2187,7 @@
                 </div>
               </a>
 
-              <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer" class="btn-glass-cta rounded-2xl px-4 py-2.5 shrink-0">
+              <a href="https://ihubaffiliates.com.br/" target="_blank" rel="noopener noreferrer" class="btn-glass-cta rounded-2xl px-4 py-2.5 shrink-0">
                 <i class="fas fa-globe text-base"></i>
                 <div class="text-left leading-none">
                   <div class="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">Acessar via Web</div>
@@ -2252,7 +2244,7 @@
             </div>
           </div>
 
-          <a href="https://ihubaffiliates.com/" target="_blank" rel="noopener noreferrer"
+          <a href="https://ihubaffiliates.com.br/" target="_blank" rel="noopener noreferrer"
             class="btn-glass-cta px-8 py-4 text-base rounded-xl">
             Criar conta agora
             <i class="fas fa-arrow-right text-sm"></i>
@@ -2570,7 +2562,7 @@
   </script>
 
   <!-- Fixed Ranking Button (FAB) -->
-  <a href="https://ihubaffiliates.com/ranking" target="_blank"
+  <a href="https://ihubaffiliates.com.br/ranking" target="_blank"
     class="fixed bottom-6 right-6 z-[100] group flex items-center justify-center w-20 h-20">
 
     <!-- Circular Rotating Text -->
@@ -2648,6 +2640,39 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+</script>
+
+<!-- "Como funciona" center trophy grows (zoom) as the section scrolls into view -->
+<script>
+  (function () {
+    var sec = document.getElementById('como-funciona');
+    var taca = document.getElementById('tacaCenter');
+    if (!sec || !taca) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var ticking = false;
+
+    function smootherstep(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+    function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+    function update() {
+      var r = sec.getBoundingClientRect();
+      var vh = window.innerHeight;
+      // 0 when the section top is at the bottom of the viewport, 1 once it has scrolled ~70% up
+      var raw = clamp01((vh - r.top) / (vh * 0.7));
+      var p = smootherstep(raw);
+      var scale = 0.55 + 0.45 * p;          // grows from 0.55x to full size
+      taca.style.transform = 'scale(' + scale.toFixed(4) + ')';
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+
+    update();
+  })();
 </script>
 
 </body>
